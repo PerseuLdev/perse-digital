@@ -1,0 +1,525 @@
+{
+  "metadata": {
+    "title": "Perse Digital - Professional Websites for less than $2/day",
+    "description": "Transform your digital presence with modern, fast, SEO-optimized websites. Exclusive models for professionals."
+  },
+  "nav": {
+    "home": "Home",
+    "templates": "Models",
+    "pricing": "Pricing",
+    "howItWorks": "How It Works",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "badge": "Professional Websites",
+    "headline": "The website your business deserves,",
+    "headlineHighlight": "at a price you can afford.",
+    "subheadline": "Professional websites for caregivers, therapists, and freelancers. Step up from amateurism and win more clients.",
+    "cta": {
+      "primary": "I want my professional website",
+      "secondary": "Learn More"
+    },
+    "stats": {
+      "templates": "Models",
+      "clients": "Happy Clients",
+      "uptime": "Guaranteed Uptime"
+    }
+  },
+  "models": {
+    "title": "Our {highlight}",
+    "titleHighlight": "Models",
+    "pageTitle": "Choose the foundation for your",
+    "pageTitleHighlight": "next digital level",
+    "subtitle": "Our models are validated high-performance structures. Colors, texts, and images will be fully adapted to your brand.",
+    "badge": "Premium Design & Ultra-Fast Conversion",
+    "filters": {
+      "category": "Categories",
+      "objective": "Filter by Objective",
+      "all": "All",
+      "allObjectives": "All Objectives",
+      "health": "Health",
+      "law": "Law",
+      "fitness": "Fitness",
+      "beauty": "Beauty",
+      "education": "Education",
+      "tech": "SaaS",
+      "services": "Services",
+      "leads": "Lead Capture",
+      "scheduling": "Scheduling",
+      "portfolio": "Visual Portfolio"
+    },
+    "card": {
+      "demo": "View Demo",
+      "select": "Choose this Model",
+      "learnMore": "Learn more about this model",
+      "delivery": "48h Delivery",
+      "nextjs": "Next.js Inside",
+      "fast": "Ultra Fast",
+      "objectives": {
+        "leads": "Focus on Capture",
+        "scheduling": "Focus on Scheduling",
+        "portfolio": "Visual Focus",
+        "premium": "Premium Conversion"
+      }
+    },
+    "items": {
+      "medical-premium": {
+        "title": "Premium Clinic",
+        "description": "Ideal for doctors and clinics seeking a sophisticated digital presence.",
+        "features": {
+          "0": "Online booking",
+          "1": "Integrated blog",
+          "2": "Patient area"
+        }
+      },
+      "legal-advisor": {
+        "title": "Elite Advocacy",
+        "description": "A sober and authoritative design for legal professionals.",
+        "features": {
+          "0": "Quick consultations",
+          "1": "Document management",
+          "2": "Partner profiles"
+        }
+      },
+      "fitness-pro": {
+        "title": "Fitness Evolution",
+        "description": "Dynamic and motivating, perfect for personal trainers and gyms.",
+        "features": {
+          "0": "Training plans",
+          "1": "BMI calculator",
+          "2": "Exercise videos"
+        }
+      },
+      "beauty-glow": {
+        "title": "Beauty & Aesthetics",
+        "description": "Minimalist and visual, focused on showing your best results.",
+        "features": {
+          "0": "Photo gallery",
+          "1": "Service list",
+          "2": "Testimonials"
+        }
+      },
+      "tech-startup": {
+        "title": "SaaS Innovate",
+        "description": "Modern and conversion-focused for startups and tech companies.",
+        "features": {
+          "0": "Focused landing page",
+          "1": "Pricing tables",
+          "2": "Dynamic FAQ"
+        }
+      },
+      "education-mind": {
+        "title": "Knowledge Portal",
+        "description": "Complete structure for online courses and private teachers.",
+        "features": {
+          "0": "Members area",
+          "1": "Downloads",
+          "2": "Quizzes"
+        }
+      },
+      "gardening-botanica": {
+        "title": "Botany & Design",
+        "description": "We transform environments into natural retreats with design and sophistication.",
+        "features": {
+          "0": "3D Projects",
+          "1": "Complete execution",
+          "2": "Technical maintenance"
+        }
+      }
+    },
+    "faq": {
+      "title": "Quick FAQ",
+      "subtitle": "Everything you need to know to get started today.",
+      "items": {
+        "colors": {
+          "q": "Can I change the colors?",
+          "a": "Yes! All colors, fonts, and images are adapted to your brand's visual identity."
+        },
+        "time": {
+          "q": "How long does it take to be ready?",
+          "a": "Our standard delivery for models is 48 business hours after all content is submitted."
+        },
+        "responsive": {
+          "q": "Is the site responsive?",
+          "a": "Absolutely. All our models are optimized for Desktop, Tablet, and Mobile."
+        },
+        "hosting": {
+          "q": "Do you handle hosting?",
+          "a": "We offer complete ultra-fast hosting and maintenance solutions so you don't have to worry about anything."
+        }
+      }
+    },
+    "cta": {
+      "title": "Didn't find what you were looking for?",
+      "subtitle": "We develop custom projects from scratch to meet the unique needs of your business model.",
+      "button": "Request Custom Project"
+    }
+  },
+  "whyNextjs": {
+    "title": "Why choose Perse Digital?",
+    "subtitle": "Cutting-edge technology for exceptional results",
+    "features": {
+      "speed": {
+        "title": "Ultra Fast",
+        "description": "Websites that load in less than 1 second, ensuring the best experience for your clients."
+      },
+      "seo": {
+        "title": "SEO Optimized",
+        "description": "Appear in top Google positions with our advanced optimization."
+      },
+      "security": {
+        "title": "100% Secure",
+        "description": "Free SSL and attack protection for you and your clients."
+      },
+      "mobile": {
+        "title": "Mobile First",
+        "description": "Responsive design that works perfectly on any device."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Plans & Pricing",
+    "subtitle": "Choose the ideal plan for your business",
+    "currency": {
+      "symbol": "$",
+      "code": "USD"
+    },
+    "period": "/month",
+    "plans": {
+      "essential": {
+        "name": "Essential",
+        "description": "Perfect for beginners",
+        "prices": {
+          "BRL": "49",
+          "USD": "19"
+        },
+        "features": [
+          "1 Model of choice",
+          "Custom domain",
+          "Free SSL",
+          "Email support",
+          "Monthly updates"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Most popular",
+        "prices": {
+          "BRL": "99",
+          "USD": "39"
+        },
+        "badge": "Recommended",
+        "features": [
+          "Everything in Essential",
+          "CMS for edits",
+          "Advanced analytics",
+          "WhatsApp integration",
+          "Priority support",
+          "Monthly SEO optimization"
+        ]
+      },
+      "elite": {
+        "name": "Elite",
+        "description": "For those who want the best",
+        "prices": {
+          "BRL": "199",
+          "USD": "79"
+        },
+        "features": [
+          "Everything in Professional",
+          "Custom design",
+          "Multi-language",
+          "Custom integrations",
+          "24/7 support",
+          "Monthly consulting"
+        ]
+      }
+    },
+    "cta": "Get Started",
+    "guarantee": "30-day money-back guarantee"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "In 3 simple steps your website will be live",
+    "steps": {
+      "choose": {
+        "title": "Choose Your Model",
+        "description": "Browse our gallery and select the perfect model for your niche."
+      },
+      "customize": {
+        "title": "Customize",
+        "description": "Add your information, photos, and colors. We take care of the rest."
+      },
+      "launch": {
+        "title": "Launch Your Website",
+        "description": "Within 48 hours your website will be live, ready to receive clients."
+      }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Get answers about our services",
+    "stillHaveQuestions": "Still have questions?",
+    "contactUs": "Contact us",
+    "items": {
+      "q1": {
+        "question": "Do I need to know how to code?",
+        "answer": "No! Our models come ready to use. You just need to add your content through a simple and intuitive panel."
+      },
+      "q2": {
+        "question": "How long does it take for the website to be ready?",
+        "answer": "After payment confirmation and information submission, your website is ready within 48 business hours."
+      },
+      "q3": {
+        "question": "Is the domain included?",
+        "answer": "Yes! All plans include a .com domain for 1 year. After that period, renewal is your responsibility."
+      },
+      "q4": {
+        "question": "Can I cancel anytime?",
+        "answer": "Yes, you can cancel whenever you want. We offer a 30-day full refund guarantee."
+      },
+      "q5": {
+        "question": "Is the website responsive?",
+        "answer": "All our models are 100% responsive and work perfectly on phones, tablets, and computers."
+      }
+    }
+  },
+  "footer": {
+    "description": "Transforming professionals into digital references.",
+    "links": {
+      "company": {
+        "title": "Company",
+        "about": "About Us",
+        "careers": "Careers",
+        "contact": "Contact"
+      },
+      "resources": {
+        "title": "Resources",
+        "blog": "Blog",
+        "templates": "Models",
+        "pricing": "Pricing"
+      },
+      "legal": {
+        "title": "Legal",
+        "privacy": "Privacy",
+        "terms": "Terms of Use"
+      }
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "placeholder": "Your best email",
+      "button": "Subscribe"
+    },
+    "copyright": " 2026 Perse Digital. All rights reserved."
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "backToTop": "Back to Top",
+    "scroll": "Scroll",
+    "whatsappMessage": "Hello! I would like to know more about Perse Digital services."
+  },
+  "about": {
+    "title": "Made by people who understand",
+    "titleHighlight": "self-employed professionals",
+    "description": "We know you don't have time to worry about technology. That's why we created a complete solution so you can focus on what really matters: serving your clients.",
+    "cta": "View models",
+    "benefits": {
+      "seo": "SEO-optimized websites to rank on Google",
+      "design": "Professional and modern design",
+      "easy": "Easy to update, no technician needed",
+      "support": "Friendly support in English",
+      "integrations": "WhatsApp and social media integration"
+    }
+  },
+  "niches": {
+    "title": "Models for",
+    "titleHighlight": "every niche",
+    "subtitle": "Specially developed for self-employed professionals who want to stand out in the market",
+    "viewTemplates": "View models",
+    "items": {
+      "health": {
+        "title": "Health",
+        "description": "Doctors, dentists, nutritionists, physiotherapists"
+      },
+      "beauty": {
+        "title": "Beauty",
+        "description": "Hairdressers, beauticians, makeup artists"
+      },
+      "fitness": {
+        "title": "Fitness",
+        "description": "Personal trainers, gyms, sports nutrition"
+      },
+      "law": {
+        "title": "Law",
+        "description": "Lawyers, law firms"
+      },
+      "education": {
+        "title": "Education",
+        "description": "Teachers, tutors, online courses"
+      },
+      "psychology": {
+        "title": "Psychology",
+        "description": "Psychologists, therapists, coaches"
+      }
+    }
+  },
+  "parallax": {
+    "imageAlt": "Professionals working",
+    "banner1": {
+      "title": "More than 500 professionals have already transformed their businesses",
+      "subtitle": "Join doctors, lawyers, personal trainers and many others who trusted Perse Digital"
+    },
+    "banner2": {
+      "title": "Your next client is searching for you on Google",
+      "subtitle": "Be ready to be found with a professional and optimized website"
+    }
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "subtitle": "Real stories from professionals who transformed their businesses",
+    "items": {
+      "t1": {
+        "quote": "My office never had so much visibility. Patients find me easily on Google now!",
+        "author": "Dr. Ana Silva",
+        "role": "Nutritionist"
+      },
+      "t2": {
+        "quote": "The investment paid for itself in the first month. I recommend it to all colleagues.",
+        "author": "Carlos Mendes",
+        "role": "Physiotherapist"
+      },
+      "t3": {
+        "quote": "Beautiful, fast and easy to update website. The support team is exceptional!",
+        "author": "Marina Costa",
+        "role": "Psychologist"
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to transform",
+    "titleLine2": "your digital presence?",
+    "subtitle": "Join more than 500 professionals who are already standing out online.",
+    "button": "Get Started",
+    "imageAlt": "Team celebrating success"
+  },
+  "professionals": {
+    "doctor": "Smiling doctor",
+    "trainer": "Personal trainer",
+    "lawyer": "Professional lawyer",
+    "dentist": "Dentist working"
+  },
+  "leadForm": {
+    "title": "Request a proposal",
+    "subtitle": "Fill out the form below and receive a personalized proposal for your business in minutes",
+    "fields": {
+      "name": {
+        "label": "Full name",
+        "placeholder": "Enter your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "your@email.com"
+      },
+      "phone": {
+        "label": "WhatsApp / Phone",
+        "placeholder": "(00) 00000-0000"
+      },
+      "profession": {
+        "label": "Your profession",
+        "placeholder": "Select your field"
+      },
+      "message": {
+        "label": "Message (optional)",
+        "placeholder": "Tell us more about what you need..."
+      }
+    },
+    "professions": {
+      "doctor": "Doctor",
+      "dentist": "Dentist",
+      "nutritionist": "Nutritionist",
+      "physiotherapist": "Physiotherapist",
+      "psychologist": "Psychologist",
+      "lawyer": "Lawyer",
+      "personalTrainer": "Personal Trainer",
+      "hairdresser": "Hairdresser",
+      "esthetician": "Esthetician",
+      "teacher": "Teacher",
+      "coach": "Coach",
+      "other": "Other"
+    },
+    "quickMessages": {
+      "title": "Quick options",
+      "pricing": {
+        "label": "Pricing",
+        "message": "I would like to know more about the plans and pricing."
+      },
+      "custom": {
+        "label": "Custom",
+        "message": "I need a custom solution for my business."
+      },
+      "deadline": {
+        "label": "Deadline",
+        "message": "I have a deadline and need the website as soon as possible."
+      },
+      "demo": {
+        "label": "Demo",
+        "message": "I would like to see a demo or schedule a call."
+      },
+      "seo": {
+        "label": "SEO",
+        "message": "I want to improve my visibility on Google (SEO)."
+      }
+    },
+    "whatsapp": {
+      "intro": "Hi! My name is {name}.",
+      "introWithProfession": "I'm a {profession} and I'd like to know more about Perse Digital services.",
+      "introWithoutProfession": "I'd like to know more about Perse Digital services.",
+      "dataSection": "My data:",
+      "nameLabel": "Name",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "professionLabel": "Profession",
+      "messageLabel": "Message",
+      "defaultMessage": "I would like to receive more information about the available plans."
+    },
+    "submit": "Receive proposal on WhatsApp",
+    "privacy": "Your data is secure. We don't send spam.",
+    "success": {
+      "title": "Message sent!",
+      "message": "WhatsApp will open with your data. Our team will contact you soon."
+    }
+  },
+  "demo": {
+    "viewing": "Viewing Model",
+    "back": "Back to Models",
+    "cta": "I want this site",
+    "cta_short": "I want this"
+  },
+  "sales": {
+    "title": "About this Model",
+    "whatsIncluded": "What you are paying for:",
+    "features": [
+      "Fully responsive Premium Design",
+      "Extreme performance optimization",
+      "Conversion-focused structure",
+      "Full customization with your brand",
+      "Hosting included in the plan"
+    ],
+    "brandkit": {
+      "title": "What is a Brandkit?",
+      "description": "It's your brand's visual identity in a simple way. For this model, we need you to send us:",
+      "logo": "Your Logo",
+      "logoDesc": "Preferably in transparent PNG",
+      "colors": "Your Colors",
+      "colorsDesc": "Colors that represent your business",
+      "fonts": "Your Fonts",
+      "fontsDesc": "Typography you already use",
+      "howToSend": "After purchase, send your Brandkit via WhatsApp to speed up delivery."
+    },
+    "buyButton": "Buy this Model",
+    "deliveryTime": "48h Business Delivery"
+  }
+}
