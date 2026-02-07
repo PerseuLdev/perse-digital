@@ -1,0 +1,1 @@
+NUNCA mencione Claude ou Claude Pro no commit!!!!
