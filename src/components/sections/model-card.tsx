@@ -77,12 +77,12 @@ export function ModelCard({ model, onClickDemo, onClickChoose }: ModelCardProps)
         )}>
           {viewMode === 'desktop' ? (
             <div className="relative w-full h-full overflow-hidden">
-              {/* Scaled iframe container - 800% height for deep scroll */}
+              {/* Scaled iframe container */}
               <div
-                className="absolute top-0 left-0 origin-top-left transition-transform duration-[8000ms] ease-out group-hover:-translate-y-[65%]"
+                className="absolute top-0 left-0 origin-top-left"
                 style={{
                   width: '400%',
-                  height: '1200%',
+                  height: '400%',
                   transform: 'scale(0.25)',
                 }}
               >
