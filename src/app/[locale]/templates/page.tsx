@@ -1,14 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Sparkles, 
-  Search, 
-  ExternalLink, 
-  Monitor, 
+import {
+  Sparkles,
+  Search,
+  ExternalLink,
+  Monitor,
   Smartphone,
   CheckCircle2,
   ArrowRight
@@ -27,11 +27,13 @@ import { ModelCard, type Model } from '@/components/sections/model-card';
 import { MODELS } from '@/lib/models-data';
 
 
-export default function ModelsPage() {
+function ModelsContent() {
   const t = useTranslations('models');
   const sharedT = useTranslations('common');
   const router = useRouter();
-  const [filter, setFilter] = useState('all');
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category') || 'all';
+  const [filter, setFilter] = useState(initialCategory);
   const [objectiveFilter, setObjectiveFilter] = useState('all');
 
   const filteredModels = MODELS.filter(item => {
@@ -69,32 +71,19 @@ export default function ModelsPage() {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <header className="text-center mb-16 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6"
-            >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4 text-royal-light" />
               <span>{t('badge')}</span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
-            >
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
               {t('pageTitle')} <br />
               <span className="text-gradient">{t('pageTitleHighlight')}</span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
-            >
+            </h1>
+
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t('subtitle')}
-            </motion.p>
+            </p>
           </header>
 
           {/* Filters Wrapper */}
@@ -138,21 +127,18 @@ export default function ModelsPage() {
           </div>
 
           {/* Grid */}
-          <motion.div 
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10"
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10">
             <AnimatePresence mode="popLayout">
               {filteredModels.map((model) => (
                 <motion.div
                   key={model.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
+                  initial={false}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
                 >
-                  <ModelCard 
+                  <ModelCard
                     model={model}
                     onClickDemo={() => router.push(`/templates/${model.id}/preview`)}
                     onClickChoose={() => window.open(`https://wa.me/5514991071072?text=${sharedT('whatsappMessage')} (Model: ${model.title})`, '_blank')}
@@ -160,7 +146,7 @@ export default function ModelsPage() {
                 </motion.div>
               ))}
             </AnimatePresence>
-          </motion.div>
+          </div>
 
           {/* FAQ Section */}
           <section className="mt-40 max-w-4xl mx-auto relative z-10">
@@ -184,28 +170,25 @@ export default function ModelsPage() {
           </section>
 
           {/* Footer CTA */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mt-40 p-12 md:p-20 rounded-[3rem] bg-gradient-to-br from-royal via-royal to-royal-dark text-white text-center shadow-2xl shadow-royal/30 overflow-hidden relative"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-royal-light/10 rounded-full blur-3xl -ml-32 -mb-32" />
-            
+
             <h2 className="text-3xl md:text-5xl font-bold mb-6 relative z-10">{t('cta.title')}</h2>
             <p className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl mx-auto relative z-10">
               {t('cta.subtitle')}
             </p>
-            <Button 
-              size="lg" 
-              variant="secondary" 
+            <Button
+              size="lg"
+              variant="secondary"
               className="bg-white text-primary hover:bg-white/90 text-lg px-12 h-16 rounded-2xl relative z-10"
             >
               {t('cta.button')}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-          </motion.div>
+          </div>
         </div>
       </main>
 
@@ -214,5 +197,13 @@ export default function ModelsPage() {
       <WhatsAppButton phoneNumber="+5514991071072" />
       <BackToTop />
     </>
+  );
+}
+
+export default function ModelsPage() {
+  return (
+    <Suspense>
+      <ModelsContent />
+    </Suspense>
   );
 }

@@ -16,6 +16,27 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // Redirect antigo URL do gardening
+      {
+        source: '/demos/gardening/index.html',
+        destination: '/pt/gardening',
+        permanent: true,
+      },
+      {
+        source: '/demos/gardening',
+        destination: '/pt/gardening',
+        permanent: true,
+      },
+      // Redirects para modelos do diretório antigo (models-live)
+      {
+        source: '/models-live/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

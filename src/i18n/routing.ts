@@ -12,18 +12,6 @@ export const routing = defineRouting({
       pt: '/modelos',
       en: '/models',
     },
-    '/pricing': {
-      pt: '/#pricing',
-      en: '/#pricing',
-    },
-    '/how-it-works': {
-      pt: '/#how-it-works',
-      en: '/#how-it-works',
-    },
-    '/faq': {
-      pt: '/#faq',
-      en: '/#faq',
-    },
   },
 });
 

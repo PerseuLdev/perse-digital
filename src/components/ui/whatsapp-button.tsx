@@ -53,7 +53,7 @@ export function WhatsAppButton({
           className={cn(
             'fixed bottom-24 right-8 z-50',
             'size-14 rounded-full',
-            'bg-[#1a1a1a]',
+            'bg-white dark:bg-[#1a1a1a]',
             'flex items-center justify-center',
             'text-[#25D366]',
             'shadow-[0_2px_8px_rgba(0,0,0,0.08),0_8px_24px_rgba(0,0,0,0.12),0_16px_48px_rgba(0,0,0,0.08)]',

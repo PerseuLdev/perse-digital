@@ -1,6 +1,6 @@
 'use client';
 
-import { Palette, Type, Image as ImageIcon } from 'lucide-react';
+import { Palette, Type, Image as ImageIcon, Phone, Globe, Clock, MapPin, FileText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 export function BrandkitExplainer() {
@@ -52,6 +52,68 @@ export function BrandkitExplainer() {
 
       <div className="p-4 rounded-2xl bg-amber-50 border border-amber-100 text-amber-900 text-xs leading-relaxed">
         <strong>Dica:</strong> {t('howToSend')}
+      </div>
+
+      {/* Business Info Section */}
+      <div className="space-y-4 pt-6 border-t border-slate-200">
+        <div className="space-y-2">
+          <h3 className="text-xl font-bold text-slate-900">{t('businessInfo.title')}</h3>
+          <p className="text-sm text-slate-600 leading-relaxed">
+            {t('businessInfo.description')}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="flex items-start gap-3 p-3 rounded-xl bg-royal/5 border border-royal/10 transition-all hover:bg-royal/10 group">
+            <div className="p-2 rounded-lg bg-royal/10 text-royal group-hover:bg-royal group-hover:text-white transition-colors">
+              <Phone className="w-4 h-4" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-bold text-sm text-slate-900">{t('businessInfo.phone')}</h4>
+              <p className="text-[10px] text-slate-500">{t('businessInfo.phoneDesc')}</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 p-3 rounded-xl bg-royal/5 border border-royal/10 transition-all hover:bg-royal/10 group">
+            <div className="p-2 rounded-lg bg-royal/10 text-royal group-hover:bg-royal group-hover:text-white transition-colors">
+              <Globe className="w-4 h-4" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-bold text-sm text-slate-900">{t('businessInfo.social')}</h4>
+              <p className="text-[10px] text-slate-500">{t('businessInfo.socialDesc')}</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 p-3 rounded-xl bg-royal/5 border border-royal/10 transition-all hover:bg-royal/10 group">
+            <div className="p-2 rounded-lg bg-royal/10 text-royal group-hover:bg-royal group-hover:text-white transition-colors">
+              <Clock className="w-4 h-4" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-bold text-sm text-slate-900">{t('businessInfo.hours')}</h4>
+              <p className="text-[10px] text-slate-500">{t('businessInfo.hoursDesc')}</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 p-3 rounded-xl bg-royal/5 border border-royal/10 transition-all hover:bg-royal/10 group">
+            <div className="p-2 rounded-lg bg-royal/10 text-royal group-hover:bg-royal group-hover:text-white transition-colors">
+              <MapPin className="w-4 h-4" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-bold text-sm text-slate-900">{t('businessInfo.address')}</h4>
+              <p className="text-[10px] text-slate-500">{t('businessInfo.addressDesc')}</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 p-3 rounded-xl bg-royal/5 border border-royal/10 transition-all hover:bg-royal/10 group sm:col-span-2">
+            <div className="p-2 rounded-lg bg-royal/10 text-royal group-hover:bg-royal group-hover:text-white transition-colors">
+              <FileText className="w-4 h-4" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-bold text-sm text-slate-900">{t('businessInfo.content')}</h4>
+              <p className="text-[10px] text-slate-500">{t('businessInfo.contentDesc')}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

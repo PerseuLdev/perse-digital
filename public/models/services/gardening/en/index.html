@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botanical & Design | Professional Landscaping</title>
+    <meta name="description" content="We transform spaces into natural refuges. Landscaping projects, execution and maintenance.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#F3F4F1', // Organic off-white
+                            green: '#2C4A3B', // Deep forest green
+                            accent: '#8C9A83', // Sage green
+                            gold: '#D4AF37', // Subtle gold detail
+                            dark: '#1A1A1A'
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animation Styles */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Animated underline effect on menu */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #D4AF37;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Smooth adjustment for images */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom {
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .img-zoom-container:hover .img-zoom {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4 text-white">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="font-serif text-2xl font-bold tracking-wider flex items-center gap-2">
+                <i data-lucide="leaf" class="h-6 w-6 text-brand-gold"></i>
+                BOTANICAL
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
+                <a href="#home" class="nav-link hover:text-brand-gold transition-colors">Home</a>
+                <a href="#about" class="nav-link hover:text-brand-gold transition-colors">About</a>
+                <a href="#services" class="nav-link hover:text-brand-gold transition-colors">Services</a>
+                <a href="#portfolio" class="nav-link hover:text-brand-gold transition-colors">Portfolio</a>
+                <a href="#contact" class="nav-link hover:text-brand-gold transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+                <i data-lucide="menu" class="h-8 w-8"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-brand-green/95 z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-8 text-white md:hidden">
+            <button id="close-menu-btn" class="absolute top-6 right-6">
+                <i data-lucide="x" class="h-8 w-8"></i>
+            </button>
+            <a href="#home" class="text-2xl font-serif mobile-link">Home</a>
+            <a href="#about" class="text-2xl font-serif mobile-link">About</a>
+            <a href="#services" class="text-2xl font-serif mobile-link">Services</a>
+            <a href="#portfolio" class="text-2xl font-serif mobile-link">Portfolio</a>
+            <a href="#contact" class="text-2xl font-serif mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-fixed"></div>
+        <div class="absolute inset-0 bg-black/40"></div> <!-- Dark overlay -->
+
+        <div class="relative z-10 text-center px-6 max-w-4xl fade-in-section">
+            <span class="text-brand-gold uppercase tracking-[0.3em] text-sm md:text-base mb-4 block font-bold">Landscape Architecture</span>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-white font-medium mb-6 leading-tight">
+                Transforming spaces into <br/> <span class="italic text-brand-accent">natural refuges</span>
+            </h1>
+            <p class="text-gray-200 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto">
+                We unite design, botany, and functionality to create gardens that inspire and connect you with nature.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#contact" class="bg-brand-green text-white border border-brand-green px-8 py-4 uppercase tracking-widest text-xs hover:bg-transparent hover:text-white transition-all duration-300">
+                    Request Quote
+                </a>
+                <a href="#portfolio" class="bg-transparent text-white border border-white px-8 py-4 uppercase tracking-widest text-xs hover:bg-white hover:text-brand-green transition-all duration-300">
+                    View Projects
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+            <i data-lucide="arrow-down" class="h-6 w-6"></i>
+        </div>
+    </header>
+
+    <!-- About Me -->
+    <section id="about" class="py-20 md:py-32 container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center gap-16">
+            <div class="w-full md:w-1/2 relative fade-in-section">
+                <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-brand-green z-0"></div>
+                <!-- Updated image: Focus on planning/landscape architecture -->
+                <img src="https://images.unsplash.com/photo-1591857177580-dc82b9e4e119?auto=format&fit=crop&w=800&q=80" alt="Landscaper working" class="relative z-10 w-full h-[500px] object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-brand-green z-0"></div>
+            </div>
+            <div class="w-full md:w-1/2 fade-in-section">
+                <h2 class="text-3xl md:text-4xl font-serif text-brand-green mb-6">Harmony between built and natural</h2>
+                <div class="w-16 h-1 bg-brand-gold mb-8"></div>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Hello, I'm Carlos Mendes. With over 10 years of experience in residential and corporate landscaping, I believe that every garden should tell a story.
+                </p>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    My approach combines contemporary aesthetics with sustainability. I use native flora and intelligent systems to create low-maintenance, high-visual-impact environments.
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3 text-brand-dark">
+                        <i data-lucide="check-circle" class="text-brand-green w-5 h-5"></i>
+                        <span>100% Customized Projects</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-brand-dark">
+                        <i data-lucide="check-circle" class="text-brand-green w-5 h-5"></i>
+                        <span>Sustainability & Eco-design</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-brand-dark">
+                        <i data-lucide="check-circle" class="text-brand-green w-5 h-5"></i>
+                        <span>Technical Support</span>
+                    </li>
+                </ul>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Signature_sample.svg" alt="Signature" class="h-12 opacity-60">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="bg-white py-20 md:py-32">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 fade-in-section">
+                <span class="text-brand-green font-bold tracking-widest text-xs uppercase mb-2 block">What we offer</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-brand-dark">Our Services</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="group bg-brand-light p-10 fade-in-section hover:-translate-y-2 transition-transform duration-300 border border-transparent hover:border-brand-green/20 hover:shadow-lg">
+                    <div class="w-14 h-14 bg-brand-green text-white flex items-center justify-center rounded-full mb-6 group-hover:bg-brand-gold transition-colors duration-300">
+                        <i data-lucide="pen-tool" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-brand-dark mb-4">Landscape Design</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        Development of floor plans, sections, and 3D models for complete visualization of your future garden before execution.
+                    </p>
+                    <a href="#contact" class="text-brand-green font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
+                        Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group bg-brand-light p-10 fade-in-section hover:-translate-y-2 transition-transform duration-300 border border-transparent hover:border-brand-green/20 hover:shadow-lg" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-brand-green text-white flex items-center justify-center rounded-full mb-6 group-hover:bg-brand-gold transition-colors duration-300">
+                        <i data-lucide="shovel" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-brand-dark mb-4">Project Execution</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        Complete project implementation, from soil preparation and planting to irrigation and lighting system installation.
+                    </p>
+                    <a href="#contact" class="text-brand-green font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
+                        Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group bg-brand-light p-10 fade-in-section hover:-translate-y-2 transition-transform duration-300 border border-transparent hover:border-brand-green/20 hover:shadow-lg" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-brand-green text-white flex items-center justify-center rounded-full mb-6 group-hover:bg-brand-gold transition-colors duration-300">
+                        <i data-lucide="scissors" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-brand-dark mb-4">Maintenance & Consulting</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        Continuous care to ensure your garden evolves healthily. Technical pruning, fertilization, and pest control.
+                    </p>
+                    <a href="#contact" class="text-brand-green font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
+                        Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio / Gallery -->
+    <section id="portfolio" class="py-20 md:py-32">
+        <div class="container mx-auto px-6 mb-12 flex flex-col md:flex-row justify-between items-end fade-in-section">
+            <div>
+                <span class="text-brand-green font-bold tracking-widest text-xs uppercase mb-2 block">Recent Portfolio</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-brand-dark">Selected Works</h2>
+            </div>
+            <a href="#" class="hidden md:inline-block text-brand-green border-b border-brand-green pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors">View full gallery</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-auto md:h-[600px]">
+            <!-- Item 1: Residential -->
+            <div class="relative group h-96 md:h-full img-zoom-container cursor-pointer overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1557429287-b2e26467fc2b?auto=format&fit=crop&w=800&q=80" alt="Residential Garden" class="w-full h-full object-cover img-zoom">
+                <div class="absolute inset-0 bg-brand-green/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                    <h3 class="text-2xl font-serif text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Alphaville Residence</h3>
+                    <p class="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Contemporary Tropical Project</p>
+                </div>
+            </div>
+
+            <!-- Item 2: Balcony -->
+            <div class="relative group h-96 md:h-full img-zoom-container cursor-pointer overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1560114928-40f1f1eb26a0?auto=format&fit=crop&w=800&q=80" alt="Gourmet Balcony" class="w-full h-full object-cover img-zoom">
+                <div class="absolute inset-0 bg-brand-green/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                    <h3 class="text-2xl font-serif text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Gourmet Balcony</h3>
+                    <p class="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Vertical Garden & Planters</p>
+                </div>
+            </div>
+
+            <!-- Item 3: Winter Garden/Indoor -->
+            <div class="relative group h-96 md:h-full img-zoom-container cursor-pointer overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?auto=format&fit=crop&w=800&q=80" alt="Winter Garden" class="w-full h-full object-cover img-zoom">
+                <div class="absolute inset-0 bg-brand-green/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                    <h3 class="text-2xl font-serif text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Winter Garden</h3>
+                    <p class="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Indoor/Outdoor Integration</p>
+                </div>
+            </div>
+
+             <!-- Item 4: Corporate -->
+             <div class="relative group h-96 md:h-full img-zoom-container cursor-pointer overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Commercial Facade" class="w-full h-full object-cover img-zoom">
+                <div class="absolute inset-0 bg-brand-green/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center p-6">
+                    <h3 class="text-2xl font-serif text-white mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Corporate Building</h3>
+                    <p class="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">Urban Landscaping</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-brand-green text-white py-20 md:py-32">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <!-- Information -->
+                <div class="w-full lg:w-1/3 fade-in-section">
+                    <span class="text-brand-accent font-bold tracking-widest text-xs uppercase mb-2 block">Let's talk?</span>
+                    <h2 class="text-4xl font-serif mb-8">Bring nature to your space.</h2>
+                    <p class="text-white/70 mb-10 leading-relaxed">
+                        Fill out the form or contact us directly through the channels below. We look forward to hearing about your project.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-brand-gold mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">Studio</h4>
+                                <p class="text-white/60">Av. Paulista, 1000 - São Paulo, SP</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="phone" class="w-6 h-6 text-brand-gold mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">Phone</h4>
+                                <p class="text-white/60">(11) 99999-9999</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="mail" class="w-6 h-6 text-brand-gold mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg">Email</h4>
+                                <p class="text-white/60">contact@botanical.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex gap-4">
+                        <a href="#" class="w-10 h-10 border border-white/30 flex items-center justify-center hover:bg-white hover:text-brand-green transition-colors rounded-full">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-white/30 flex items-center justify-center hover:bg-white hover:text-brand-green transition-colors rounded-full">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 border border-white/30 flex items-center justify-center hover:bg-white hover:text-brand-green transition-colors rounded-full">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="w-full lg:w-2/3 bg-white p-8 md:p-12 text-brand-dark shadow-2xl fade-in-section">
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Name</label>
+                                <input type="text" required class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-brand-green transition-colors bg-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Phone</label>
+                                <input type="tel" class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-brand-green transition-colors bg-transparent">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Email</label>
+                            <input type="email" required class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-brand-green transition-colors bg-transparent">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Project Type</label>
+                            <select class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-brand-green transition-colors bg-transparent">
+                                <option>Residential</option>
+                                <option>Commercial</option>
+                                <option>Consulting</option>
+                                <option>Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="mb-10">
+                            <label class="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Message</label>
+                            <textarea rows="4" class="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-brand-green transition-colors bg-transparent resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-green text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-brand-dark transition-colors duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white/40 py-8 border-t border-white/10">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
+            <p>&copy; 2024 Botanical Landscaping. All rights reserved.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" class="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+
+        // Navbar Change on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-brand-green', 'shadow-md', 'py-2');
+                navbar.classList.remove('bg-transparent', 'py-4');
+            } else {
+                navbar.classList.remove('bg-brand-green', 'shadow-md', 'py-2');
+                navbar.classList.add('bg-transparent', 'py-4');
+            }
+        });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Animate only once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Simple Form Handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = "Message Sent!";
+            btn.classList.add('bg-brand-gold');
+
+            setTimeout(() => {
+                e.target.reset();
+                btn.innerText = originalText;
+                btn.classList.remove('bg-brand-gold');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

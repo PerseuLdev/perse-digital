@@ -121,7 +121,9 @@ export function NichesSection() {
         {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {niches.map((niche, index) => (
-            <NicheCard key={niche.key} niche={niche} index={index} t={t} />
+            <Link key={niche.key} href={{ pathname: '/templates', query: { category: niche.key } }}>
+              <NicheCard niche={niche} index={index} t={t} />
+            </Link>
           ))}
         </div>
 

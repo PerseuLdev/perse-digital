@@ -1,88 +1,70 @@
 import { Model } from '@/components/sections/model-card';
+import { MODELS_REGISTRY } from '@/models/_config/models.registry';
 
-export const MODELS: Model[] = [
-  {
-    id: 'medical-premium',
-    category: 'health',
-    objective: 'scheduling',
-    title: '',
-    description: '',
+// Mapeamento de IDs do registry para IDs de exibição (compatibilidade)
+const ID_MAP: Record<string, string> = {
+  'health-pro': 'medical-premium',
+  'legal-pro': 'legal-advisor',
+  'fitness-pro': 'fitness-pro',
+  'beauty-glow': 'beauty-glow',
+  'tech-saas': 'tech-startup',
+  'education-mind': 'education-mind',
+  'gardening': 'gardening-botanica',
+};
+
+// Mapeamento de imagens por modelo
+const MODEL_IMAGES: Record<string, { image: string; mobileImage: string }> = {
+  'health-pro': {
     image: 'https://images.unsplash.com/photo-1576091160550-217359f42f8c?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1576091160550-217359f42f8c?w=600&h=1000&fit=crop',
-    features: [],
-    colors: ['#004AAD', '#F8FAFC'],
-    demoUrl: '/health-pro'
   },
-  {
-    id: 'legal-advisor',
-    category: 'law',
-    objective: 'leads',
-    title: '',
-    description: '',
+  'legal-pro': {
     image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=1000&fit=crop',
-    features: [],
-    colors: ['#1E293B', '#C5A059'],
-    demoUrl: '/legal-pro'
   },
-  {
-    id: 'fitness-pro',
-    category: 'fitness',
-    objective: 'scheduling',
-    title: '',
-    description: '',
+  'fitness-pro': {
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=1000&fit=crop',
-    features: [],
-    colors: ['#EF4444', '#171717'],
-    demoUrl: '/fitness-pro'
   },
-  {
-    id: 'beauty-glow',
-    category: 'beauty',
-    objective: 'portfolio',
-    title: '',
-    description: '',
+  'beauty-glow': {
     image: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=600&h=1000&fit=crop',
-    features: [],
-    colors: ['#DB2777', '#FFF5F7'],
-    demoUrl: '/beauty-glow'
   },
-  {
-    id: 'tech-startup',
-    category: 'tech',
-    objective: 'leads',
-    title: '',
-    description: '',
+  'tech-saas': {
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=1000&fit=crop',
-    features: [],
-    colors: ['#6366F1', '#0F172A'],
-    demoUrl: '/tech-saas'
   },
-  {
-    id: 'education-mind',
-    category: 'education',
-    objective: 'portfolio',
-    title: '',
-    description: '',
+  'education-mind': {
     image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=1000&fit=crop',
-    features: [],
-    colors: ['#10B981', '#ECFDF5'],
-    demoUrl: '/education'
   },
-  {
-    id: 'gardening-botanica',
-    category: 'services',
-    objective: 'portfolio',
-    title: '',
-    description: '',
+  'gardening': {
     image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&h=1000&fit=crop',
-    features: [],
-    colors: ['#2C4A3B', '#8C9A83', '#D4AF37'],
-    demoUrl: '/demos/gardening/index.html'
-  }
-];
+  },
+};
+
+// Transforma modelos do registry para o formato de exibição
+export const MODELS: Model[] = MODELS_REGISTRY.map((config) => {
+  const displayId = ID_MAP[config.id] || config.id;
+  const images = MODEL_IMAGES[config.id] || {
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=1800&fit=crop',
+    mobileImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=1000&fit=crop',
+  };
+
+  return {
+    id: displayId,
+    category: config.category,
+    objective: config.objective,
+    title: '', // Vazio, vem de i18n
+    description: '', // Vazio, vem de i18n
+    image: images.image,
+    mobileImage: images.mobileImage,
+    features: [], // Vazio, vem de i18n
+    colors: config.colors,
+    demoUrl: `/${config.id}`, // URL baseada no ID do registro
+  };
+});
+
+// Todos os modelos agora vêm do MODELS_REGISTRY
+// Não há mais placeholders separados

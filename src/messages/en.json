@@ -273,8 +273,8 @@
         "answer": "After payment confirmation and information submission, your website is ready within 48 business hours."
       },
       "q3": {
-        "question": "Is the domain included?",
-        "answer": "Yes! All plans include a .com domain for 1 year. After that period, renewal is your responsibility."
+        "question": "Is the domain included with the model?",
+        "answer": "No. Domain registration (.com, .net, etc.) is not included with the model purchase. You can register your domain through services like Namecheap or GoDaddy, and we handle all the technical setup for you."
       },
       "q4": {
         "question": "Can I cancel anytime?",
@@ -496,7 +496,9 @@
     "viewing": "Viewing Model",
     "back": "Back to Models",
     "cta": "I want this site",
-    "cta_short": "I want this"
+    "cta_short": "I want this",
+    "showDetails": "View details & pricing",
+    "hideDetails": "Close details"
   },
   "sales": {
     "title": "About this Model",
@@ -517,9 +519,32 @@
       "colorsDesc": "Colors that represent your business",
       "fonts": "Your Fonts",
       "fontsDesc": "Typography you already use",
-      "howToSend": "After purchase, send your Brandkit via WhatsApp to speed up delivery."
+      "howToSend": "After purchase, send your Brandkit via WhatsApp to speed up delivery.",
+      "businessInfo": {
+        "title": "Your Business Information",
+        "description": "To customize your website, we also need:",
+        "phone": "Phone / WhatsApp",
+        "phoneDesc": "Contact number for your clients",
+        "social": "Social Media",
+        "socialDesc": "Instagram, Facebook, LinkedIn links, etc.",
+        "hours": "Business Hours",
+        "hoursDesc": "Your working days and hours",
+        "address": "Address",
+        "addressDesc": "Your office or practice location",
+        "content": "Texts & Content",
+        "contentDesc": "Services offered, about you, testimonials"
+      }
     },
     "buyButton": "Buy this Model",
-    "deliveryTime": "48h Business Delivery"
+    "deliveryTime": "48h Business Delivery",
+    "domainNotice": "Domain (e.g. yoursite.com) is not included. You can register yours and we handle all the setup.",
+    "pricing": {
+      "from": "From",
+      "originalPrice": "$997",
+      "for": "for",
+      "currentPrice": "$497",
+      "pixDiscount": "-$500",
+      "guarantee": "7-day money-back guarantee"
+    }
   }
 }

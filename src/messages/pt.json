@@ -274,8 +274,8 @@
         "answer": "Após a confirmação do pagamento e envio das informações, seu site fica pronto em até 48 horas úteis."
       },
       "q3": {
-        "question": "O domínio está incluso?",
-        "answer": "Sim! Todos os planos incluem um domínio .com.br ou .com por 1 ano. Após esse período, a renovação é por sua conta."
+        "question": "O domínio está incluso no modelo?",
+        "answer": "Não. O registro de domínio (.com.br, .com, etc.) não está incluso na compra do modelo. Você pode registrar seu domínio em serviços como Registro.br ou Namecheap, e nós cuidamos de toda a configuração técnica para você."
       },
       "q4": {
         "question": "Posso cancelar a qualquer momento?",
@@ -498,7 +498,9 @@
     "back": "Voltar para Modelos",
     "cta": "Quero este site",
     "cta_short": "Quero este",
-    "combo": "Vista Combinada"
+    "combo": "Vista Combinada",
+    "showDetails": "Ver detalhes e preço",
+    "hideDetails": "Fechar detalhes"
   },
   "sales": {
     "title": "Sobre este Modelo",
@@ -519,9 +521,35 @@
       "colorsDesc": "As cores que representam seu negócio",
       "fonts": "Suas Fontes",
       "fontsDesc": "Tipografia que você já utiliza",
-      "howToSend": "Após a compra, envie seu Brandkit pelo WhatsApp para agilizarmos a entrega."
+      "howToSend": "Após a compra, envie seu Brandkit pelo WhatsApp para agilizarmos a entrega.",
+      "businessInfo": {
+        "title": "Informações do seu Negócio",
+        "description": "Para personalizar seu site, também precisamos de:",
+        "phone": "Telefone / WhatsApp",
+        "phoneDesc": "Número para contato dos seus clientes",
+        "social": "Redes Sociais",
+        "socialDesc": "Links do Instagram, Facebook, LinkedIn, etc.",
+        "hours": "Horário de Funcionamento",
+        "hoursDesc": "Dias e horários de atendimento",
+        "address": "Endereço",
+        "addressDesc": "Localização do seu consultório ou escritório",
+        "content": "Textos e Conteúdo",
+        "contentDesc": "Serviços oferecidos, sobre você, depoimentos"
+      }
     },
     "buyButton": "Comprar este Modelo",
-    "deliveryTime": "Entrega em 48h úteis"
+    "deliveryTime": "Entrega em 48h úteis",
+    "domainNotice": "O domínio (ex: seusite.com.br) não está incluso. Você pode registrar o seu e nós fazemos toda a configuração.",
+    "pricing": {
+      "from": "De",
+      "originalPrice": "R$ 1.197",
+      "for": "por",
+      "installments": "12x de R$ 58",
+      "or": "ou",
+      "pixPrice": "R$ 597",
+      "pixLabel": "no Pix",
+      "pixDiscount": "-R$ 600",
+      "guarantee": "7 dias de garantia"
+    }
   }
 }

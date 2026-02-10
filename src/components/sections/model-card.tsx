@@ -9,9 +9,7 @@ import {
   Smartphone,
   ExternalLink,
   CheckCircle2,
-  ArrowRight,
-  Zap,
-  Cpu
+  ArrowRight
 } from 'lucide-react';
 import { GlassCard } from '@/components/ui/glass-card';
 import { Button } from '@/components/ui/button';
@@ -26,7 +24,7 @@ export interface Model {
   mobileImage?: string;
   features: string[];
   colors: string[];
-  objective?: 'leads' | 'scheduling' | 'portfolio' | 'visual';
+  objective?: 'leads' | 'scheduling' | 'portfolio' | 'visual' | 'ecommerce' | 'dashboard' | 'blog';
   demoUrl?: string;
 }
 
@@ -134,17 +132,6 @@ export function ModelCard({ model, onClickDemo, onClickChoose }: ModelCardProps)
           </Button>
         </div>
         
-        {/* Technology Badges */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2 z-20">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold text-white uppercase tracking-wider">
-            <Cpu className="w-3 h-3 text-royal-light" />
-            {t('nextjs')}
-          </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold text-white uppercase tracking-wider">
-            <Zap className="w-3 h-3 text-amber-400" />
-            {t('fast')}
-          </div>
-        </div>
 
         {/* Device toggle */}
         <div className="absolute bottom-4 left-4 flex gap-2 z-20">

@@ -1,376 +1,374 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MODELS } from '@/lib/models-data';
+import { MacbookPro } from '@/components/ui/macbook-pro';
+import { Iphone16Pro } from '@/components/ui/iphone-16-pro';
 
-// Realistic browser mockup with 3D perspective
-function BrowserMockup() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+// Only models with internal Next.js routes
+const CAROUSEL_MODELS = MODELS.filter(
+  (m) => m.demoUrl && !m.demoUrl.startsWith('http') && !m.demoUrl.startsWith('/demos/')
+);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
-    stiffness: 100,
-    damping: 30,
-  });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), {
-    stiffness: 100,
-    damping: 30,
-  });
+// Screen area percentages from SVG viewBox coordinates
+// MacBook: viewBox 650x400, screen rect at x=74.52 y=21.32 w=501.22 h=323.85
+const MAC = { left: 11.46, top: 5.33, width: 77.11, height: 80.96 };
+// iPhone: viewBox 200x400, screen rect at x=14.08 y=12.81 w=171.98 h=374.37
+const PHONE = { left: 7.04, top: 3.2, width: 85.99, height: 93.59 };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
-  return (
-    <motion.div
-      ref={containerRef}
-      initial={{ opacity: 0, y: 60, rotateX: 15 }}
-      animate={{ opacity: 1, y: 0, rotateX: 0 }}
-      transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d',
-        perspective: '1000px',
-      }}
-      className="relative w-full max-w-[520px] hidden md:block"
-    >
-      {/* Glow effect behind */}
-      <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 rounded-3xl blur-2xl opacity-60" />
-
-      {/* Browser frame */}
-      <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-black/20 dark:shadow-black/40 border border-white/10 dark:border-white/5">
-        {/* Browser header */}
-        <div className="bg-[#1a1a1a] dark:bg-[#0d0d0d] px-4 py-3 flex items-center gap-3 border-b border-white/5">
-          {/* Traffic lights */}
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-            <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
-            <div className="w-3 h-3 rounded-full bg-[#28c840]" />
-          </div>
-
-          {/* URL bar */}
-          <div className="flex-1 mx-4">
-            <div className="bg-[#2a2a2a] dark:bg-[#1a1a1a] rounded-md px-3 py-1.5 flex items-center gap-2">
-              <svg className="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-              </svg>
-              <span className="text-xs text-white/50 font-mono">persedigital.com.br</span>
-            </div>
-          </div>
-
-          {/* Menu dots */}
-          <div className="flex items-center gap-1">
-            <div className="w-1 h-1 rounded-full bg-white/30" />
-            <div className="w-1 h-1 rounded-full bg-white/30" />
-            <div className="w-1 h-1 rounded-full bg-white/30" />
-          </div>
-        </div>
-
-        {/* Browser content */}
-        <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 aspect-[16/10] relative overflow-hidden">
-          {/* Hero section simulation */}
-          <div className="absolute inset-0 p-6">
-            {/* Nav */}
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent" />
-                <div className="w-16 h-2 bg-white/20 rounded" />
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-1.5 bg-white/15 rounded" />
-                <div className="w-12 h-1.5 bg-white/15 rounded" />
-                <div className="w-12 h-1.5 bg-white/15 rounded" />
-                <div className="w-16 h-6 rounded-full bg-primary/80" />
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="grid grid-cols-2 gap-6 items-center">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <div className="h-3 bg-white/30 rounded w-4/5" />
-                  <div className="h-3 bg-white/30 rounded w-3/5" />
-                </div>
-                <div className="space-y-1.5">
-                  <div className="h-1.5 bg-white/15 rounded w-full" />
-                  <div className="h-1.5 bg-white/15 rounded w-4/5" />
-                </div>
-                <div className="flex items-center gap-2 pt-2">
-                  <div className="w-20 h-6 rounded-full bg-white/90" />
-                  <div className="w-16 h-6 rounded-full border border-white/30" />
-                </div>
-              </div>
-
-              {/* Image placeholder */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/30 to-accent/30">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                    <span className="text-2xl font-bold text-white">P</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Floating elements */}
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-12 right-12 w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-lg flex items-center justify-center"
-          >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </motion.div>
-
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-            className="absolute bottom-16 left-8 w-10 h-10 rounded-lg bg-gradient-to-br from-violet-400 to-violet-600 shadow-lg flex items-center justify-center"
-          >
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Reflection */}
-      <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-t from-transparent to-white/5 blur-sm transform scale-y-[-1] opacity-30 rounded-b-xl overflow-hidden" />
-    </motion.div>
-  );
-}
-
-// Sleek mobile mockup
-function MobileMockup() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 40, y: 20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="relative"
-    >
-      {/* Phone frame */}
-      <div className="relative w-[180px] sm:w-[200px] md:w-[220px]">
-        {/* Glow */}
-        <div className="absolute -inset-4 bg-gradient-to-br from-accent/30 to-primary/30 rounded-[3rem] blur-2xl opacity-50" />
-
-        {/* Phone body */}
-        <motion.div
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="relative bg-[#1a1a1a] rounded-[2.5rem] p-1.5 shadow-2xl shadow-black/30 dark:shadow-black/50"
-        >
-          {/* Screen bezel */}
-          <div className="relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 aspect-[9/19.5]">
-            {/* Dynamic Island */}
-            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-20" />
-
-            {/* Screen content */}
-            <div className="absolute inset-0 pt-12 px-4 pb-8">
-              {/* Status bar */}
-              <div className="flex items-center justify-between mb-4 px-2">
-                <span className="text-[10px] text-white/60 font-medium">9:41</span>
-                <div className="flex items-center gap-1">
-                  <div className="w-3 h-3 flex items-end gap-[1px]">
-                    <div className="w-[2px] h-1 bg-white/60 rounded-full" />
-                    <div className="w-[2px] h-1.5 bg-white/60 rounded-full" />
-                    <div className="w-[2px] h-2 bg-white/60 rounded-full" />
-                    <div className="w-[2px] h-3 bg-white/60 rounded-full" />
-                  </div>
-                  <div className="w-4 h-2 bg-white/60 rounded-sm" />
-                </div>
-              </div>
-
-              {/* App content */}
-              <div className="space-y-4">
-                {/* Header */}
-                <div className="flex items-center justify-between">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-accent" />
-                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-white/30" />
-                  </div>
-                </div>
-
-                {/* Welcome text */}
-                <div className="space-y-1.5">
-                  <div className="h-2 bg-white/30 rounded w-2/3" />
-                  <div className="h-2 bg-white/30 rounded w-1/2" />
-                </div>
-
-                {/* Cards */}
-                <div className="space-y-2">
-                  <motion.div
-                    animate={{ scale: [1, 1.02, 1] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                    className="bg-gradient-to-br from-primary/30 to-primary/10 rounded-xl p-3 border border-white/10"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-6 h-6 rounded-lg bg-primary/50" />
-                      <div className="w-12 h-1.5 bg-white/30 rounded" />
-                    </div>
-                    <div className="h-1 bg-white/20 rounded w-full mb-1" />
-                    <div className="h-1 bg-white/20 rounded w-3/4" />
-                  </motion.div>
-
-                  <div className="bg-white/5 rounded-xl p-3 border border-white/5">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-6 h-6 rounded-lg bg-accent/50" />
-                      <div className="w-16 h-1.5 bg-white/20 rounded" />
-                    </div>
-                    <div className="h-1 bg-white/15 rounded w-full mb-1" />
-                    <div className="h-1 bg-white/15 rounded w-2/3" />
-                  </div>
-                </div>
-
-                {/* Bottom nav */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="flex items-center justify-around bg-white/5 rounded-2xl p-2">
-                    <div className="w-8 h-8 rounded-xl bg-primary/30 flex items-center justify-center">
-                      <div className="w-4 h-4 rounded bg-primary" />
-                    </div>
-                    <div className="w-8 h-8 rounded-xl flex items-center justify-center">
-                      <div className="w-4 h-4 rounded bg-white/20" />
-                    </div>
-                    <div className="w-8 h-8 rounded-xl flex items-center justify-center">
-                      <div className="w-4 h-4 rounded bg-white/20" />
-                    </div>
-                    <div className="w-8 h-8 rounded-xl flex items-center justify-center">
-                      <div className="w-4 h-4 rounded-full bg-white/20" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Screen reflection */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
-          </div>
-        </motion.div>
-
-        {/* Phone buttons */}
-        <div className="absolute -right-0.5 top-24 w-1 h-8 bg-[#2a2a2a] rounded-l" />
-        <div className="absolute -right-0.5 top-36 w-1 h-12 bg-[#2a2a2a] rounded-l" />
-        <div className="absolute -left-0.5 top-28 w-1 h-6 bg-[#2a2a2a] rounded-r" />
-        <div className="absolute -left-0.5 top-40 w-1 h-6 bg-[#2a2a2a] rounded-r" />
-      </div>
-    </motion.div>
-  );
-}
-
-// Floating UI elements
-function FloatingElements() {
-  return (
-    <>
-      {/* Notification card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, x: -20 }}
-        animate={{ opacity: 1, scale: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute -left-4 top-1/4 hidden lg:block z-20"
-      >
-        <motion.div
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-xl shadow-black/10 dark:shadow-black/30 border border-black/5 dark:border-white/10 backdrop-blur-sm"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-slate-900 dark:text-white">Site publicado!</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Agora mesmo</p>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Stats card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, x: 20 }}
-        animate={{ opacity: 1, scale: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute -right-4 bottom-1/4 hidden lg:block z-20"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-          className="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-xl shadow-black/10 dark:shadow-black/30 border border-black/5 dark:border-white/10 backdrop-blur-sm"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-violet-600 flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-slate-900 dark:text-white">+340%</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Conversões</p>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Speed indicator */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute right-8 top-8 hidden md:block z-20"
-      >
-        <motion.div
-          animate={{ rotate: [0, 5, -5, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-3 shadow-lg shadow-orange-500/25"
-        >
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            <span className="text-sm font-bold text-white">100</span>
-          </div>
-        </motion.div>
-      </motion.div>
-    </>
-  );
-}
+const AUTO_ROTATE_MS = 4500;
 
 export function HeroMockups() {
+  const params = useParams();
+  const locale = (params.locale as string) || 'pt';
+  const t = useTranslations('models.card');
+  const tm = useTranslations('models.items');
+
+  const macRef = useRef<HTMLDivElement>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
+  const [macScale, setMacScale] = useState(0.28);
+  const [phoneScale, setPhoneScale] = useState(0.26);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  // Compute iframe scales from rendered container sizes
+  useEffect(() => {
+    const update = () => {
+      if (macRef.current) {
+        const screenW = macRef.current.offsetWidth * (MAC.width / 100);
+        setMacScale(screenW / 1440);
+      }
+      if (phoneRef.current) {
+        const screenW = phoneRef.current.offsetWidth * (PHONE.width / 100);
+        setPhoneScale(screenW / 390);
+      }
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  // Delay iframe rendering to not block initial page load
+  useEffect(() => {
+    const timer = setTimeout(() => setReady(true), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Auto-rotate carousel
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % CAROUSEL_MODELS.length);
+    }, AUTO_ROTATE_MS);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  const current = CAROUSEL_MODELS[activeIndex];
+  const previewUrl = `/${locale}/templates/${current.id}/preview`;
+
+  const getIframeUrl = useCallback(
+    (model: (typeof CAROUSEL_MODELS)[number]) => `/${locale}${model.demoUrl}`,
+    [locale]
+  );
+
+  const goPrev = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + CAROUSEL_MODELS.length) % CAROUSEL_MODELS.length);
+  }, []);
+
+  const goNext = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % CAROUSEL_MODELS.length);
+  }, []);
+
   return (
-    <div className="relative w-full flex items-center justify-center lg:justify-end py-8 lg:py-0">
-      {/* Container with perspective */}
-      <div className="relative" style={{ perspective: '1200px' }}>
-        {/* Browser - Desktop only */}
-        <div className="hidden md:block">
-          <BrowserMockup />
+    <div className="relative w-full flex flex-col items-center lg:items-end py-4 lg:py-0">
+      {/* Device showcase */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="relative pb-10 md:pb-14"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* === MacBook === */}
+        <div
+          ref={macRef}
+          className="relative w-[320px] sm:w-[400px] md:w-[480px] lg:w-[520px] xl:w-[560px]"
+        >
+          {/* Ambient glow */}
+          <div className="absolute -inset-8 rounded-3xl blur-3xl opacity-30 bg-gradient-to-br from-primary/30 via-transparent to-accent/20 pointer-events-none" />
+
+          {/* SVG frame - base layer, dark screen serves as loading bg */}
+          <MacbookPro className="relative z-[1] w-full h-auto pointer-events-none text-[#111] dark:text-[#0a0a0a] drop-shadow-2xl" />
+
+          {/* Iframes ON TOP of SVG at screen coordinates */}
+          <div
+            className="absolute overflow-hidden z-[2]"
+            style={{
+              left: `${MAC.left}%`,
+              top: `${MAC.top}%`,
+              width: `${MAC.width}%`,
+              height: `${MAC.height}%`,
+              borderRadius: '0.8%',
+            }}
+          >
+            {ready &&
+              CAROUSEL_MODELS.map((model, i) => (
+                <div
+                  key={model.id}
+                  className="absolute inset-0 transition-opacity duration-700 ease-out"
+                  style={{ opacity: i === activeIndex ? 1 : 0 }}
+                >
+                  <div
+                    style={{
+                      width: '1440px',
+                      height: '900px',
+                      transform: `scale(${macScale})`,
+                      transformOrigin: 'top left',
+                    }}
+                  >
+                    <iframe
+                      src={getIframeUrl(model)}
+                      className="w-full h-full border-0"
+                      title={model.id}
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      tabIndex={-1}
+                      style={{ pointerEvents: 'none' }}
+                    />
+                  </div>
+                </div>
+              ))}
+          </div>
+
+          {/* Hover overlay with CTA + arrows */}
+          <div
+            className="absolute z-[3] transition-opacity duration-300"
+            style={{
+              left: `${MAC.left}%`,
+              top: `${MAC.top}%`,
+              width: `${MAC.width}%`,
+              height: `${MAC.height}%`,
+              borderRadius: '0.8%',
+              opacity: isHovered ? 1 : 0,
+              background: 'linear-gradient(135deg, rgba(0,0,0,0.2), rgba(0,0,0,0.35))',
+              backdropFilter: 'blur(1px)',
+            }}
+          >
+            {/* Prev arrow */}
+            <button
+              onClick={goPrev}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/80 hover:bg-black/60 hover:text-white hover:scale-110 transition-all cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* Center CTA */}
+            <Link
+              href={previewUrl}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-sm font-semibold text-slate-900 shadow-2xl hover:scale-105 transition-transform"
+            >
+              <ExternalLink className="w-4 h-4" />
+              {t('demo')}
+            </Link>
+
+            {/* Next arrow */}
+            <button
+              onClick={goNext}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/80 hover:bg-black/60 hover:text-white hover:scale-110 transition-all cursor-pointer"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Progress bar at bottom of screen */}
+          <div
+            className="absolute z-[4] h-[3px] overflow-hidden pointer-events-none"
+            style={{
+              left: `${MAC.left}%`,
+              bottom: `${100 - MAC.top - MAC.height}%`,
+              width: `${MAC.width}%`,
+              borderRadius: '0 0 4px 4px',
+              background: 'rgba(255,255,255,0.08)',
+            }}
+          >
+            <div
+              key={activeIndex}
+              className="h-full origin-left rounded-full"
+              style={{
+                background: 'linear-gradient(90deg, var(--royal), var(--royal-light))',
+                animation: `hero-progress ${AUTO_ROTATE_MS}ms linear forwards`,
+                animationPlayState: isHovered ? 'paused' : 'running',
+              }}
+            />
+          </div>
         </div>
 
-        {/* Mobile - Positioned to overlap on desktop, centered on mobile */}
-        <div className="md:absolute md:-right-8 md:-bottom-8 lg:-right-4 lg:bottom-4 flex justify-center md:justify-end">
-          <MobileMockup />
-        </div>
+        {/* === iPhone - overlapping bottom-right === */}
+        <motion.div
+          initial={{ opacity: 0, x: 30, y: 20 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute -right-3 bottom-4 sm:-right-5 sm:bottom-2 z-[5] hidden md:block"
+        >
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <div
+              ref={phoneRef}
+              className="relative w-[100px] lg:w-[120px] xl:w-[130px]"
+            >
+              {/* Glow behind phone */}
+              <div className="absolute -inset-4 rounded-[2rem] blur-2xl opacity-40 bg-gradient-to-br from-primary/30 to-accent/20 pointer-events-none" />
 
-        {/* Floating elements */}
-        <FloatingElements />
-      </div>
+              {/* SVG frame - base layer */}
+              <Iphone16Pro className="relative z-[1] w-full h-auto pointer-events-none text-[#111] dark:text-[#0a0a0a] drop-shadow-xl" />
+
+              {/* Iframe ON TOP of SVG at screen coordinates */}
+              <div
+                className="absolute overflow-hidden z-[2]"
+                style={{
+                  left: `${PHONE.left}%`,
+                  top: `${PHONE.top}%`,
+                  width: `${PHONE.width}%`,
+                  height: `${PHONE.height}%`,
+                  borderRadius: '14.3% / 6.6%',
+                }}
+              >
+                {ready && (
+                  <AnimatePresence initial={false}>
+                    <motion.div
+                      key={activeIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute inset-0"
+                    >
+                      <div
+                        style={{
+                          width: '390px',
+                          height: '844px',
+                          transform: `scale(${phoneScale})`,
+                          transformOrigin: 'top left',
+                        }}
+                      >
+                        <iframe
+                          src={getIframeUrl(current)}
+                          className="w-full h-full border-0"
+                          title={`${current.id} mobile`}
+                          loading="lazy"
+                          tabIndex={-1}
+                          style={{ pointerEvents: 'none' }}
+                        />
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Live preview floating badge */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute -left-4 top-1/4 hidden lg:block z-10"
+        >
+          <motion.div
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="px-3 py-2 rounded-xl bg-white dark:bg-slate-800 shadow-xl border border-black/5 dark:border-white/10"
+          >
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap">
+                {locale === 'pt' ? 'Preview ao vivo' : 'Live Preview'}
+              </span>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Performance badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.4, duration: 0.8 }}
+          className="absolute right-12 -top-2 hidden md:block z-10"
+        >
+          <motion.div
+            animate={{ rotate: [0, 3, -3, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            className="px-2.5 py-1.5 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-orange-500/25"
+          >
+            <div className="flex items-center gap-1.5">
+              <svg
+                className="w-3.5 h-3.5 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+              <span className="text-[11px] font-bold text-white">100</span>
+            </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
+      {/* Model name + carousel dots */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9 }}
+        className="flex flex-col items-center gap-2.5 mt-2"
+      >
+        {/* Model name */}
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={activeIndex}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.25 }}
+            className="text-[11px] font-bold uppercase tracking-[0.15em] text-foreground/40"
+          >
+            {tm(`${current.id}.title`)}
+          </motion.span>
+        </AnimatePresence>
+
+        {/* Dots */}
+        <div className="flex items-center gap-2">
+          {CAROUSEL_MODELS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`rounded-full transition-all duration-300 cursor-pointer ${
+                i === activeIndex
+                  ? 'w-7 h-2 bg-primary shadow-[0_0_8px_var(--glow-royal)]'
+                  : 'w-2 h-2 bg-foreground/20 hover:bg-foreground/40'
+              }`}
+              aria-label={`Model ${i + 1}`}
+            />
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 }

@@ -1,16 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  Monitor, 
-  Smartphone, 
+import {
+  Monitor,
+  Smartphone,
   Tablet,
   ArrowLeft,
-  ShoppingBag,
   ExternalLink,
   ChevronLeft,
   Layout,
-  Info,
+  PanelRightOpen,
+  PanelRightClose,
   X
 } from 'lucide-react';
 import { BrowserMockup } from './browser-mockup';
@@ -103,22 +103,33 @@ export function DemoWrapper({ title, url, onClose, children }: DemoWrapperProps)
           <button
             onClick={() => setShowSales(!showSales)}
             className={cn(
-              "flex items-center gap-2 px-4 py-2 rounded-xl border transition-all font-bold text-sm",
-              showSales 
-                ? "bg-slate-900 text-white border-slate-900" 
+              "flex items-center gap-2 px-4 py-2 rounded-xl border transition-all font-bold text-sm relative",
+              showSales
+                ? "bg-slate-900 text-white border-slate-900"
                 : "bg-white text-slate-700 border-slate-200 hover:border-royal hover:text-royal"
             )}
           >
-            <Info className="w-4 h-4" />
-            <span className="hidden sm:inline">Sobre o modelo</span>
+            {showSales ? (
+              <PanelRightClose className="w-4 h-4" />
+            ) : (
+              <PanelRightOpen className="w-4 h-4" />
+            )}
+            <span className="hidden sm:inline">
+              {showSales ? t('hideDetails') : t('showDetails')}
+            </span>
+            {!showSales && (
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-royal opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-royal" />
+              </span>
+            )}
           </button>
 
-          <Button 
+          <Button
             className="bg-royal hover:bg-royal-dark text-white rounded-xl h-10 px-6 whitespace-nowrap hidden md:flex"
             onClick={() => window.open(`https://wa.me/5514991071072?text=Quero o modelo ${title}`, '_blank')}
           >
-            <ShoppingBag className="w-4 h-4 mr-2" />
-            <span>{t('cta')}</span>
+            {t('cta')}
           </Button>
         </div>
       </header>

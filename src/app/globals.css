@@ -401,6 +401,11 @@
   }
 }
 
+@keyframes hero-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
 /* Selection Color */
 ::selection {
   background: oklch(0.45 0.18 260 / 30%);

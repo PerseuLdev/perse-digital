@@ -10,20 +10,29 @@ import { locales, localeNames, localeFlags, type Locale } from '@/i18n/config';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
-const navItems = [
-  { key: 'home', href: '/' },
-  { key: 'templates', href: '/templates' },
-  { key: 'pricing', href: '/pricing' },
-  { key: 'howItWorks', href: '/how-it-works' },
-  { key: 'faq', href: '/faq' },
-] as const;
+const routeItems = [
+  { key: 'home', href: '/' as const },
+  { key: 'templates', href: '/templates' as const },
+];
+
+const anchorItems = [
+  { key: 'pricing', href: '/#pricing' },
+  { key: 'howItWorks', href: '/#how-it-works' },
+  { key: 'faq', href: '/#faq' },
+];
+
+const allNavKeys = [...routeItems.map(i => i.key), ...anchorItems.map(i => i.key)];
 
 export function Navbar() {
   const t = useTranslations('nav');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [mounted] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const pathname = usePathname();
   const locale = useLocale();
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
@@ -39,6 +48,9 @@ export function Navbar() {
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
+
+  const linkClass = "relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group";
+  const underline = <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />;
 
   return (
     <>
@@ -73,15 +85,17 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
-              >
+            {routeItems.map((item) => (
+              <Link key={item.key} href={item.href} className={linkClass}>
                 {t(item.key)}
-                <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                {underline}
               </Link>
+            ))}
+            {anchorItems.map((item) => (
+              <a key={item.key} href={item.href} className={linkClass}>
+                {t(item.key)}
+                {underline}
+              </a>
             ))}
           </div>
 
@@ -228,7 +242,7 @@ export function Navbar() {
               className="absolute right-0 top-0 bottom-0 w-full max-w-sm glass-strong p-8 pt-24"
             >
               <div className="flex flex-col gap-2">
-                {navItems.map((item, index) => (
+                {routeItems.map((item, index) => (
                   <motion.div
                     key={item.key}
                     initial={{ x: 50, opacity: 0 }}
@@ -244,11 +258,27 @@ export function Navbar() {
                     </Link>
                   </motion.div>
                 ))}
+                {anchorItems.map((item, index) => (
+                  <motion.div
+                    key={item.key}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: (routeItems.length + index) * 0.1 }}
+                  >
+                    <a
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-4 py-4 text-xl font-medium rounded-xl hover:bg-foreground/5 transition-colors"
+                    >
+                      {t(item.key)}
+                    </a>
+                  </motion.div>
+                ))}
 
                 <motion.div
                   initial={{ x: 50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: navItems.length * 0.1 }}
+                  transition={{ delay: allNavKeys.length * 0.1 }}
                   className="mt-4"
                 >
                   <Button variant="glow" size="lg" className="w-full">
