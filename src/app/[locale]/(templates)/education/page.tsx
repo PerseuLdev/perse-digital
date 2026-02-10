@@ -13,7 +13,7 @@ interface EducationPageProps {
 }
 
 export default async function EducationPage({ params }: EducationPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (locale !== 'pt' && locale !== 'en') {
     notFound();

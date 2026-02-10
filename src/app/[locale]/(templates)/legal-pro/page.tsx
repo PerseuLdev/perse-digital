@@ -13,7 +13,7 @@ interface LegalProPageProps {
 }
 
 export default async function LegalProPage({ params }: LegalProPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (locale !== 'pt' && locale !== 'en') {
     notFound();

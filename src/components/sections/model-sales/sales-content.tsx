@@ -13,10 +13,12 @@ interface SalesContentProps {
 export function SalesContent({ model }: SalesContentProps) {
   const t = useTranslations('sales');
   const common = useTranslations('common');
+  const tm = useTranslations(`models.items.${model.id}`);
   const locale = useLocale();
 
   const handleBuy = () => {
-    const message = `Olá! Quero comprar o modelo ${model.title}. Como procedemos com o pagamento e envio do Brandkit?`;
+    const modelTitle = tm('title');
+    const message = `Olá! Quero comprar o modelo ${modelTitle}. Como procedemos com o pagamento e envio do Brandkit?`;
     window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -30,10 +32,10 @@ export function SalesContent({ model }: SalesContentProps) {
         </div>
         <div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-tight">
-            {model.title}
+            {tm('title')}
           </h2>
           <p className="text-slate-500 mt-2 leading-relaxed italic">
-            {model.description}
+            {tm('description')}
           </p>
         </div>
 
@@ -83,17 +85,18 @@ export function SalesContent({ model }: SalesContentProps) {
           {t('whatsIncluded')}
         </h3>
         <ul className="grid grid-cols-1 gap-3">
-          {model.features.map((feature, index) => (
-            <li key={index} className="flex items-center gap-3 text-sm text-slate-700 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+          {/* Model-specific features from i18n */}
+          {Object.keys(tm.raw('features') || {}).map((key) => (
+            <li key={key} className="flex items-center gap-3 text-sm text-slate-700 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
               <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-              <span className="font-medium text-slate-600">{feature}</span>
+              <span className="font-medium text-slate-600">{tm(`features.${key}`)}</span>
             </li>
           ))}
           {/* Default features from translations */}
-          {[1, 2, 3, 4, 5].map((i) => (
+          {[0, 1, 2, 3, 4].map((i) => (
             <li key={`def-${i}`} className="flex items-center gap-3 text-sm text-slate-700 bg-white/50 p-2 rounded-xl border border-dashed border-slate-200">
               <CheckCircle2 className="w-4 h-4 text-emerald-300 shrink-0" />
-              <span className="text-slate-500">{t(`features.${i-1}`)}</span>
+              <span className="text-slate-500">{t(`features.${i}`)}</span>
             </li>
           ))}
         </ul>

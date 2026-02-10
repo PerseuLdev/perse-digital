@@ -13,7 +13,7 @@ interface TechSaaSPageProps {
 }
 
 export default async function TechSaaSPage({ params }: TechSaaSPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (locale !== 'pt' && locale !== 'en') {
     notFound();

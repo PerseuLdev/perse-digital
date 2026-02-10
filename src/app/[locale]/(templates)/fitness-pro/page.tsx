@@ -13,7 +13,7 @@ interface FitnessProPageProps {
 }
 
 export default async function FitnessProPage({ params }: FitnessProPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (locale !== 'pt' && locale !== 'en') {
     notFound();

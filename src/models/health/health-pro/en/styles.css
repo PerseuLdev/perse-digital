@@ -35,8 +35,9 @@
     transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.active, .reveal-left.active, .reveal-right.active {
-    opacity: 1;
-    transform: translate(0, 0);
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+    visibility: visible !important;
 }
 
 /* Delay Utilities */

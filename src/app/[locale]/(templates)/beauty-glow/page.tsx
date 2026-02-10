@@ -13,7 +13,7 @@ interface BeautyGlowPageProps {
 }
 
 export default async function BeautyGlowPage({ params }: BeautyGlowPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (locale !== 'pt' && locale !== 'en') {
     notFound();

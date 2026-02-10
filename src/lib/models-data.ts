@@ -55,12 +55,12 @@ export const MODELS: Model[] = MODELS_REGISTRY.map((config) => {
   return {
     id: displayId,
     category: config.category,
-    objective: config.objective,
-    title: '', // Vazio, vem de i18n
-    description: '', // Vazio, vem de i18n
+    objective: config.objective as 'leads' | 'scheduling' | 'portfolio' | 'visual',
+    title: displayId, // Temporary fallback, i18n will override
+    description: `Model ${displayId}`, // Temporary fallback, i18n will override
     image: images.image,
     mobileImage: images.mobileImage,
-    features: [], // Vazio, vem de i18n
+    features: config.features?.pt || [], // Use PT features as fallback
     colors: config.colors,
     demoUrl: `/${config.id}`, // URL baseada no ID do registro
   };

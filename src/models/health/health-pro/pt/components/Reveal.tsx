@@ -8,16 +8,29 @@ interface RevealProps {
   delay?: string;
 }
 
-const Reveal: React.FC<RevealProps> = ({ 
-  children, 
-  className = "", 
+const Reveal: React.FC<RevealProps> = ({
+  children,
+  className = "",
   animation = "reveal",
-  delay = "" 
+  delay = ""
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isInIframe, setIsInIframe] = useState(false);
+
+  // Detectar iframe após mount para evitar hydration mismatch
+  useEffect(() => {
+    const inIframe = typeof window !== 'undefined' && window.self !== window.top;
+    setIsInIframe(inIframe);
+    if (inIframe) {
+      setIsVisible(true);
+    }
+  }, []);
 
   useEffect(() => {
+    // Se já está visível (iframe), não precisa do observer
+    if (isInIframe) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -25,7 +38,7 @@ const Reveal: React.FC<RevealProps> = ({
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1, rootMargin: '50px' } // Threshold menor e margem maior
     );
 
     if (ref.current) {
@@ -33,7 +46,7 @@ const Reveal: React.FC<RevealProps> = ({
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [isInIframe]);
 
   return (
     <div 

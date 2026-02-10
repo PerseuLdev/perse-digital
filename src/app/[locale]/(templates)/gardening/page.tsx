@@ -12,12 +12,14 @@ interface GardeningPageProps {
   };
 }
 
-export default function GardeningPage({ params }: GardeningPageProps) {
+export default async function GardeningPage({ params }: GardeningPageProps) {
+  const { locale } = await params;
+
   return (
     <StaticModelWrapper
       niche="services"
       modelId="gardening"
-      locale={params.locale}
+      locale={locale}
     />
   );
 }

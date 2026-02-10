@@ -13,7 +13,7 @@ interface HealthProPageProps {
 }
 
 export default async function HealthProPage({ params }: HealthProPageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   // Validar locale
   if (locale !== 'pt' && locale !== 'en') {
