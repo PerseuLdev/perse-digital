@@ -62,7 +62,8 @@
         "scheduling": "Focus on Scheduling",
         "portfolio": "Visual Focus",
         "premium": "Premium Conversion"
-      }
+      },
+      "combo": "Split View"
     },
     "items": {
       "medical-premium": {
@@ -497,6 +498,7 @@
     "back": "Back to Models",
     "cta": "I want this site",
     "cta_short": "I want this",
+    "combo": "Split View",
     "showDetails": "View details & pricing",
     "hideDetails": "Close details"
   },
