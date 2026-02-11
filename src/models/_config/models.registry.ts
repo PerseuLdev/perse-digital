@@ -7,6 +7,9 @@ import { config as fitnessProConfig } from '../fitness/fitness-pro/config';
 import { config as beautyGlowConfig } from '../beauty/beauty-glow/config';
 import { config as techSaasConfig } from '../tech/tech-saas/config';
 import { config as educationMindConfig } from '../education/education-mind/config';
+import { config as personalTrainerMascConfig } from '../fitness/personal-trainer-masc/config';
+import { config as musclePerseConfig } from '../fitness/muscle-perse/config';
+import { config as homeNursingConfig } from '../health/home-nursing/config';
 import type { ModelConfig } from './types';
 
 /**
@@ -22,6 +25,9 @@ export const MODELS_REGISTRY: ModelConfig[] = [
   techSaasConfig,
   educationMindConfig,
   gardeningConfig,
+  personalTrainerMascConfig,
+  musclePerseConfig,
+  homeNursingConfig,
 ];
 
 /**

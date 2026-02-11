@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "create-model": "node scripts/create-react-model.js",
+    "prepare-model": "node scripts/prepare-react-model.js",
+    "validate-brandkit": "node scripts/validate-brandkit.js",
+    "apply-brandkit": "node scripts/apply-brandkit.js"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

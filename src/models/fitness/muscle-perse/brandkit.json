@@ -1,0 +1,36 @@
+{
+  "modelId": "muscle-perse",
+  "_originals": {
+    "phone": "5514991234567",
+    "email": "cliente@exemplo.com.br",
+    "instagram": "https://instagram.com/cliente_academia",
+    "facebook": "",
+    "linkedin": ""
+  },
+  "colors": {
+    "primary": "#FF4D00",
+    "secondary": "#050505",
+    "accent": "#FFFFFF"
+  },
+  "contact": {
+    "phone": "5514991234567",
+    "whatsapp": "5514991234567",
+    "email": "cliente@exemplo.com.br",
+    "address": "Rua Exemplo, 123 - São Paulo, SP"
+  },
+  "social": {
+    "instagram": "https://instagram.com/cliente_academia",
+    "instagramHandle": "@cliente.academia",
+    "facebook": null,
+    "linkedin": null
+  },
+  "branding": {
+    "businessName": "MUSCLE PERSE",
+    "logo": "/logo.png",
+    "tagline": "Performance & Estética"
+  },
+  "seo": {
+    "title": "MUSCLE PERSE | Consultoria Personal Training",
+    "description": "Método exclusivo focado em hipertrofia, definição e performance atlética. Consultoria personalizada com Carlos Iron Mendes."
+  }
+}

@@ -128,6 +128,34 @@
           "1": "Execução completa",
           "2": "Manutenção técnica"
         }
+      },
+      "personal-trainer-masc": {
+        "title": "Personal Trainer Pro",
+        "description": "Treinos personalizados e resultados garantidos com acompanhamento profissional.",
+        "features": {
+          "0": "Treino personalizado",
+          "1": "Nutrição inclusa",
+          "2": "App de treinos"
+        }
+      },
+      "muscle-perse": {
+        "title": "MUSCLE PERSE",
+        "description": "Método exclusivo focado em hipertrofia, definição e performance atlética. Consultoria personalizada com Carlos Iron Mendes.",
+        "features": {
+          "0": "Consultoria personalizada",
+          "1": "Acompanhamento 24/7",
+          "2": "Planos híbridos"
+        }
+      },
+      "home-nursing": {
+        "title": "Enfermagem Domiciliar",
+        "description": "Cuidados profissionais de enfermagem no conforto do seu lar. Atendimento humanizado 24h.",
+        "features": {
+          "0": "Atendimento domiciliar 24h",
+          "1": "Profissionais qualificados e experientes",
+          "2": "Planos personalizados de cuidados",
+          "3": "Acompanhamento médico integrado"
+        }
       }
     },
     "faq": {

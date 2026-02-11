@@ -1,0 +1,40 @@
+{
+  "modelId": "home-nursing",
+  "_originals": {
+    "phone": "5514991071072",
+    "email": "",
+    "instagram": "",
+    "facebook": "",
+    "linkedin": ""
+  },
+  "colors": {
+    "primary": "#25D366",
+    "secondary": "#FFFFFF",
+    "accent": "#CCCCCC"
+  },
+  "contact": {
+    "phone": "5514991071072",
+    "whatsapp": "5514991071072",
+    "email": "contato@exemplo.com",
+    "address": "Endereco - Editar"
+  },
+  "social": {
+    "instagram": null,
+    "facebook": null,
+    "linkedin": null
+  },
+  "branding": {
+    "businessName": "Home Nursing",
+    "logo": "/logo.png",
+    "tagline": "Slogan do Negocio - Editar"
+  },
+  "seo": {
+    "title": "Home Nursing",
+    "description": "Home Nursing - Editar descricao",
+    "keywords": [
+      "keyword1",
+      "keyword2",
+      "keyword3"
+    ]
+  }
+}

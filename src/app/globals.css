@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@300;400;500;700&family=Manrope:wght@300;400;600&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -37,14 +37,29 @@
   --color-steel: var(--steel);
   --color-steel-light: var(--steel-light);
 
+  /* Muscle Perse Brand Colors */
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-black: var(--brand-black);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-gray: var(--brand-gray);
+  --color-brand-light: var(--brand-light);
+
   /* Button Hover Colors */
   --color-primary-hover: var(--primary-hover);
   --color-secondary-hover: var(--secondary-hover);
+
+
+  /* muscle-perse Model Colors */
+  --color-muscle-perse-primary: var(--muscle-perse-primary);
+  --color-muscle-perse-secondary: var(--muscle-perse-secondary);
+  --color-muscle-perse-accent: var(--muscle-perse-accent);
 
   /* Typography */
   --font-sans: 'Outfit', system-ui, sans-serif;
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --font-heading: 'Oswald', sans-serif;      /* Muscle Perse */
+  --font-body: 'Manrope', sans-serif;        /* Muscle Perse */
 
   /* Radius */
   --radius-sm: calc(var(--radius) - 4px);
@@ -82,6 +97,19 @@
   --royal-light: oklch(0.65 0.15 245);    /* Light Blue */
   --steel: oklch(0.55 0.02 260);          /* Steel Gray */
   --steel-light: oklch(0.85 0.01 260);    /* Light Steel */
+
+  /* Muscle Perse Brand Colors */
+  --brand-orange: oklch(0.60 0.20 35);    /* #FF4D00 - Vibrant Orange */
+  --brand-black: oklch(0.05 0 0);         /* #050505 - Deep Black */
+  --brand-dark: oklch(0.12 0 0);          /* #121212 - Dark Gray */
+  --brand-gray: oklch(0.20 0 0);          /* #262626 - Medium Gray */
+  --brand-light: oklch(0.90 0 0);         /* #E5E5E5 - Light Gray */
+
+
+  /* muscle-perse Model Colors */
+  --muscle-perse-primary: #FF4D00;
+  --muscle-perse-secondary: #050505;
+  --muscle-perse-accent: #FFFFFF;
 
   /* Light Theme */
   --background: oklch(0.99 0.002 260);
@@ -149,6 +177,13 @@
   --royal-light: oklch(0.70 0.15 245);    /* Light Blue */
   --steel: oklch(0.60 0.02 260);          /* Steel Gray */
   --steel-light: oklch(0.35 0.01 260);    /* Darker Steel */
+
+  /* Muscle Perse Brand Colors - Same in dark mode */
+  --brand-orange: oklch(0.65 0.22 35);    /* Brighter orange for dark */
+  --brand-black: oklch(0.05 0 0);
+  --brand-dark: oklch(0.12 0 0);
+  --brand-gray: oklch(0.20 0 0);
+  --brand-light: oklch(0.90 0 0);
 
   /* Dark Theme */
   --background: oklch(0.10 0.02 260);

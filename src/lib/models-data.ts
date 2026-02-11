@@ -10,6 +10,8 @@ const ID_MAP: Record<string, string> = {
   'tech-saas': 'tech-startup',
   'education-mind': 'education-mind',
   'gardening': 'gardening-botanica',
+  'personal-trainer-masc': 'personal-trainer-masc',
+  'home-nursing': 'home-nursing',
 };
 
 // Mapeamento de imagens por modelo
@@ -41,6 +43,18 @@ const MODEL_IMAGES: Record<string, { image: string; mobileImage: string }> = {
   'gardening': {
     image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&h=1000&fit=crop',
+  },
+  'personal-trainer-masc': {
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=1800&fit=crop',
+    mobileImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=1000&fit=crop',
+  },
+  'muscle-perse': {
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200&h=1800&fit=crop',
+    mobileImage: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=1000&fit=crop',
+  },
+  'home-nursing': {
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&h=1800&fit=crop',
+    mobileImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=1000&fit=crop',
   },
 };
 
