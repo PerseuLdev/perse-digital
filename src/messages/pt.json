@@ -156,6 +156,16 @@
           "2": "Planos personalizados de cuidados",
           "3": "Acompanhamento médico integrado"
         }
+      },
+      "dental-clinic": {
+        "title": "Clínica Odontológica",
+        "description": "Sorrisos transformados com tecnologia de ponta e atendimento humanizado. Cuidamos da saúde bucal da sua família.",
+        "features": {
+          "0": "Agendamento online inteligente",
+          "1": "Tecnologia odontológica avançada",
+          "2": "Galeria antes e depois interativa",
+          "3": "Atendimento emergencial 24h"
+        }
       }
     },
     "faq": {

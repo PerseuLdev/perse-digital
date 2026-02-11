@@ -156,6 +156,16 @@
           "2": "Personalized care plans",
           "3": "Integrated medical follow-up"
         }
+      },
+      "dental-clinic": {
+        "title": "Dental Clinic",
+        "description": "Transform smiles with cutting-edge technology and humanized care. We take care of your family's oral health.",
+        "features": {
+          "0": "Smart online scheduling",
+          "1": "Advanced dental technology",
+          "2": "Interactive before & after gallery",
+          "3": "24/7 emergency service"
+        }
       }
     },
     "faq": {

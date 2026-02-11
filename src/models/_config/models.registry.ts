@@ -10,6 +10,7 @@ import { config as educationMindConfig } from '../education/education-mind/confi
 import { config as personalTrainerMascConfig } from '../fitness/personal-trainer-masc/config';
 import { config as musclePerseConfig } from '../fitness/muscle-perse/config';
 import { config as homeNursingConfig } from '../health/home-nursing/config';
+import { config as dentalClinicConfig } from '../health/dental-clinic/config';
 import type { ModelConfig } from './types';
 
 /**
@@ -28,6 +29,7 @@ export const MODELS_REGISTRY: ModelConfig[] = [
   personalTrainerMascConfig,
   musclePerseConfig,
   homeNursingConfig,
+  dentalClinicConfig,
 ];
 
 /**

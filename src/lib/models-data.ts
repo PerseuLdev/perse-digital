@@ -12,6 +12,7 @@ const ID_MAP: Record<string, string> = {
   'gardening': 'gardening-botanica',
   'personal-trainer-masc': 'personal-trainer-masc',
   'home-nursing': 'home-nursing',
+  'dental-clinic': 'dental-clinic',
 };
 
 // Mapeamento de imagens por modelo
@@ -55,6 +56,10 @@ const MODEL_IMAGES: Record<string, { image: string; mobileImage: string }> = {
   'home-nursing': {
     image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=1000&fit=crop',
+  },
+  'dental-clinic': {
+    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&h=1800&fit=crop',
+    mobileImage: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&h=1000&fit=crop',
   },
 };
 

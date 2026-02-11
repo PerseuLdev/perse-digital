@@ -1,0 +1,40 @@
+{
+  "modelId": "dental-clinic",
+  "_originals": {
+    "phone": "5511999999999",
+    "email": "contato@odontoperse.com.br",
+    "instagram": "",
+    "facebook": "",
+    "linkedin": ""
+  },
+  "colors": {
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "accent": "#CCCCCC"
+  },
+  "contact": {
+    "phone": "5511999999999",
+    "whatsapp": "5511999999999",
+    "email": "contato@odontoperse.com.br",
+    "address": "Endereco - Editar"
+  },
+  "social": {
+    "instagram": null,
+    "facebook": null,
+    "linkedin": null
+  },
+  "branding": {
+    "businessName": "Dental Clinic",
+    "logo": "/logo.png",
+    "tagline": "Slogan do Negocio - Editar"
+  },
+  "seo": {
+    "title": "Dental Clinic",
+    "description": "Dental Clinic - Editar descricao",
+    "keywords": [
+      "keyword1",
+      "keyword2",
+      "keyword3"
+    ]
+  }
+}
