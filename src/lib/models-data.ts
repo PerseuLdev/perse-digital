@@ -61,6 +61,10 @@ const MODEL_IMAGES: Record<string, { image: string; mobileImage: string }> = {
     image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&h=1800&fit=crop',
     mobileImage: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&h=1000&fit=crop',
   },
+  'law-firm-premium': {
+    image: 'https://images.unsplash.com/photo-1589578527966-fd71649f435d?w=1200&h=1800&fit=crop',
+    mobileImage: 'https://images.unsplash.com/photo-1589578527966-fd71649f435d?w=600&h=1000&fit=crop',
+  },
 };
 
 // Transforma modelos do registry para o formato de exibição

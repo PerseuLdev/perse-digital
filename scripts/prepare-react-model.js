@@ -434,6 +434,86 @@ updateTranslations('pt');
 updateTranslations('en');
 
 // ========================================
+// 9. Extrair estilos customizados do index.html
+// ========================================
+console.log('\nExtraindo estilos customizados...');
+
+const extractCustomStyles = () => {
+  const indexHtmlPath = path.join(sourcePath, 'index.html');
+
+  if (!fs.existsSync(indexHtmlPath)) {
+    console.log('  index.html nao encontrado, pulando extracao de estilos');
+    return null;
+  }
+
+  const htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
+
+  // Extrair conteudo da tag <style>
+  const styleMatch = htmlContent.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
+
+  if (styleMatch && styleMatch[1]) {
+    console.log('  Estilos customizados detectados');
+    return styleMatch[1].trim();
+  }
+
+  return null;
+};
+
+const customStyles = extractCustomStyles();
+
+// ========================================
+// 10. Criar arquivo styles.css
+// ========================================
+if (customStyles) {
+  console.log('\nCriando arquivo styles.css...');
+
+  const stylesPath = path.join(modelPath, 'styles.css');
+  const stylesComment = `/* ${titleCase} - Custom Styles */\n/* Extracted from original template */\n\n`;
+
+  fs.writeFileSync(stylesPath, stylesComment + customStyles);
+  console.log(`  styles.css criado em: ${stylesPath.replace(projectRoot, '.')}`);
+}
+
+// ========================================
+// 11. Adicionar imports e 'use client' nos App.tsx
+// ========================================
+console.log('\nAtualizando App.tsx (pt/en)...');
+
+const updateAppTsx = (locale) => {
+  const appPath = path.join(modelPath, locale, 'App.tsx');
+
+  if (!fs.existsSync(appPath)) {
+    console.log(`  App.tsx nao encontrado em ${locale}/`);
+    return;
+  }
+
+  let content = fs.readFileSync(appPath, 'utf-8');
+
+  // Garantir 'use client' no topo
+  if (!content.trimStart().startsWith("'use client'") && !content.trimStart().startsWith('"use client"')) {
+    content = "'use client';\n\n" + content;
+    console.log(`  + 'use client' adicionado ao App.tsx (${locale})`);
+  }
+
+  // Adicionar import do styles.css se existir
+  if (customStyles && !content.includes("import '../styles.css'") && !content.includes('import "../styles.css"')) {
+    // Inserir import logo apos 'use client'
+    const lines = content.split('\n');
+    const insertIndex = lines.findIndex(line => line.includes('import React') || line.includes('import {'));
+
+    if (insertIndex !== -1) {
+      lines.splice(insertIndex, 0, "import '../styles.css';");
+      content = lines.join('\n');
+      console.log(`  + import '../styles.css' adicionado ao App.tsx (${locale})`);
+    }
+  }
+
+  fs.writeFileSync(appPath, content);
+};
+
+['pt', 'en'].forEach(updateAppTsx);
+
+// ========================================
 // Resumo Final
 // ========================================
 console.log('\n=== Modelo React preparado com sucesso! ===\n');

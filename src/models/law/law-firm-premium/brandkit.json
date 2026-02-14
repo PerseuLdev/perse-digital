@@ -1,0 +1,40 @@
+{
+  "modelId": "law-firm-premium",
+  "_originals": {
+    "phone": "5511999999999",
+    "email": "contato@carlosadvocacia.com",
+    "instagram": "",
+    "facebook": "",
+    "linkedin": ""
+  },
+  "colors": {
+    "primary": "#050505",
+    "secondary": "#080808",
+    "accent": "#25D366"
+  },
+  "contact": {
+    "phone": "5511999999999",
+    "whatsapp": "5511999999999",
+    "email": "contato@carlosadvocacia.com",
+    "address": "Endereco - Editar"
+  },
+  "social": {
+    "instagram": null,
+    "facebook": null,
+    "linkedin": null
+  },
+  "branding": {
+    "businessName": "Law Firm Premium",
+    "logo": "/logo.png",
+    "tagline": "Slogan do Negocio - Editar"
+  },
+  "seo": {
+    "title": "Law Firm Premium",
+    "description": "Law Firm Premium - Editar descricao",
+    "keywords": [
+      "keyword1",
+      "keyword2",
+      "keyword3"
+    ]
+  }
+}

@@ -166,6 +166,16 @@
           "2": "Galeria antes e depois interativa",
           "3": "Atendimento emergencial 24h"
         }
+      },
+      "law-firm-premium": {
+        "title": "Advocacia Premium",
+        "description": "Site institucional premium para escritórios de advocacia com design sofisticado e múltiplas áreas de atuação",
+        "features": {
+          "0": "Design premium com animações sofisticadas",
+          "1": "6 áreas de atuação jurídica",
+          "2": "Formulário de contato e WhatsApp",
+          "3": "Cases, depoimentos e FAQ"
+        }
       }
     },
     "faq": {

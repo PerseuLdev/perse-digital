@@ -166,6 +166,16 @@
           "2": "Interactive before & after gallery",
           "3": "24/7 emergency service"
         }
+      },
+      "law-firm-premium": {
+        "title": "Premium Law Firm",
+        "description": "Premium institutional website for law firms with sophisticated design and multiple practice areas",
+        "features": {
+          "0": "Premium design with sophisticated animations",
+          "1": "6 legal practice areas",
+          "2": "Contact form and WhatsApp",
+          "3": "Case studies, testimonials and FAQ"
+        }
       }
     },
     "faq": {

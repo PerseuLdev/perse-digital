@@ -6,7 +6,7 @@
 
 ---
 
-## ✅ Templates Já Convertidos e Funcionando (9)
+## ✅ Templates Já Convertidos e Funcionando (12)
 
 | ID | Nome | Niche | Locales | Status | Imagem | Tradução | Preview |
 |---|---|---|---|---|---|---|---|
@@ -18,9 +18,12 @@
 | `education-mind` | Educação | education | pt/en | ✅ Completo | ✅ | ✅ | ✅ |
 | `gardening` | Jardinagem Botânica | services | pt/en | ✅ Completo | ✅ | ✅ | ✅ |
 | `personal-trainer-masc` | Personal Trainer Masc | fitness | pt/en | ✅ Completo | ✅ | ✅ | ✅ |
-| `muscle-perse` | Muscle Perse | fitness | pt/en | ✅ Completo | ✅ | ✅ | ✅ |
+| `muscle-perse` | Muscle Perse | fitness | pt/en | ✅ | ✅ | ✅ | ✅ |
+| `home-nursing` | Enfermagem Domiciliar | health | pt/en | ✅ Completo | ✅ | ✅ | ✅ |
+| `dental-clinic` | Clínica Odontológica | health | pt/en | ✅ Completo | ✅ | ✅ | ✅ |
+| `law-firm-premium` | Advocacia Premium | law | pt/en | ✅ Completo | ✅ | ✅ | ✅ |
 
-**Total: 9 templates prontos para venda**
+**Total: 12 templates prontos para venda**
 
 ---
 
@@ -28,32 +31,53 @@
 
 **Pasta fonte:** `C:\Users\Perseu\Downloads\templates-react`
 
-### Templates encontrados na pasta fonte:
+### ✅ Templates já convertidos (5):
 
-| Template Fonte | Niche | Model ID | Status | Observações |
+| Template Fonte | Niche | Model ID | Status | Commit |
 |---|---|---|---|---|
-| `enfermagem-domiciliar---profissional-autônomo` | health | `home-nursing` | 🟡 Pendente | Template React Vite |
-| `odonto-perse` | health | `dental-clinic` | 🟡 Pendente | Template React Vite |
-| `health-template-pro---site-profissional` | health | `health-pro` | ✅ Convertido | Já no sistema |
-| `muscle-perse---personal-trainer` | fitness | `muscle-perse` | ✅ Convertido | Já no sistema |
+| `enfermagem-domiciliar` | health | `home-nursing` | ✅ Convertido | 7905916 |
+| `odonto-perse` | health | `dental-clinic` | ✅ Convertido | 82b1828 |
+| `advocacia-premium` | law | `law-firm-premium` | ✅ Convertido | HOJE |
+| `health-template-pro` | health | `health-pro` | ✅ Convertido | Inicial |
+| `muscle-perse---personal-trainer` | fitness | `muscle-perse` | ✅ Convertido | Inicial |
 
-**Instruções:**
-1. Verificar conteúdo em `C:\Users\Perseu\Downloads\templates-react`
-2. Para cada template encontrado, executar:
+### 🔄 Templates pendentes de conversão (6):
+
+| Template Fonte | Descrição | Niche | Model ID Sugerido | Prioridade |
+|---|---|---|---|---|
+| `lumina-estética` | Clínica de estética | beauty | `lumina-aesthetics` | 🔴 Alta |
+| `loja-de-sapatos` | E-commerce de sapatos | fashion | `shoe-store` | 🟡 Média |
+| `cao-cia-lp-main` | Banho & Tosa (pet grooming) | services | `pet-grooming` | 🟡 Média |
+| `valentinas-pet-hub-main` | Pet Store completa | services | `pet-store` | 🟡 Média |
+| `oficina-sevel-botucatu` | Oficina mecânica | automotive | `auto-workshop` | 🟢 Baixa |
+| `trik-trik-autoeletrica-main` | Auto elétrica | automotive | `auto-electric` | 🟢 Baixa |
+
+**Instruções para conversão:**
+1. Verificar estrutura do template fonte
+2. Executar comando de conversão:
    ```bash
    npm run prepare-model "C:\Users\Perseu\Downloads\templates-react\{template}" {niche} {model-id}
    ```
-3. Testar localmente
-4. Adicionar traduções e imagens
-5. Commit individual
+3. Testar localmente (`/pt/{id}` e `/en/{id}`)
+4. Adicionar traduções em `pt.json` e `en.json`
+5. Adicionar imagem em `models-data.ts`
+6. Commit individual com mensagem descritiva
 
 ---
 
 ## 🎯 Objetivo MVP
 
-**Meta:** 12-15 templates totais
-**Progresso atual:** 9/12 (75%)
-**Faltam:** 3-6 novos templates
+**Meta:** 15-18 templates totais
+**Disponíveis na pasta fonte:** 18 templates (12 convertidos + 6 pendentes)
+**Progresso atual:** 12/18 (67%)
+**Faltam:** 6 templates para conversão completa
+
+### Prioridades de conversão:
+1. **Alta** (1): ~~advocacia-premium~~, lumina-estética
+2. **Média** (3): loja-de-sapatos, pet-grooming, pet-store
+3. **Baixa** (2): auto-workshop, auto-electric
+
+**Nova meta revisada:** Converter 3-4 templates prioritários (Alta + Média) = 15-16 templates totais
 
 ---
 
@@ -99,5 +123,6 @@
 
 ---
 
-**Última atualização:** 2026-02-10 às 22:15
+**Última atualização:** 2026-02-14 às 00:30
 **Responsável:** Claude Code
+**Scan completo:** ✅ Todos os templates da pasta fonte mapeados
