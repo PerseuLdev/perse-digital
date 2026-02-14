@@ -3,23 +3,23 @@ import { Calendar, ArrowRight, User } from 'lucide-react';
 
 const posts = [
   {
-    title: "Direitos do Consumidor em Compras Online",
-    excerpt: "Com o aumento do e-commerce, é fundamental entender seus direitos sobre prazos de devolução, garantias legais e arrependimento de compra.",
+    title: "Consumer Rights in Online Shopping",
+    excerpt: "With the rise of e-commerce, it is essential to understand your rights regarding return periods, legal warranties, and cooling-off periods.",
     date: "12 Mar 2024",
     author: "Dr. Carlos Silva",
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Planejamento Sucessório: Por onde começar?",
-    excerpt: "Descubra como o planejamento sucessório pode evitar conflitos familiares futuros e reduzir significativamente os custos e a burocracia do inventário.",
+    title: "Succession Planning: Where to start?",
+    excerpt: "Discover how succession planning can avoid future family conflicts and significantly reduce probate costs and bureaucracy.",
     date: "08 Mar 2024",
     author: "Dr. Carlos Silva",
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Nova Lei Trabalhista e o Home Office",
-    excerpt: "As principais mudanças e regulamentações para o trabalho remoto e híbrido na legislação atual. O que empresas e empregados precisam saber.",
-    date: "25 Fev 2024",
+    title: "New Labor Law and Home Office",
+    excerpt: "The main changes and regulations for remote and hybrid work in current legislation. What companies and employees need to know.",
+    date: "25 Feb 2024",
     author: "Dr. Carlos Silva",
     image: "https://images.unsplash.com/photo-1593642632823-8f78536788c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   }
@@ -27,15 +27,15 @@ const posts = [
 
 export const BlogSection: React.FC = () => {
   return (
-    <section className="py-24 bg-neutral-900 border-t border-neutral-800" id="blog">
+    <section className="py-16 md:py-24 bg-neutral-900 border-t border-neutral-800" id="blog">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div>
-            <h3 className="text-gold-500 font-bold uppercase tracking-widest mb-2">Blog Jurídico</h3>
-            <h2 className="font-serif text-4xl text-white">Artigos e Insights</h2>
+            <h3 className="text-gold-500 font-bold uppercase tracking-widest mb-2">Legal Blog</h3>
+            <h2 className="font-serif text-4xl text-white">Articles and Insights</h2>
           </div>
           <a href="#" className="group flex items-center gap-2 text-gold-500 hover:text-white transition-colors pb-2 border-b border-gold-500/30 hover:border-white">
-            Ver todos os artigos <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            View all articles <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
 
@@ -72,7 +72,7 @@ export const BlogSection: React.FC = () => {
                 
                 <div className="mt-auto">
                     <span className="text-gold-500 text-xs font-bold uppercase tracking-widest group-hover:text-white transition-colors">
-                    Ler artigo completo
+                    Read full article
                     </span>
                 </div>
               </div>

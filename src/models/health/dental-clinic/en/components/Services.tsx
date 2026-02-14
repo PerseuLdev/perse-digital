@@ -5,38 +5,38 @@ import { ServiceItem } from '../types';
 const services: ServiceItem[] = [
   {
     id: 1,
-    title: 'Implantes Dentários',
-    description: 'Recupere a segurança de sorrir com implantes de titânio ou cerâmica de padrão internacional.',
+    title: 'Dental Implants',
+    description: 'Regain your confidence to smile with international-standard titanium or ceramic implants.',
     icon: <Briefcase size={28} />
   },
   {
     id: 2,
     title: 'Invisalign',
-    description: 'O aparelho transparente mais avançado do mundo para alinhar seus dentes com discrição.',
+    description: 'The world\'s most advanced clear aligner system to straighten your teeth discreetly.',
     icon: <ScanFace size={28} />
   },
   {
     id: 3,
-    title: 'Lentes de Contato',
-    description: 'Transformação estética do sorriso com lâminas ultrafinas de porcelana.',
+    title: 'Dental Veneers',
+    description: 'Aesthetic smile transformation with ultra-thin porcelain laminates.',
     icon: <Sparkles size={28} />
   },
   {
     id: 4,
-    title: 'Check-up Digital',
-    description: 'Diagnóstico preciso com câmeras intraorais que aumentam a imagem em até 60x.',
+    title: 'Digital Check-up',
+    description: 'Precise diagnosis with intraoral cameras that magnify images up to 60x.',
     icon: <Stethoscope size={28} />
   },
   {
     id: 5,
-    title: 'Harmonização Facial',
-    description: 'Procedimentos como botox e preenchimento para equilibrar a estética da face.',
+    title: 'Facial Harmonization',
+    description: 'Procedures such as botox and fillers to balance facial aesthetics.',
     icon: <HeartPulse size={28} />
   },
   {
     id: 6,
-    title: 'Clareamento Laser',
-    description: 'Tecnologia que garante dentes mais brancos em menos tempo e com menor sensibilidade.',
+    title: 'Laser Whitening',
+    description: 'Technology that ensures whiter teeth in less time with minimal sensitivity.',
     icon: <ShieldCheck size={28} />
   }
 ];

@@ -70,14 +70,14 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.22, 1, 0.36, 1]
+      ease: "easeOut" as any
     }
   }
 };
 
 export const PracticeAreas: React.FC = () => {
   return (
-    <section className="py-32 bg-[#050505]" id="areas">
+    <section className="py-16 md:py-32 bg-[#050505]" id="areas">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8"
@@ -112,7 +112,7 @@ export const PracticeAreas: React.FC = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                <div className="relative z-10 flex flex-col h-full justify-between min-h-[180px]">
+                <div className="relative z-10 flex flex-col h-full justify-between min-h-[160px] md:min-h-[180px]">
                   <div className="flex justify-between items-start">
                     <div className="p-3 bg-white/5 rounded-full text-white group-hover:text-gold-500 group-hover:bg-gold-500/10 transition-colors duration-300">
                       <Icon className="w-6 h-6" />

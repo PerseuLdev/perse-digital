@@ -33,7 +33,7 @@ export const Testimonials: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-32 bg-neutral-950 relative overflow-hidden" id="depoimentos">
+    <section className="py-16 md:py-32 bg-neutral-950 relative overflow-hidden" id="depoimentos">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[400px] text-white/[0.02] font-serif font-bold pointer-events-none">
         "
@@ -53,7 +53,7 @@ export const Testimonials: React.FC = () => {
                             i === active ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'
                         }`}
                     >
-                        <h3 className="text-2xl md:text-4xl font-serif text-white leading-relaxed mb-8 italic">
+                        <h3 className="text-xl md:text-4xl font-serif text-white leading-relaxed mb-8 italic">
                         "{t.text}"
                         </h3>
                         <div>

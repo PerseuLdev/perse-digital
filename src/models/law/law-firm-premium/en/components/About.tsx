@@ -4,7 +4,7 @@ import { FadeIn } from './FadeIn';
 
 export const About: React.FC = () => {
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden" id="sobre">
+    <section className="py-16 md:py-32 bg-[#050505] relative overflow-hidden" id="about">
       <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-l from-transparent via-neutral-800 to-transparent"></div>
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

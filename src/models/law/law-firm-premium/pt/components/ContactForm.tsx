@@ -27,9 +27,9 @@ export const ContactForm: React.FC = () => {
   const inputClasses = "w-full bg-transparent border-b border-neutral-700 text-white py-4 px-0 focus:outline-none focus:border-gold-500 transition-colors placeholder-neutral-600 text-lg font-light";
 
   return (
-    <section className="py-32 bg-[#050505] relative" id="contato">
+    <section className="py-16 md:py-32 bg-[#050505] relative" id="contato">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        <div className="bg-neutral-900/30 p-8 md:p-16 rounded-3xl border border-white/5 backdrop-blur-sm relative overflow-hidden">
+        <div className="bg-neutral-900/30 p-6 md:p-16 rounded-3xl border border-white/5 backdrop-blur-sm relative overflow-hidden">
             
             {/* Background Glow */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold-600/10 rounded-full blur-[80px]"></div>
@@ -44,8 +44,8 @@ export const ContactForm: React.FC = () => {
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-8 md:space-y-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     <div className="group">
                         <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">Nome</label>
                         <input 
@@ -107,9 +107,11 @@ export const ContactForm: React.FC = () => {
                 <div className="text-center pt-8">
                     <button 
                         type="submit"
-                        className="group inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-gold-400 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(251,185,35,0.3)] hover:scale-105"
+                        className="group inline-flex items-center gap-2 md:gap-4 bg-white text-black px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase tracking-widest hover:bg-gold-400 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(251,185,35,0.3)] hover:scale-105"
                     >
-                        Iniciar Atendimento <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <span className="hidden sm:inline">Iniciar Atendimento</span>
+                        <span className="inline sm:hidden">Enviar</span>
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>
             </form>

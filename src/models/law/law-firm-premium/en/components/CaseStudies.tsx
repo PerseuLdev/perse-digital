@@ -6,24 +6,24 @@ import { FadeIn } from './FadeIn';
 
 const cases = [
   {
-    category: "Direito Trabalhista",
-    title: "Reversão de Justa Causa",
-    result: "R$ 150.000,00",
-    description: "Conseguimos reverter uma demissão por justa causa indevida para um executivo sênior, garantindo todas as verbas rescisórias e indenização por danos morais.",
+    category: "Labor Law",
+    title: "Reversal of Just Cause",
+    result: "$ 30,000.00",
+    description: "Successfully reversed an undue dismissal for a senior executive, ensuring all severance pay and compensation for moral damages.",
     image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80"
   },
   {
-    category: "Direito Civil",
-    title: "Indenização Imobiliária",
-    result: "Acordo Favorável",
-    description: "Atraso na entrega de imóvel de alto padrão. Obtivemos indenização pelos lucros cessantes e danos materiais para o proprietário em tempo recorde.",
+    category: "Civil Law",
+    title: "Real Estate Indemnity",
+    result: "Favorable Settlement",
+    description: "Delay in delivery of luxury property. We obtained compensation for loss of profits and material damages for the owner in record time.",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80"
   },
   {
-    category: "Direito Digital",
-    title: "Recuperação de Conta",
-    result: "Liminar em 24h",
-    description: "Recuperação de conta comercial no Instagram com mais de 500k seguidores após hackeamento, com pedido de urgência deferido pelo tribunal.",
+    category: "Digital Law",
+    title: "Account Recovery",
+    result: "Injunction in 24h",
+    description: "Recovery of business Instagram account with over 500k followers after hacking, with an urgent request granted by the court.",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80"
   }
 ];
@@ -35,12 +35,12 @@ export const CaseStudies: React.FC = () => {
   const prev = () => setCurrent((curr) => (curr - 1 + cases.length) % cases.length);
 
   return (
-    <section className="py-32 bg-[#050505] relative border-t border-white/5">
+    <section className="py-16 md:py-32 bg-[#050505] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <FadeIn>
-                <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-xs mb-3 block">Track Record</span>
-                <h2 className="font-serif text-4xl md:text-5xl text-white">O que temos feito</h2>
+                <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs mb-3 block">Track Record</span>
+                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white">What we have done</h2>
             </FadeIn>
             <div className="flex gap-4">
                 <button onClick={prev} className="p-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors text-white">

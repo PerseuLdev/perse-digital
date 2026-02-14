@@ -6,7 +6,7 @@ export const Trust: React.FC = () => {
     <section className="py-16 bg-black border-y border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <FadeIn>
-            <p className="text-neutral-500 text-xs uppercase tracking-[0.3em] mb-10">Quem confia em nosso trabalho</p>
+            <p className="text-neutral-500 text-xs uppercase tracking-[0.3em] mb-10">Trusted by our clients</p>
         </FadeIn>
         
         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">

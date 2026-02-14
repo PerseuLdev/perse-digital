@@ -5,21 +5,21 @@ import { Plus, Minus } from 'lucide-react';
 import { FadeIn } from './FadeIn';
 
 const faqs = [
-  { q: "O atendimento é 100% online?", a: "Sim. Utilizamos videochamadas, WhatsApp e e-mail para garantir agilidade, mas podemos agendar reuniões presenciais se necessário." },
-  { q: "Como funciona a cobrança de honorários?", a: "Trabalhamos com total transparência. Dependendo do caso, pode ser um valor fixo, mensal ou êxito (porcentagem ao final). Tudo acordado em contrato prévio." },
-  { q: "Quanto tempo demora meu processo?", a: "O tempo judicial varia, mas nossa parte é imediata. Protocolamos ações em até 48h após o recebimento da documentação completa." },
-  { q: "Atendem em quais estados?", a: "Graças ao processo eletrônico, atuamos em todo o território nacional com a mesma eficácia." },
+  { q: "Is the consultation 100% online?", a: "Yes. We use video calls, WhatsApp, and email to ensure speed, but we can schedule in-person meetings if necessary." },
+  { q: "How does fee charging work?", a: "We work with total transparency. Depending on the case, it could be a fixed value, monthly, or success-based (percentage at the end). Everything is agreed upon in a prior contract." },
+  { q: "How long does my process take?", a: "Judicial time varies, but our part is immediate. We file actions within 48 hours after receiving complete documentation." },
+  { q: "Which states do you serve?", a: "Thanks to the electronic process, we operate throughout the national territory with the same effectiveness." },
 ];
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-[#050505]">
+    <section className="py-16 md:py-24 bg-[#050505]">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <FadeIn className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">Dúvidas Frequentes</h2>
-            <p className="text-neutral-500 font-light">Respostas diretas para suas principais questões.</p>
+            <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">Frequently Asked Questions</h2>
+            <p className="text-neutral-500 font-light">Direct answers to your main questions.</p>
         </FadeIn>
 
         <div className="space-y-4">

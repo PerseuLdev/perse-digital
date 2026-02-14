@@ -4,7 +4,7 @@ import { FadeIn } from './FadeIn';
 
 export const Team: React.FC = () => {
   return (
-    <section className="py-32 bg-[#050505] relative">
+    <section className="py-16 md:py-32 bg-[#050505] relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
             

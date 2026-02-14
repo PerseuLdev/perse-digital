@@ -21,8 +21,7 @@ const Hero: React.FC = () => {
         <img
           src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=2000&auto=format&fit=crop"
           alt="Nurse holding hands with elderly patient"
-          className="w-full h-full object-cover object-center scale-105 animate-pulse-slow"
-          style={{ animationDuration: '20s' }}
+          className="w-full h-full object-cover object-center scale-105"
         />
         {/* Base darkening layer */}
         <div className="absolute inset-0 bg-slate-900/40 mix-blend-multiply"></div>
@@ -32,7 +31,7 @@ const Hero: React.FC = () => {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 to-transparent z-10 opacity-10"></div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10 pt-32 pb-20">
+      <div className="container mx-auto px-4 md:px-8 relative z-10 pt-28 pb-16 md:pt-32 md:pb-20">
         <div className="max-w-4xl text-white">
           {/* Category Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-emerald-300 text-xs md:text-sm font-bold uppercase tracking-widest mb-8 animate-fadeIn shadow-lg">
@@ -41,7 +40,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Main Title with Strong Hierarchy */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold mb-8 leading-[1.1] tracking-tight animate-fadeIn drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold mb-8 leading-none tracking-tight animate-fadeIn drop-shadow-lg" style={{ animationDelay: '0.1s' }}>
             Care, respect and <br className="block md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-emerald-500">
               dedication in your home.
@@ -49,7 +48,7 @@ const Hero: React.FC = () => {
           </h1>
 
           {/* Subtitle with weight contrast */}
-          <p className="text-lg sm:text-xl md:text-2xl text-slate-200/90 mb-10 md:mb-12 font-light leading-relaxed max-w-2xl animate-fadeIn drop-shadow-md" style={{ animationDelay: '0.2s' }}>
+          <p className="text-base md:text-xl text-slate-200/90 mb-10 md:mb-12 font-light leading-relaxed max-w-2xl animate-fadeIn drop-shadow-md" style={{ animationDelay: '0.2s' }}>
             I offer technical nursing support and specialized care.
             <strong className="block mt-2 font-semibold text-white">Safety and professional care for your loved ones.</strong>
           </p>
@@ -60,7 +59,7 @@ const Hero: React.FC = () => {
               href={contactLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-5 rounded-2xl font-bold text-lg text-center transition-all shadow-xl shadow-emerald-900/50 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 border border-emerald-500/50"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-4 rounded-2xl font-bold text-lg text-center transition-all shadow-xl shadow-emerald-900/50 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 border border-emerald-500/50"
             >
               Request Quote
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
@@ -68,7 +67,7 @@ const Hero: React.FC = () => {
             <a
               href="#services"
               onClick={(e) => scrollToSection(e, 'services')}
-              className="bg-white/5 hover:bg-white/15 backdrop-blur-sm text-white border border-white/20 px-10 py-5 rounded-2xl font-bold text-lg text-center transition-all hover:border-white/40"
+              className="bg-white/5 hover:bg-white/15 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-2xl font-bold text-lg text-center transition-all hover:border-white/40"
             >
               View Services
             </a>

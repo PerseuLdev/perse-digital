@@ -35,12 +35,12 @@ export const CaseStudies: React.FC = () => {
   const prev = () => setCurrent((curr) => (curr - 1 + cases.length) % cases.length);
 
   return (
-    <section className="py-32 bg-[#050505] relative border-t border-white/5">
+    <section className="py-16 md:py-32 bg-[#050505] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <FadeIn>
-                <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-xs mb-3 block">Track Record</span>
-                <h2 className="font-serif text-4xl md:text-5xl text-white">O que temos feito</h2>
+                <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs mb-3 block">Track Record</span>
+                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white">O que temos feito</h2>
             </FadeIn>
             <div className="flex gap-4">
                 <button onClick={prev} className="p-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors text-white">

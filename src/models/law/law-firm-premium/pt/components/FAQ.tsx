@@ -15,7 +15,7 @@ export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-[#050505]">
+    <section className="py-16 md:py-24 bg-[#050505]">
       <div className="max-w-3xl mx-auto px-6 lg:px-8">
         <FadeIn className="text-center mb-16">
             <h2 className="font-serif text-3xl md:text-4xl text-white mb-4">Dúvidas Frequentes</h2>

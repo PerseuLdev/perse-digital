@@ -7,17 +7,19 @@ export const config: ModelConfig = {
   category: 'health',
   objective: 'leads',
   locales: ['pt', 'en'] as const,
-  colors: ['#000000', '#FFFFFF'],
+  colors: ['#14B8A6', '#0F766E'],
   features: {
     pt: [
-      'Feature 1 - Editar manualmente',
-      'Feature 2 - Editar manualmente',
-      'Feature 3 - Editar manualmente',
+      'Agendamento online inteligente',
+      'Tecnologia odontológica avançada',
+      'Galeria antes e depois interativa',
+      'Atendimento emergencial 24h',
     ],
     en: [
-      'Feature 1 - Edit manually',
-      'Feature 2 - Edit manually',
-      'Feature 3 - Edit manually',
+      'Smart online scheduling',
+      'Advanced dental technology',
+      'Interactive before & after gallery',
+      '24/7 emergency service',
     ],
   },
 };

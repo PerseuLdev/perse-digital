@@ -35,9 +35,9 @@ export const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { name: 'Início', href: '#inicio' },
-    { name: 'Sobre', href: '#sobre' },
-    { name: 'Áreas', href: '#areas' },
+    { name: 'Home', href: '#inicio' },
+    { name: 'About', href: '#sobre' },
+    { name: 'Practice Areas', href: '#areas' },
     { name: 'Blog', href: '#blog' },
   ];
 
@@ -79,7 +79,7 @@ export const Navbar: React.FC = () => {
               onClick={(e) => handleLinkClick(e, '#contato')}
               className="bg-white text-black hover:bg-gold-400 hover:text-black px-6 py-2.5 rounded-full transition-all duration-300 font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(251,185,35,0.4)]"
             >
-              Consultar
+              Consult
             </a>
           </div>
 
@@ -113,7 +113,7 @@ export const Navbar: React.FC = () => {
               onClick={(e) => handleLinkClick(e, '#contato')}
               className="text-gold-500 text-xl font-bold uppercase tracking-widest mt-4"
             >
-              Entrar em Contato
+              Get in Touch
             </a>
         </div>
       </div>

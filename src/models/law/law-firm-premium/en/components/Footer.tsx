@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-sm leading-relaxed mb-6">
-              Advocacia moderna focada em resultados e na proteção intransigente dos direitos de nossos clientes. Atendimento em todo território nacional.
+              Modern advocacy focused on results and the uncompromising protection of our clients' rights. Service throughout the national territory.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -49,31 +49,31 @@ export const Footer: React.FC = () => {
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Navegação</h4>
+            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Navigation</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#inicio" className="hover:text-gold-500 transition-colors flex items-center gap-2">Início</a></li>
-              <li><a href="#sobre" className="hover:text-gold-500 transition-colors flex items-center gap-2">Sobre Mim</a></li>
-              <li><a href="#depoimentos" className="hover:text-gold-500 transition-colors flex items-center gap-2">Depoimentos</a></li>
-              <li><a href="#blog" className="hover:text-gold-500 transition-colors flex items-center gap-2">Blog Jurídico</a></li>
-              <li><a href="#contato" className="hover:text-gold-500 transition-colors flex items-center gap-2">Agendar Consulta</a></li>
+              <li><a href="#inicio" className="hover:text-gold-500 transition-colors flex items-center gap-2">Home</a></li>
+              <li><a href="#sobre" className="hover:text-gold-500 transition-colors flex items-center gap-2">About Me</a></li>
+              <li><a href="#depoimentos" className="hover:text-gold-500 transition-colors flex items-center gap-2">Testimonials</a></li>
+              <li><a href="#blog" className="hover:text-gold-500 transition-colors flex items-center gap-2">Legal Blog</a></li>
+              <li><a href="#contato" className="hover:text-gold-500 transition-colors flex items-center gap-2">Schedule Consultation</a></li>
             </ul>
           </div>
 
           {/* Areas */}
           <div>
-            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Áreas de Atuação</h4>
+            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Practice Areas</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Direito Civil e Contratos</a></li>
-              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Direito Trabalhista</a></li>
-              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Direito de Família</a></li>
-              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Direito Criminal</a></li>
-              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Direito Digital</a></li>
+              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Civil Law and Contracts</a></li>
+              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Labor Law</a></li>
+              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Family Law</a></li>
+              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Criminal Law</a></li>
+              <li><a href="#areas" className="hover:text-gold-500 transition-colors">Digital Law</a></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Contato</h4>
+            <h4 className="text-white font-bold uppercase tracking-wider mb-6">Contact</h4>
             <ul className="space-y-4 text-sm">
               <li>
                 <a 
@@ -110,10 +110,10 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-neutral-900 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-neutral-600">
-          <p>&copy; {new Date().getFullYear()} Carlos Silva Advocacia. Todos os direitos reservados. OAB/SP 000.000.</p>
+          <p>&copy; {new Date().getFullYear()} Carlos Silva Law Firm. All rights reserved. OAB/SP 000.000.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
-             <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
-             <a href="#" className="hover:text-white transition-colors">Política de Privacidade</a>
+             <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
+             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>
         </div>
       </div>

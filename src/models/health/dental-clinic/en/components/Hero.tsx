@@ -60,27 +60,27 @@ const Hero: React.FC<HeroProps> = ({ onOpenSchedule }) => {
         <FadeIn className="space-y-8 max-w-2xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-teal-300 text-sm font-semibold tracking-wide shadow-sm">
             <Award size={16} />
-            <span>Excelência em Odontologia Estética</span>
+            <span>Excellence in Aesthetic Dentistry</span>
           </div>
-          
+
           <h1 className="text-5xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight drop-shadow-lg">
-            Seu sorriso é a nossa <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">obra de arte</span>.
+            Your smile is our <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">masterpiece</span>.
           </h1>
-          
+
           <p className="text-lg lg:text-xl text-slate-200 leading-relaxed font-medium drop-shadow-md max-w-xl">
-            Experimente um novo padrão em cuidados odontológicos. Tecnologia de ponta, conforto absoluto e resultados que transformam vidas.
+            Experience a new standard in dental care. Cutting-edge technology, absolute comfort, and life-transforming results.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <div onClick={onOpenSchedule} className="flex-1 sm:flex-none">
               <Button variant="primary" className="h-14 px-8 text-lg w-full sm:w-auto shadow-teal-500/30">
                 <CalendarCheck size={20} />
-                Agendar Consulta
+                Book Appointment
               </Button>
             </div>
             <a href="#services" onClick={scrollToServices} className="flex-1 sm:flex-none">
               <Button variant="outline" className="h-14 px-8 text-lg w-full sm:w-auto !text-white !border-white/30 hover:!bg-white/10 hover:!border-white">
-                Conhecer Tratamentos
+                Explore Treatments
               </Button>
             </a>
           </div>
@@ -90,13 +90,13 @@ const Hero: React.FC<HeroProps> = ({ onOpenSchedule }) => {
               <div className="bg-teal-500/20 p-2 rounded-full text-teal-400 border border-teal-500/30">
                 <ShieldCheck size={18} />
               </div>
-              Tecnologia 3D
+              3D Technology
             </div>
             <div className="flex items-center gap-2 text-slate-300 text-sm font-bold">
               <div className="bg-teal-500/20 p-2 rounded-full text-teal-400 border border-teal-500/30">
                  <ThumbsUp size={18} />
               </div>
-              +5000 Sorrisos
+              +5000 Smiles
             </div>
           </div>
         </FadeIn>

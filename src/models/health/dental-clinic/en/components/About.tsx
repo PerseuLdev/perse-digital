@@ -40,10 +40,10 @@ const About: React.FC = () => {
 
             <ul className="space-y-4 pt-4">
               {[
-                "Equipamentos de última geração (Raio-X Digital, Scanner 3D)",
-                "Ambiente climatizado e esterilização hospitalar",
-                "Equipe multidisciplinar especialista",
-                "Atendimento pontual e respeitoso"
+                "State-of-the-art equipment (Digital X-Ray, 3D Scanner)",
+                "Climate-controlled environment and hospital-grade sterilization",
+                "Multidisciplinary specialist team",
+                "Punctual and respectful service"
               ].map((item, index) => (
                 <li key={index} className="flex items-center gap-3 text-slate-700 font-medium">
                   <CheckCircle2 className="text-teal-500 flex-shrink-0" size={20} />

@@ -27,27 +27,27 @@ export const ContactForm: React.FC = () => {
   const inputClasses = "w-full bg-transparent border-b border-neutral-700 text-white py-4 px-0 focus:outline-none focus:border-gold-500 transition-colors placeholder-neutral-600 text-lg font-light";
 
   return (
-    <section className="py-32 bg-[#050505] relative" id="contato">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        <div className="bg-neutral-900/30 p-8 md:p-16 rounded-3xl border border-white/5 backdrop-blur-sm relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-[#050505] relative" id="contato">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="bg-neutral-900/30 p-6 md:p-16 rounded-3xl border border-white/5 backdrop-blur-sm relative overflow-hidden">
             
             {/* Background Glow */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold-600/10 rounded-full blur-[80px]"></div>
 
             <div className="relative z-10 text-center mb-16">
-                <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-xs mb-4 block">Comece Agora</span>
-                <h2 className="font-serif text-4xl md:text-5xl text-white mb-6">
-                  Vamos resolver isso?
+                <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-xs mb-4 block">Start Now</span>
+                <h2 className="font-serif text-3xl md:text-5xl text-white mb-6">
+                  Ready to resolve this?
                 </h2>
                 <p className="text-neutral-400 font-light max-w-xl mx-auto">
-                    Preencha os dados abaixo. O redirecionamento para o WhatsApp é automático para garantir agilidade.
+                    Fill out the form below. Redirection to WhatsApp is automatic to ensure efficiency.
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-8 md:space-y-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     <div className="group">
-                        <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">Nome</label>
+                        <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">Name</label>
                         <input 
                             type="text" 
                             name="name"
@@ -55,11 +55,11 @@ export const ContactForm: React.FC = () => {
                             value={formData.name}
                             onChange={handleChange}
                             className={inputClasses}
-                            placeholder="Como prefere ser chamado?"
+                            placeholder="Your full name"
                         />
                     </div>
                     <div className="group">
-                        <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">WhatsApp</label>
+                        <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">Phone</label>
                         <input 
                             type="tel" 
                             name="phone"
@@ -67,13 +67,13 @@ export const ContactForm: React.FC = () => {
                             value={formData.phone}
                             onChange={handleChange}
                             className={inputClasses}
-                            placeholder="(00) 00000-0000"
+                            placeholder="+1 (000) 000-0000"
                         />
                     </div>
                 </div>
 
                 <div className="group">
-                    <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">Área</label>
+                    <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">Area</label>
                     <select 
                         name="area"
                         required
@@ -81,18 +81,18 @@ export const ContactForm: React.FC = () => {
                         onChange={handleChange}
                         className={`${inputClasses} cursor-pointer [&>option]:bg-neutral-900`}
                     >
-                        <option value="" disabled>Selecione o tema</option>
-                        <option value="Direito Civil">Direito Civil</option>
-                        <option value="Direito Trabalhista">Direito Trabalhista</option>
-                        <option value="Direito Criminal">Direito Criminal</option>
-                        <option value="Direito de Família">Direito de Família</option>
-                        <option value="Direito Empresarial">Direito Empresarial</option>
-                        <option value="Outros">Outros</option>
+                        <option value="" disabled>Select the area</option>
+                        <option value="Civil Law">Civil Law</option>
+                        <option value="Labor Law">Labor Law</option>
+                        <option value="Criminal Law">Criminal Law</option>
+                        <option value="Family Law">Family Law</option>
+                        <option value="Corporate Law">Corporate Law</option>
+                        <option value="Others">Others</option>
                     </select>
                 </div>
 
                 <div className="group">
-                    <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">Mensagem</label>
+                    <label className="block text-xs uppercase tracking-widest text-neutral-500 mb-2 group-focus-within:text-gold-500 transition-colors">Message</label>
                     <textarea 
                         name="message"
                         required
@@ -100,16 +100,18 @@ export const ContactForm: React.FC = () => {
                         onChange={handleChange}
                         rows={2}
                         className={`${inputClasses} resize-none`}
-                        placeholder="Resumo breve do caso..."
+                        placeholder="Brief summary of the case..."
                     ></textarea>
                 </div>
 
                 <div className="text-center pt-8">
                     <button 
                         type="submit"
-                        className="group inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-gold-400 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(251,185,35,0.3)] hover:scale-105"
+                        className="group inline-flex items-center gap-2 md:gap-4 bg-white text-black px-8 py-4 md:px-10 md:py-5 rounded-full font-bold uppercase tracking-widest hover:bg-gold-400 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(251,185,35,0.3)] hover:scale-105"
                     >
-                        Iniciar Atendimento <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <span className="hidden sm:inline">Start Consultation</span>
+                        <span className="inline sm:hidden">Send</span>
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>
             </form>
