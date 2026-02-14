@@ -88,16 +88,16 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             
             {/* Logo Area */}
             <a href="#" onClick={(e) => handleNavClick(e, 'inicio')} className="flex items-center gap-2.5 group z-50 relative">
-              <div className={`relative w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 ${isScrolled ? 'bg-emerald-50' : 'bg-white/10 backdrop-blur-sm'}`}>
-                <svg className={`w-6 h-6 transition-colors duration-300 ${logoColorClass}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <div className={`relative w-11 h-11 flex items-center justify-center rounded-xl transition-all duration-300 ${isScrolled ? 'bg-emerald-50' : 'bg-white/10 backdrop-blur-sm'}`}>
+                <svg className={`w-7 h-7 transition-colors duration-300 ${logoColorClass}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 6v12m-6-6h12" /> {/* Cross shape */}
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className={`text-lg font-serif font-bold leading-none tracking-tight transition-colors duration-300 ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
+                <span className={`text-xl font-serif font-bold leading-none tracking-tight transition-colors duration-300 ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
                   Home Care
                 </span>
-                <span className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-colors duration-300 ${isScrolled ? 'text-emerald-600' : 'text-emerald-200'}`}>
+                <span className={`text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-300 ${isScrolled ? 'text-emerald-600' : 'text-emerald-200'}`}>
                   Enfermagem
                 </span>
               </div>
@@ -107,26 +107,26 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             <div className="hidden md:flex items-center gap-8">
               <div className="flex gap-8">
                 {navLinks.map((link) => (
-                  <a 
-                    key={link.name} 
+                  <a
+                    key={link.name}
                     href={`#${link.id}`}
                     onClick={(e) => handleNavClick(e, link.id)}
-                    className={`text-sm font-semibold tracking-wide relative group py-2 transition-colors ${textColorClass}`}
+                    className={`text-base font-semibold tracking-wide relative group py-2 transition-colors ${textColorClass}`}
                   >
                     {link.name}
                     <span className={`absolute bottom-0 left-1/2 w-0 h-0.5 -translate-x-1/2 transition-all duration-300 ease-out group-hover:w-full ${isScrolled ? 'bg-emerald-500' : 'bg-white'}`}></span>
                   </a>
                 ))}
               </div>
-              
-              <a 
+
+              <a
                 href={contactLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`px-6 py-2.5 rounded-xl font-bold text-sm transition-all shadow-md hover:scale-105 active:scale-95 flex items-center gap-2 ${buttonClass}`}
+                className={`px-6 py-2.5 rounded-xl font-bold text-base transition-all shadow-md hover:scale-105 active:scale-95 flex items-center gap-2 ${buttonClass}`}
               >
                 <span>Falar Comigo</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </a>
             </div>
 

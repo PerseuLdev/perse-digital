@@ -1,12 +1,6 @@
 // Registro centralizado de todos os modelos do sistema
 
 import { config as gardeningConfig } from '../services/gardening/config';
-import { config as healthProConfig } from '../health/health-pro/config';
-import { config as legalProConfig } from '../law/legal-pro/config';
-import { config as fitnessProConfig } from '../fitness/fitness-pro/config';
-import { config as beautyGlowConfig } from '../beauty/beauty-glow/config';
-import { config as techSaasConfig } from '../tech/tech-saas/config';
-import { config as educationMindConfig } from '../education/education-mind/config';
 import { config as personalTrainerMascConfig } from '../fitness/personal-trainer-masc/config';
 import { config as musclePerseConfig } from '../fitness/muscle-perse/config';
 import { config as homeNursingConfig } from '../health/home-nursing/config';
@@ -20,12 +14,6 @@ import type { ModelConfig } from './types';
  * Adicione novos modelos aqui após criar sua estrutura em src/models/{niche}/{model-id}/
  */
 export const MODELS_REGISTRY: ModelConfig[] = [
-  healthProConfig,
-  legalProConfig,
-  fitnessProConfig,
-  beautyGlowConfig,
-  techSaasConfig,
-  educationMindConfig,
   gardeningConfig,
   personalTrainerMascConfig,
   musclePerseConfig,

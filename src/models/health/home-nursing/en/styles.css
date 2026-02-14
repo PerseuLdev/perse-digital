@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+/* Home Nursing - English Styles */
 
-/* Glassmorphism Styles */
-.glass {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+/* Color Variables */
+:root {
+    --primary-emerald: #10B981;
+    --secondary-emerald: #047857;
+    --slate-900: #0f172a;
+    --slate-50: #f8fafc;
 }
 
 /* Animation Keyframes */
@@ -41,12 +41,18 @@
 }
 
 /* Delay Utilities */
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
-.delay-500 { transition-delay: 500ms; }
+.delay-0 { transition-delay: 0ms !important; }
+.delay-100 { transition-delay: 100ms !important; }
+.delay-150 { transition-delay: 150ms !important; }
+.delay-200 { transition-delay: 200ms !important; }
+.delay-300 { transition-delay: 300ms !important; }
+.delay-450 { transition-delay: 450ms !important; }
 
-.font-serif {
-    font-family: 'Playfair Display', serif;
+/* Pulse Slow Animation for Hero Image */
+@keyframes pulse-slow {
+    0%, 100% { transform: scale(1.05); }
+    50% { transform: scale(1.08); }
+}
+.animate-pulse-slow {
+    animation: pulse-slow 20s ease-in-out infinite;
 }

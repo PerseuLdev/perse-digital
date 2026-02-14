@@ -66,60 +66,6 @@
       "combo": "Vista Combinada"
     },
     "items": {
-      "medical-premium": {
-        "title": "Consultório Premium",
-        "description": "Ideal para médicos e clínicas que buscam uma presença digital sofisticada.",
-        "features": {
-          "0": "Agendamento online",
-          "1": "Blog integrado",
-          "2": "Área do paciente"
-        }
-      },
-      "legal-advisor": {
-        "title": "Advocacia de Elite",
-        "description": "Um design sóbrio e autoritário para profissionais do direito.",
-        "features": {
-          "0": "Consultas rápidas",
-          "1": "Gestão de documentos",
-          "2": "Perfil de sócios"
-        }
-      },
-      "fitness-pro": {
-        "title": "Fitness Evolution",
-        "description": "Dinâmico e motivador, perfeito para personal trainers e academias.",
-        "features": {
-          "0": "Planos de treino",
-          "1": "Calculadora IMC",
-          "2": "Vídeos de exercícios"
-        }
-      },
-      "beauty-glow": {
-        "title": "Beleza & Estética",
-        "description": "Minimalista e visual, focado em mostrar seus melhores resultados.",
-        "features": {
-          "0": "Galeria de fotos",
-          "1": "Lista de serviços",
-          "2": "Depoimentos"
-        }
-      },
-      "tech-startup": {
-        "title": "SaaS Innovate",
-        "description": "Moderna e focada em conversão para startups e empresas de tecnologia.",
-        "features": {
-          "0": "Landing page focada",
-          "1": "Tabelas de preços",
-          "2": "FAQ dinâmico"
-        }
-      },
-      "education-mind": {
-        "title": "Portal do Saber",
-        "description": "Estrutura completa para cursos online e professores particulares.",
-        "features": {
-          "0": "Área de membros",
-          "1": "Downloads",
-          "2": "Quizzes"
-        }
-      },
       "gardening-botanica": {
         "title": "Botânica & Design",
         "description": "Transformamos ambientes em refúgios naturais com design e sofisticação.",

@@ -1,4 +1,4 @@
-NUNCA mencione Claude Code ou Claude Pro no commit!!!!
+ATENÇÃO: NUNCA mencione "Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>" no commit!!!!
 
 ---
 

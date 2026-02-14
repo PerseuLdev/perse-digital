@@ -66,60 +66,6 @@
       "combo": "Split View"
     },
     "items": {
-      "medical-premium": {
-        "title": "Premium Clinic",
-        "description": "Ideal for doctors and clinics seeking a sophisticated digital presence.",
-        "features": {
-          "0": "Online booking",
-          "1": "Integrated blog",
-          "2": "Patient area"
-        }
-      },
-      "legal-advisor": {
-        "title": "Elite Advocacy",
-        "description": "A sober and authoritative design for legal professionals.",
-        "features": {
-          "0": "Quick consultations",
-          "1": "Document management",
-          "2": "Partner profiles"
-        }
-      },
-      "fitness-pro": {
-        "title": "Fitness Evolution",
-        "description": "Dynamic and motivating, perfect for personal trainers and gyms.",
-        "features": {
-          "0": "Training plans",
-          "1": "BMI calculator",
-          "2": "Exercise videos"
-        }
-      },
-      "beauty-glow": {
-        "title": "Beauty & Aesthetics",
-        "description": "Minimalist and visual, focused on showing your best results.",
-        "features": {
-          "0": "Photo gallery",
-          "1": "Service list",
-          "2": "Testimonials"
-        }
-      },
-      "tech-startup": {
-        "title": "SaaS Innovate",
-        "description": "Modern and conversion-focused for startups and tech companies.",
-        "features": {
-          "0": "Focused landing page",
-          "1": "Pricing tables",
-          "2": "Dynamic FAQ"
-        }
-      },
-      "education-mind": {
-        "title": "Knowledge Portal",
-        "description": "Complete structure for online courses and private teachers.",
-        "features": {
-          "0": "Members area",
-          "1": "Downloads",
-          "2": "Quizzes"
-        }
-      },
       "gardening-botanica": {
         "title": "Botany & Design",
         "description": "We transform environments into natural retreats with design and sophistication.",
