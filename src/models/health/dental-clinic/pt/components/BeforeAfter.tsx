@@ -3,9 +3,6 @@
 import React, { useState, useRef } from 'react';
 import { ArrowLeftRight } from 'lucide-react';
 
-import beforeImg from '../assets/images/sorriso-antes.png';
-import afterImg from '../assets/images/sorriso-depois.png';
-
 const BeforeAfter: React.FC = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -60,13 +57,18 @@ const BeforeAfter: React.FC = () => {
               onTouchMove={handleTouchMove}
             >
               {/* After Image (Base Layer - Full Width) */}
-              <img 
-                src={afterImg} 
-                alt="Depois do tratamento" 
+              <img
+                src="/models/health/dental-clinic/pt/sorriso-depois.png"
+                alt="Depois do tratamento"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute top-4 right-4 bg-teal-500/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold z-10">
-                DEPOIS
+              <div
+                className="absolute top-0 right-0 h-full overflow-hidden"
+                style={{ width: `${100 - sliderPosition}%` }}
+              >
+                <div className="absolute top-4 right-4 bg-teal-500/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold z-10">
+                  DEPOIS
+                </div>
               </div>
 
               {/* Before Image (Overlay Layer - Clipped) */}
@@ -74,13 +76,13 @@ const BeforeAfter: React.FC = () => {
                 className="absolute inset-0 w-full h-full overflow-hidden border-r-2 border-white"
                 style={{ width: `${sliderPosition}%` }}
               >
-                <img 
-                  src={beforeImg} 
-                  alt="Antes do tratamento" 
+                <img
+                  src="/models/health/dental-clinic/pt/sorriso-antes.png"
+                  alt="Antes do tratamento"
                   className="absolute inset-0 w-full h-full object-cover max-w-none"
-                  style={{ 
+                  style={{
                     // Removido o filtro CSS para usar a imagem real
-                    width: containerRef.current ? containerRef.current.offsetWidth : '100%' 
+                    width: containerRef.current ? containerRef.current.offsetWidth : '100%'
                   }}
                 />
                 <div className="absolute top-4 left-4 bg-slate-800/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold z-10">

@@ -3,9 +3,6 @@
 import React, { useState, useRef } from 'react';
 import { ArrowLeftRight } from 'lucide-react';
 
-import beforeImg from '../assets/images/sorriso-antes.png';
-import afterImg from '../assets/images/sorriso-depois.png';
-
 const BeforeAfter: React.FC = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,22 +28,22 @@ const BeforeAfter: React.FC = () => {
           
           {/* Text Content */}
           <div className="order-2 lg:order-1 space-y-6">
-            <span className="text-teal-400 font-semibold tracking-wider uppercase text-sm">Resultados Reais</span>
+            <span className="text-teal-400 font-semibold tracking-wider uppercase text-sm">Real Results</span>
             <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-              Veja a diferença que um <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">novo sorriso</span> pode fazer.
+              See the difference a <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">new smile</span> can make.
             </h2>
             <p className="text-slate-300 text-lg leading-relaxed">
-              Utilizamos tecnologias de clareamento a laser e facetas de porcelana para transformar sorrisos de forma natural e duradoura. Arraste a barra para ver a transformação.
+              We use laser whitening and porcelain veneer technologies to transform smiles naturally and durably. Drag the bar to see the transformation.
             </p>
-            
+
             <div className="flex gap-8 pt-4">
               <div>
-                <h4 className="text-3xl font-bold text-white">1.500+</h4>
-                <p className="text-slate-400 text-sm">Sorrisos Renovados</p>
+                <h4 className="text-3xl font-bold text-white">1,500+</h4>
+                <p className="text-slate-400 text-sm">Renewed Smiles</p>
               </div>
               <div>
                 <h4 className="text-3xl font-bold text-white">100%</h4>
-                <p className="text-slate-400 text-sm">Satisfação Garantida</p>
+                <p className="text-slate-400 text-sm">Satisfaction Guaranteed</p>
               </div>
             </div>
           </div>
@@ -60,13 +57,18 @@ const BeforeAfter: React.FC = () => {
               onTouchMove={handleTouchMove}
             >
               {/* After Image (Base Layer - Full Width) */}
-              <img 
-                src={afterImg} 
-                alt="Depois do tratamento" 
+              <img
+                src="/models/health/dental-clinic/en/sorriso-depois.png"
+                alt="After treatment"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute top-4 right-4 bg-teal-500/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold z-10">
-                DEPOIS
+              <div
+                className="absolute top-0 right-0 h-full overflow-hidden"
+                style={{ width: `${100 - sliderPosition}%` }}
+              >
+                <div className="absolute top-4 right-4 bg-teal-500/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold z-10">
+                  AFTER
+                </div>
               </div>
 
               {/* Before Image (Overlay Layer - Clipped) */}
@@ -74,17 +76,17 @@ const BeforeAfter: React.FC = () => {
                 className="absolute inset-0 w-full h-full overflow-hidden border-r-2 border-white"
                 style={{ width: `${sliderPosition}%` }}
               >
-                <img 
-                  src={beforeImg} 
-                  alt="Antes do tratamento" 
+                <img
+                  src="/models/health/dental-clinic/en/sorriso-antes.png"
+                  alt="Before treatment"
                   className="absolute inset-0 w-full h-full object-cover max-w-none"
-                  style={{ 
+                  style={{
                     // Removido o filtro CSS para usar a imagem real
-                    width: containerRef.current ? containerRef.current.offsetWidth : '100%' 
+                    width: containerRef.current ? containerRef.current.offsetWidth : '100%'
                   }}
                 />
                 <div className="absolute top-4 left-4 bg-slate-800/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold z-10">
-                  ANTES
+                  BEFORE
                 </div>
               </div>
 
@@ -100,7 +102,7 @@ const BeforeAfter: React.FC = () => {
 
             </div>
             <p className="text-center text-slate-400 text-xs mt-4 flex items-center justify-center gap-2">
-              <ArrowLeftRight size={14} /> Arraste para comparar
+              <ArrowLeftRight size={14} /> Drag to compare
             </p>
           </div>
 
