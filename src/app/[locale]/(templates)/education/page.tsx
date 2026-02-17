@@ -7,9 +7,9 @@ export const metadata = {
 };
 
 interface EducationPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 export default async function EducationPage({ params }: EducationPageProps) {

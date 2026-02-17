@@ -21,6 +21,7 @@ import { NichesSection } from '@/components/sections/niches-section';
 import { AboutSection } from '@/components/sections/about-section';
 import { ParallaxBanner } from '@/components/sections/parallax-banner';
 import { FAQSection } from '@/components/sections/faq-section';
+import { ArticlesSection } from '@/components/sections/articles-section';
 import { LeadForm } from '@/components/sections/lead-form';
 import { Footer } from '@/components/layout/footer';
 import { Button } from '@/components/ui/button';
@@ -250,6 +251,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ========== ARTICLES SECTION ========== */}
+        <ArticlesSection />
 
         {/* ========== FAQ SECTION ========== */}
         <FAQSection />

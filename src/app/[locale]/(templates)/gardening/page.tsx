@@ -7,9 +7,9 @@ export const metadata = {
 };
 
 interface GardeningPageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 export default async function GardeningPage({ params }: GardeningPageProps) {

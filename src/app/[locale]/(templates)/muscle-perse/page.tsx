@@ -7,9 +7,9 @@ export const metadata = {
 };
 
 interface MusclePersePageProps {
-  params: {
+  params: Promise<{
     locale: Locale;
-  };
+  }>;
 }
 
 export default async function MusclePersePage({ params }: MusclePersePageProps) {

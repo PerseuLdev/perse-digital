@@ -496,6 +496,19 @@
     "showDetails": "Ver detalhes e preço",
     "hideDetails": "Fechar detalhes"
   },
+  "blog": {
+    "title": "Artigos e Insights",
+    "subtitle": "Conhecimento para levar seu negócio ao próximo nível",
+    "readMore": "Ler artigo completo",
+    "publishedOn": "Publicado em",
+    "writtenBy": "Escrito por",
+    "backToBlog": "Voltar para o Blog",
+    "relatedArticles": "Você também pode gostar",
+    "homeSection": {
+      "title": "Últimos Artigos",
+      "subtitle": "Expanda seu conhecimento com nossos artigos mais recentes sobre SEO, design e negócios."
+    }
+  },
   "sales": {
     "title": "Sobre este Modelo",
     "whatsIncluded": "O que você está pagando:",
