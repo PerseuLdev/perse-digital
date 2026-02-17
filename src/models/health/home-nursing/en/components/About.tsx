@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Reveal from './Reveal.tsx';
+import Reveal from './Reveal';
 
 const About: React.FC = () => {
   const contactLink = "https://wa.me/5514991071072?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20sua%20disponibilidade.";

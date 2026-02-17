@@ -2,15 +2,15 @@
 
 import './styles.css';
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar.tsx';
-import Hero from './components/Hero.tsx';
-import Services from './components/Services.tsx';
-import About from './components/About.tsx';
-import Testimonials from './components/Testimonials.tsx';
-import Contact from './components/Contact.tsx';
-import Pricing from './components/Pricing.tsx';
-import Footer from './components/Footer.tsx';
-import FloatingWhatsApp from './components/FloatingWhatsApp.tsx';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import About from './components/About';
+import Testimonials from './components/Testimonials';
+import Contact from './components/Contact';
+import Pricing from './components/Pricing';
+import Footer from './components/Footer';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 const App: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);

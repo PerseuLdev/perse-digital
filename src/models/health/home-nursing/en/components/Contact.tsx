@@ -2,7 +2,7 @@
 
 
 import React, { useState } from 'react';
-import Reveal from './Reveal.tsx';
+import Reveal from './Reveal';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({

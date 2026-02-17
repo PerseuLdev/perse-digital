@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Reveal from './Reveal.tsx';
+import Reveal from './Reveal';
 
 const Pricing: React.FC = () => {
   const salesLink = "https://wa.me/5514991071072?text=Olá!%20Vi%20os%20planos%20e%20gostaria%20de%20um%20orçamento%20personalizado.";

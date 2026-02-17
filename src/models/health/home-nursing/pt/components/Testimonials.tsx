@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Reveal from './Reveal.tsx';
+import Reveal from './Reveal';
 
 const Testimonials: React.FC = () => {
   const testimonials = [
