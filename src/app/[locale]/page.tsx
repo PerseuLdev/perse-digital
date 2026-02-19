@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import {
   ArrowRight,
@@ -31,6 +31,18 @@ import { WhatsAppButton } from '@/components/ui/whatsapp-button';
 
 export default function HomePage() {
   const t = useTranslations();
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
     <>
@@ -179,35 +191,57 @@ export default function HomePage() {
         </section>
 
         {/* ========== HOW IT WORKS SECTION ========== */}
-        <section className="relative z-10 px-6 py-32" id="how-it-works">
-          <div className="max-w-5xl mx-auto">
+        <section
+          ref={containerRef}
+          className="relative z-10 px-6 py-32 overflow-hidden"
+          id="how-it-works"
+        >
+          {/* Ambient atmosphere */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-1/4 -left-48 w-[700px] h-[700px] rounded-full bg-royal/[0.04] blur-[130px]" />
+            <div className="absolute bottom-1/4 -right-48 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[130px]" />
+          </div>
+
+          <div className="max-w-6xl mx-auto">
             <SectionHeader
               title={t('howItWorks.title')}
               subtitle={t('howItWorks.subtitle')}
             />
 
-            <div className="relative mt-20">
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent hidden md:block" />
+            <div className="relative mt-24">
+              {/* Timeline track — desktop only */}
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-primary/[0.08] -translate-x-1/2" />
 
-              <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+              {/* Animated spine — glow layer */}
+              <motion.div
+                className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[8px] bg-gradient-to-b from-royal to-royal-light opacity-20 -translate-x-1/2 origin-top blur-[5px]"
+                style={{ scaleY }}
+              />
+              {/* Animated spine — sharp layer */}
+              <motion.div
+                className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-royal to-royal-light -translate-x-1/2 origin-top"
+                style={{ scaleY }}
+              />
+
+              <div className="flex flex-col gap-20 md:gap-28">
                 {[
                   {
                     step: '01',
                     title: t('howItWorks.steps.choose.title'),
                     description: t('howItWorks.steps.choose.description'),
-                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
                   },
                   {
                     step: '02',
                     title: t('howItWorks.steps.customize.title'),
                     description: t('howItWorks.steps.customize.description'),
-                    image: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=300&h=200&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&h=400&fit=crop',
                   },
                   {
                     step: '03',
                     title: t('howItWorks.steps.launch.title'),
                     description: t('howItWorks.steps.launch.description'),
-                    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=300&h=200&fit=crop',
+                    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
                   },
                 ].map((item, index) => (
                   <StepCard key={index} {...item} index={index} />
@@ -490,42 +524,148 @@ function StepCard({
   image: string;
   index: number;
 }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-120px' });
+  const isEven = index % 2 === 0;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="text-center relative"
+    <div
+      ref={ref}
+      className="relative grid grid-cols-1 md:grid-cols-[1fr_88px_1fr] items-center gap-8 md:gap-0"
     >
-      {/* Image */}
+      {/* ── Content ── */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: index * 0.15 }}
-        className="relative w-full h-40 rounded-2xl overflow-hidden mb-6"
+        initial={{ opacity: 0, x: isEven ? -52 : 52 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className={`relative z-10 overflow-visible ${
+          isEven
+            ? 'md:col-start-1 md:row-start-1 md:pr-10 md:text-right'
+            : 'md:col-start-3 md:row-start-1 md:pl-10'
+        }`}
       >
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 33vw"
+        {/* Ghost step number */}
+        <div
+          className={`absolute -top-4 text-[7.5rem] md:text-[10rem] font-black leading-none select-none pointer-events-none text-primary/[0.06] ${
+            isEven ? 'right-0' : 'left-0'
+          }`}
+          aria-hidden="true"
+        >
+          {step}
+        </div>
+
+        {/* Mobile badge */}
+        <motion.div
+          initial={{ scale: 0, rotate: -20 }}
+          animate={isInView ? { scale: 1, rotate: 0 } : {}}
+          transition={{ type: 'spring', stiffness: 260, damping: 18, delay: 0.1 }}
+          className="md:hidden inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-royal to-royal-light text-white font-black text-sm mb-5 shadow-xl shadow-royal/30"
+        >
+          {step}
+        </motion.div>
+
+        {/* Accent rule */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
+          transition={{ duration: 0.42, delay: 0.32, ease: 'easeOut' }}
+          className={`hidden md:block h-[2px] w-10 rounded-full bg-gradient-to-r from-royal to-royal-light mb-5 ${
+            isEven ? 'ml-auto origin-right' : 'origin-left'
+          }`}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, delay: 0.14 }}
+          className="text-3xl md:text-4xl font-bold mb-4 leading-tight relative z-10"
+        >
+          {title}
+        </motion.h3>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.65, delay: 0.24 }}
+          className={`text-base md:text-lg text-muted-foreground leading-relaxed relative z-10 max-w-sm ${
+            isEven ? 'md:ml-auto' : ''
+          }`}
+        >
+          {description}
+        </motion.p>
       </motion.div>
 
-      {/* Step Number */}
-      <div className="relative inline-flex items-center justify-center w-16 h-16 mb-6">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-royal to-royal-light opacity-20 animate-pulse" />
-        <div className="absolute inset-1 rounded-full glass" />
-        <span className="relative text-2xl font-bold text-gradient">{step}</span>
+      {/* ── Center node (desktop only) ── */}
+      <div className="hidden md:flex md:col-start-2 md:row-start-1 justify-center items-center z-30">
+        <motion.div
+          initial={{ scale: 0, rotate: -30 }}
+          animate={isInView ? { scale: 1, rotate: 0 } : {}}
+          transition={{ type: 'spring', stiffness: 240, damping: 16, delay: 0.4 }}
+          className="relative"
+        >
+          {/* Ripple ring 1 */}
+          <motion.div
+            initial={{ scale: 1, opacity: 0 }}
+            animate={isInView ? { scale: [1, 2.9], opacity: [0.5, 0] } : {}}
+            transition={{ duration: 0.9, delay: 0.68, ease: 'easeOut' }}
+            className="absolute inset-0 rounded-2xl bg-royal"
+          />
+          {/* Ripple ring 2 */}
+          <motion.div
+            initial={{ scale: 1, opacity: 0 }}
+            animate={isInView ? { scale: [1, 2.1], opacity: [0.35, 0] } : {}}
+            transition={{ duration: 0.9, delay: 0.84, ease: 'easeOut' }}
+            className="absolute inset-0 rounded-2xl bg-royal-light"
+          />
+          <div className="relative w-[52px] h-[52px] rounded-2xl bg-gradient-to-br from-royal via-primary to-royal-light flex items-center justify-center shadow-2xl shadow-primary/40 ring-[3px] ring-background">
+            <span className="text-base font-black text-white tracking-tight">{step}</span>
+          </div>
+        </motion.div>
       </div>
 
-      <h3 className="text-2xl font-bold mb-4">{title}</h3>
-      <p className="text-muted-foreground leading-relaxed">{description}</p>
-    </motion.div>
+      {/* ── Image ── */}
+      <motion.div
+        initial={{ opacity: 0, x: isEven ? 52 : -52 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98], delay: 0.08 }}
+        className={`z-10 ${
+          isEven
+            ? 'md:col-start-3 md:row-start-1 md:pl-10'
+            : 'md:col-start-1 md:row-start-1 md:pr-10'
+        }`}
+      >
+        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group shadow-2xl shadow-black/10">
+          {/* Curtain reveal */}
+          <motion.div
+            initial={{ clipPath: isEven ? 'inset(0 100% 0 0)' : 'inset(0 0% 0 100%)' }}
+            animate={isInView ? { clipPath: 'inset(0 0% 0 0%)' } : {}}
+            transition={{ duration: 1.05, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </motion.div>
+
+          {/* Colour tint */}
+          <div className="absolute inset-0 bg-gradient-to-br from-royal/10 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+
+          {/* Hover glint sweep */}
+          <motion.div
+            initial={{ x: '-130%', opacity: 0 }}
+            whileHover={{ x: '230%', opacity: 0.18 }}
+            transition={{ duration: 0.65, ease: 'easeOut' }}
+            className="absolute inset-y-0 w-1/3 bg-white pointer-events-none"
+            style={{ transform: 'skewX(-12deg)' }}
+          />
+        </div>
+      </motion.div>
+    </div>
   );
 }
 
