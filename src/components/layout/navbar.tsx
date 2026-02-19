@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Menu, X, Moon, Sun, Globe } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Link, usePathname } from '@/i18n/routing';
+import { LogoSVG } from '@/components/ui/logo';
 import { locales, localeNames, localeFlags, type Locale } from '@/i18n/config';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -72,15 +73,8 @@ export function Navbar() {
           )}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-royal to-royal-light flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform">
-              <span className="text-white font-bold text-xl">P</span>
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </div>
-            <span className="text-xl font-bold tracking-tight hidden sm:block">
-              <span className="text-foreground">Perse</span>
-              <span className="text-gradient">Digital</span>
-            </span>
+          <Link href="/" className="group opacity-90 hover:opacity-100 transition-opacity duration-300">
+            <LogoSVG className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}

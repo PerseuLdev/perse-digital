@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
+import { LogoSVG } from '@/components/ui/logo';
 
 export function Footer() {
   const t = useTranslations();
@@ -15,14 +16,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-royal to-royal-light flex items-center justify-center shadow-lg shadow-primary/20">
-                <span className="text-white font-bold text-2xl">P</span>
-              </div>
-              <span className="text-2xl font-bold">
-                <span className="text-foreground">Perse</span>
-                <span className="text-gradient">Digital</span>
-              </span>
+            <div className="mb-6">
+              <LogoSVG className="h-11 w-auto" />
             </div>
             <p className="text-muted-foreground mb-6 max-w-sm">
               {t('footer.description')}
