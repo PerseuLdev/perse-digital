@@ -146,7 +146,7 @@ export function HeroMockups() {
               ))}
           </div>
 
-          {/* Hover overlay with CTA + arrows */}
+          {/* Hover overlay with CTA only */}
           <div
             className="absolute z-[3] transition-opacity duration-300"
             style={{
@@ -156,18 +156,10 @@ export function HeroMockups() {
               height: `${MAC.height}%`,
               borderRadius: '0.8%',
               opacity: isHovered ? 1 : 0,
-              background: 'linear-gradient(135deg, rgba(0,0,0,0.2), rgba(0,0,0,0.35))',
+              background: 'linear-gradient(135deg, rgba(0,0,0,0.15), rgba(0,0,0,0.28))',
               backdropFilter: 'blur(1px)',
             }}
           >
-            {/* Prev arrow */}
-            <button
-              onClick={goPrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/80 hover:bg-black/60 hover:text-white hover:scale-110 transition-all cursor-pointer"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
             {/* Center CTA */}
             <Link
               href={previewUrl}
@@ -176,14 +168,6 @@ export function HeroMockups() {
               <ExternalLink className="w-4 h-4" />
               {t('demo')}
             </Link>
-
-            {/* Next arrow */}
-            <button
-              onClick={goNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/80 hover:bg-black/60 hover:text-white hover:scale-110 transition-all cursor-pointer"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
           </div>
 
           {/* Progress bar at bottom of screen */}
@@ -214,7 +198,7 @@ export function HeroMockups() {
           initial={{ opacity: 0, x: 30, y: 20 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute -right-3 bottom-4 sm:-right-5 sm:bottom-2 z-[5] hidden md:block"
+          className="absolute -right-3 bottom-4 sm:-right-5 sm:bottom-2 z-[5]"
         >
           <motion.div
             animate={{ y: [0, -8, 0] }}
@@ -332,12 +316,12 @@ export function HeroMockups() {
         </motion.div>
       </motion.div>
 
-      {/* Model name + carousel dots */}
+      {/* Carousel controls: model name + arrows + dots */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.9 }}
-        className="flex flex-col items-center gap-2.5 mt-2"
+        className="flex flex-col items-center gap-3 mt-3"
       >
         {/* Model name */}
         <AnimatePresence mode="wait">
@@ -346,27 +330,60 @@ export function HeroMockups() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.25 }}
-            className="text-[11px] font-bold uppercase tracking-[0.15em] text-foreground/40"
+            transition={{ duration: 0.22 }}
+            className="text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/35"
           >
             {tm(`${current.id}.title`)}
           </motion.span>
         </AnimatePresence>
 
-        {/* Dots */}
-        <div className="flex items-center gap-2">
-          {CAROUSEL_MODELS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveIndex(i)}
-              className={`rounded-full transition-all duration-300 cursor-pointer ${
-                i === activeIndex
-                  ? 'w-7 h-2 bg-primary shadow-[0_0_8px_var(--glow-royal)]'
-                  : 'w-2 h-2 bg-foreground/20 hover:bg-foreground/40'
-              }`}
-              aria-label={`Model ${i + 1}`}
-            />
-          ))}
+        {/* Arrows + Dots row */}
+        <div className="flex items-center gap-3">
+          {/* Prev arrow */}
+          <motion.button
+            onClick={goPrev}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.92 }}
+            className="w-7 h-7 rounded-lg border border-foreground/10 bg-foreground/[0.04] hover:bg-foreground/[0.08] hover:border-foreground/20 flex items-center justify-center text-foreground/40 hover:text-foreground/70 transition-all duration-200 cursor-pointer"
+            aria-label="Previous model"
+          >
+            <ChevronLeft className="w-3.5 h-3.5" />
+          </motion.button>
+
+          {/* Dots */}
+          <div className="flex items-center gap-1.5">
+            {CAROUSEL_MODELS.map((_, i) => (
+              <motion.button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                animate={{
+                  width: i === activeIndex ? 24 : 6,
+                  opacity: i === activeIndex ? 1 : 0.3,
+                }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className={`h-1.5 rounded-full cursor-pointer ${
+                  i === activeIndex
+                    ? 'bg-gradient-to-r from-royal to-royal-light shadow-[0_0_6px_var(--glow-royal)]'
+                    : 'bg-foreground/40'
+                }`}
+                style={{ width: i === activeIndex ? 24 : 6 }}
+                aria-label={`Model ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Next arrow */}
+          <motion.button
+            onClick={goNext}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.92 }}
+            className="w-7 h-7 rounded-lg border border-foreground/10 bg-foreground/[0.04] hover:bg-foreground/[0.08] hover:border-foreground/20 flex items-center justify-center text-foreground/40 hover:text-foreground/70 transition-all duration-200 cursor-pointer"
+            aria-label="Next model"
+          >
+            <ChevronRight className="w-3.5 h-3.5" />
+          </motion.button>
         </div>
       </motion.div>
     </div>
