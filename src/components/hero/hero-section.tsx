@@ -2,8 +2,9 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
-import { ArrowRight, Play, Sparkles, Zap, Star, ChevronDown } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
 import { HeroParticles } from './hero-particles';
 import { HeroMockups } from './hero-mockups';
 
@@ -97,7 +98,7 @@ function AnimatedText({ text, className, delay = 0 }: { text: string; className?
   );
 }
 
-// Premium CTA Button - Elegant, slim, with refined animations
+// Premium CTA — renders as div (safe inside <Link>)
 function CTAButton({
   children,
   variant = 'primary',
@@ -109,12 +110,10 @@ function CTAButton({
   icon?: React.ReactNode;
   delay?: number;
 }) {
-  const buttonRef = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.button
-      ref={buttonRef}
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
@@ -125,8 +124,7 @@ function CTAButton({
         px-7 py-3.5
         rounded-full
         font-medium text-[15px] tracking-wide
-        transition-all duration-500 ease-out
-        focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
+        transition-all duration-500 ease-out cursor-pointer
         ${variant === 'primary'
           ? 'bg-foreground text-background hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)] dark:hover:shadow-[0_20px_40px_-12px_rgba(255,255,255,0.15)]'
           : 'bg-transparent border border-foreground/20 text-foreground hover:border-foreground/40 hover:bg-foreground/5'
@@ -154,38 +152,13 @@ function CTAButton({
           </motion.span>
         )}
       </span>
-    </motion.button>
-  );
-}
-
-// Play button with pulse animation
-function PlayButton({ delay = 0 }: { delay?: number }) {
-  return (
-    <motion.button
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className="relative group flex items-center gap-3 focus:outline-none"
-    >
-      {/* Pulse rings */}
-      <span className="absolute inset-0 w-12 h-12">
-        <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping" style={{ animationDuration: '2s' }} />
-      </span>
-
-      {/* Play circle */}
-      <span className="relative w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg shadow-primary/25 group-hover:shadow-primary/40 group-hover:scale-105 transition-all duration-300">
-        <Play className="w-4 h-4 text-primary-foreground ml-0.5" fill="currentColor" />
-      </span>
-
-      <span className="text-[15px] font-medium text-foreground/80 group-hover:text-foreground transition-colors">
-        Ver Demo
-      </span>
-    </motion.button>
+    </motion.div>
   );
 }
 
 export function HeroSection() {
   const t = useTranslations();
+  const locale = useLocale();
   const containerRef = useRef<HTMLElement>(null);
   const [mounted] = useState(true);
 
@@ -281,17 +254,17 @@ export function HeroSection() {
               {t('hero.subheadline')}
             </motion.p>
 
-            {/* CTAs - Elegant, floating above everything */}
-            <div className="relative z-50 flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-12">
-              <CTAButton
-                variant="primary"
-                icon={<ArrowRight className="w-4 h-4" />}
-                delay={0.7}
-              >
-                {t('hero.cta.primary')}
-              </CTAButton>
-
-              <PlayButton delay={0.8} />
+            {/* CTA */}
+            <div className="relative z-50 flex items-center lg:items-start mb-12">
+              <Link href={`/${locale}/templates`}>
+                <CTAButton
+                  variant="primary"
+                  icon={<ArrowRight className="w-4 h-4" />}
+                  delay={0.7}
+                >
+                  {t('hero.cta.primary')}
+                </CTAButton>
+              </Link>
             </div>
 
             {/* Stats - Minimal, refined */}

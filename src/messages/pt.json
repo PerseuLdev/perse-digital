@@ -13,12 +13,12 @@
     "getStarted": "Começar Agora"
   },
   "hero": {
-    "badge": "Sites Profissionais",
-    "headline": "O site que o seu negócio merece,",
-    "headlineHighlight": "pelo preço que você pode pagar.",
-    "subheadline": "Sites profissionais para cuidadores, terapeutas e autônomos. Saia do amadorismo e conquiste mais clientes.",
+    "badge": "A partir de R$2 por dia",
+    "headline": "Seu primeiro site profissional,",
+    "headlineHighlight": "a partir de R$2 por dia.",
+    "subheadline": "Sem mensalidade cara. Seu site bonito, rápido e com a sua cara — no ar em dias.",
     "cta": {
-      "primary": "Quero meu site profissional",
+      "primary": "Quero meu site",
       "secondary": "Saiba Mais"
     },
     "stats": {
@@ -51,7 +51,7 @@
       "portfolio": "Portfólio Visual"
     },
     "card": {
-      "demo": "Visualizar Demo",
+      "demo": "Ver modelo",
       "select": "Escolher este Modelo",
       "learnMore": "Saber mais sobre este modelo",
       "delivery": "Entrega em 48h",

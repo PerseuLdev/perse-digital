@@ -13,12 +13,12 @@
     "getStarted": "Get Started"
   },
   "hero": {
-    "badge": "Professional Websites",
-    "headline": "The website your business deserves,",
-    "headlineHighlight": "at a price you can afford.",
-    "subheadline": "Professional websites for caregivers, therapists, and freelancers. Step up from amateurism and win more clients.",
+    "badge": "From just $2 per day",
+    "headline": "Your first professional website,",
+    "headlineHighlight": "starting from $2 a day.",
+    "subheadline": "No expensive subscriptions. Your professional site, live and branded, in days.",
     "cta": {
-      "primary": "I want my professional website",
+      "primary": "I want my website",
       "secondary": "Learn More"
     },
     "stats": {
@@ -51,7 +51,7 @@
       "portfolio": "Visual Portfolio"
     },
     "card": {
-      "demo": "View Demo",
+      "demo": "View model",
       "select": "Choose this Model",
       "learnMore": "Learn more about this model",
       "delivery": "48h Delivery",
