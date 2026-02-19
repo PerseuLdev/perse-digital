@@ -45,14 +45,14 @@ export default async function ArticlePage({ params }: Props) {
       <main className="relative pt-32 pb-24 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Back Link */}
-          <MotionFallbackDiv className="mb-12">
+          <div className="mb-12">
              <Link href={`/${locale}`}>
                 <Button variant="ghost" className="gap-2 -ml-4">
                     <ArrowLeft className="w-4 h-4" />
                     {t('backToBlog')}
                 </Button>
              </Link>
-          </MotionFallbackDiv>
+          </div>
 
           {/* Article Header */}
           <header className="mb-12">
