@@ -16,14 +16,46 @@ interface Props {
   params: Promise<{ locale: string; slug: string }>;
 }
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://persedigital.com.br';
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const article = articles[locale]?.find((a) => a.slug === slug);
   if (!article) return {};
 
+  const isDefaultLocale = locale === 'pt';
+  const canonicalUrl = isDefaultLocale
+    ? `${BASE_URL}/blog/${slug}`
+    : `${BASE_URL}/${locale}/blog/${slug}`;
+
   return {
-    title: `${article.title} | Perse Digital`,
+    title: article.title,
     description: article.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      type: 'article',
+      title: article.title,
+      description: article.description,
+      url: canonicalUrl,
+      publishedTime: article.date,
+      authors: [article.author],
+      images: [
+        {
+          url: article.image,
+          width: 1200,
+          height: 600,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.description,
+      images: [article.image],
+    },
   };
 }
 
@@ -37,8 +69,37 @@ export default async function ArticlePage({ params }: Props) {
 
   const t = await getTranslations('blog');
 
+  const isDefaultLocale = locale === 'pt';
+  const articleUrl = isDefaultLocale
+    ? `${BASE_URL}/blog/${slug}`
+    : `${BASE_URL}/${locale}/blog/${slug}`;
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.description,
+    image: article.image,
+    datePublished: article.date,
+    author: {
+      '@type': 'Person',
+      name: article.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Perse Digital',
+      url: BASE_URL,
+    },
+    url: articleUrl,
+    inLanguage: locale === 'pt' ? 'pt-BR' : 'en-US',
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <AnimatedBackground />
       <Navbar />
 
