@@ -14,6 +14,7 @@ import { Button } from '@/components/ui/button';
 const routeItems = [
   { key: 'home', href: '/' as const },
   { key: 'templates', href: '/templates' as const },
+  { key: 'about', href: '/sobre' as const },
 ];
 
 const anchorItems = [

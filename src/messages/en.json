@@ -10,7 +10,8 @@
     "howItWorks": "How It Works",
     "faq": "FAQ",
     "contact": "Contact",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "about": "About Us"
   },
   "hero": {
     "badge": "From just $2 per day",
@@ -507,6 +508,73 @@
     "homeSection": {
       "title": "Latest Insights",
       "subtitle": "Expand your knowledge with our latest articles on SEO, design, and business."
+    }
+  },
+  "aboutPage": {
+    "metadata": {
+      "title": "About Us — The Perse Digital Story",
+      "description": "Perse, from Latin, By itself. Learn the story behind Perse Digital and why we create digital solutions for self-employed professionals."
+    },
+    "hero": {
+      "badge": "Our Story",
+      "title": "Perse,",
+      "titleHighlight": "by itself.",
+      "meaning": "From Latin. Independent. Self-sufficient. Just like you."
+    },
+    "story": {
+      "badge": "How it all started",
+      "title": "Why does Perse Digital exist?",
+      "stats": {
+        "clients": { "value": "500+", "label": "Professionals served" },
+        "delivery": { "value": "48h", "label": "Site delivery" },
+        "price": { "value": "$2", "label": "Per day" },
+        "responsive": { "value": "100%", "label": "Responsive" }
+      },
+      "quote": "My father is a bricklayer. My mother, a cleaner. Excellent professionals that nobody could find online.",
+      "quoteAuthor": "Founder, Perse Digital",
+      "p1": "My father is a bricklayer. My mother, a cleaner. Both have always been self-employed professionals — and both have always been excellent at what they do. But for years, they remained hidden, relying solely on word-of-mouth to get clients.",
+      "p2": "With that in mind, I decided to focus on creating websites and landing pages to help these kinds of professionals — who are increasingly sought after yet hard to find — get discovered on the internet.",
+      "p3": "Perse Digital was born for this: to help self-employed professionals across many fields build their digital presence without depending on Instagram's algorithm or just word-of-mouth."
+    },
+    "you": {
+      "title": "And you?",
+      "text": "You want to create a website — otherwise you wouldn't be here. That's already a huge step toward professional growth! But you might still wonder: why is having a website worth it?"
+    },
+    "benefits": {
+      "title": "What a website does for you",
+      "subtitle": "Small investment. Massive return.",
+      "items": {
+        "google": {
+          "title": "Get found on Google",
+          "description": "When someone searches for your service in your city, your website shows up. No algorithm dependency, no paid ads needed."
+        },
+        "credibility": {
+          "title": "Instant credibility",
+          "description": "A professional website builds trust before the first contact. Your client arrives already convinced."
+        },
+        "h247": {
+          "title": "Works for you 24/7",
+          "description": "Your website never sleeps. It captures leads, showcases your services, and generates contacts while you rest."
+        },
+        "independence": {
+          "title": "Freedom from social media",
+          "description": "Instagram changes its algorithm and you lose reach. Your website is yours — no one can take it away."
+        },
+        "portfolio": {
+          "title": "Portfolio & reviews",
+          "description": "Showcase your work and client testimonials. Social proof that converts new contracts every day."
+        },
+        "roi": {
+          "title": "High return, low cost",
+          "description": "For less than $2 a day, your website works for you all month. A single new client pays for the whole year."
+        }
+      }
+    },
+    "cta": {
+      "title": "Got any questions?",
+      "subtitle": "Message me on WhatsApp. No fluff, no commitment.",
+      "button": "Chat on WhatsApp",
+      "message": "Hi! I saw the About Us page on Perse Digital and would like to know more."
     }
   },
   "sales": {

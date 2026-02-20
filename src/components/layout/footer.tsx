@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 import { LogoSVG } from '@/components/ui/logo';
+import { Link } from '@/i18n/routing';
 
 export function Footer() {
   const t = useTranslations();
@@ -64,7 +65,7 @@ export function Footer() {
             <h4 className="font-semibold mb-4 text-foreground">{t('footer.links.company.title')}</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors duration-200">{t('footer.links.company.about')}</a>
+                <Link href="/sobre" className="text-muted-foreground hover:text-primary transition-colors duration-200">{t('footer.links.company.about')}</Link>
               </li>
               <li>
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors duration-200">{t('footer.links.company.careers')}</a>

@@ -10,7 +10,8 @@
     "howItWorks": "Como Funciona",
     "faq": "FAQ",
     "contact": "Contato",
-    "getStarted": "Começar Agora"
+    "getStarted": "Começar Agora",
+    "about": "Sobre Nós"
   },
   "hero": {
     "badge": "A partir de R$2 por dia",
@@ -507,6 +508,73 @@
     "homeSection": {
       "title": "Últimos Artigos",
       "subtitle": "Expanda seu conhecimento com nossos artigos mais recentes sobre SEO, design e negócios."
+    }
+  },
+  "aboutPage": {
+    "metadata": {
+      "title": "Sobre Nós — A História da Perse Digital",
+      "description": "Perse, do latim, Por si. Conheça a história por trás da Perse Digital e por que criamos soluções digitais para profissionais autônomos."
+    },
+    "hero": {
+      "badge": "Nossa História",
+      "title": "Perse,",
+      "titleHighlight": "por si.",
+      "meaning": "Do latim. Independente. Autossuficiente. Como você."
+    },
+    "story": {
+      "badge": "Como tudo começou",
+      "title": "Por que a Perse Digital existe?",
+      "stats": {
+        "clients": { "value": "500+", "label": "Profissionais atendidos" },
+        "delivery": { "value": "48h", "label": "Entrega do site" },
+        "price": { "value": "R$2", "label": "Por dia" },
+        "responsive": { "value": "100%", "label": "Responsivo" }
+      },
+      "quote": "Meu pai é pedreiro. Minha mãe, faxineira. Excelentes profissionais que ninguém achava na internet.",
+      "quoteAuthor": "Fundador, Perse Digital",
+      "p1": "Meu pai é pedreiro. Minha mãe, faxineira. Os dois sempre foram profissionais autônomos — e sempre foram excelentes no que fazem. Mas durante anos, ficaram escondidos, dependendo apenas do boca a boca para conseguir clientes.",
+      "p2": "Pensando nisso, decidi focar na criação de sites e landing pages para ajudar esse tipo de profissional — que hoje é cada vez mais procurado e difícil de achar — a ser encontrado na internet.",
+      "p3": "A Perse Digital nasceu para isso: ajudar profissionais autônomos de diversas áreas a terem sua presença digital sem depender do algoritmo do Instagram ou apenas do boca a boca."
+    },
+    "you": {
+      "title": "E você?",
+      "text": "Você tem vontade de criar seu site — senão você não estaria aqui. Isso já é um passo gigantesco para crescer profissionalmente! Mas talvez ainda se pergunte: por que vale a pena ter um site?"
+    },
+    "benefits": {
+      "title": "O que um site faz por você",
+      "subtitle": "Investimento pequeno. Retorno gigante.",
+      "items": {
+        "google": {
+          "title": "Seja encontrado no Google",
+          "description": "Quando alguém pesquisa seu serviço na sua cidade, seu site aparece. Sem depender de algoritmo ou pagar por anúncio."
+        },
+        "credibility": {
+          "title": "Credibilidade imediata",
+          "description": "Um site profissional transmite confiança antes mesmo do primeiro contato. Seu cliente chega já convencido."
+        },
+        "h247": {
+          "title": "Trabalha por você 24h por dia",
+          "description": "Seu site nunca dorme. Captura clientes, apresenta seus serviços e gera contatos enquanto você descansa."
+        },
+        "independence": {
+          "title": "Independência das redes sociais",
+          "description": "Instagram muda o algoritmo e você perde alcance. Seu site é seu — ninguém pode te tirar do ar."
+        },
+        "portfolio": {
+          "title": "Portfólio e avaliações",
+          "description": "Mostre seus trabalhos e depoimentos de clientes. Prova social que converte novos contratos todo dia."
+        },
+        "roi": {
+          "title": "Alto retorno, baixo custo",
+          "description": "Por menos de R$2 por dia, seu site trabalha por você o mês inteiro. Um único cliente novo paga o investimento do ano."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ficou com alguma dúvida?",
+      "subtitle": "Me chame no WhatsApp. Sem enrolação, sem compromisso.",
+      "button": "Chamar no WhatsApp",
+      "message": "Olá! Vi a página Sobre Nós da Perse Digital e gostaria de saber mais."
     }
   },
   "sales": {
