@@ -14,6 +14,7 @@
     "apply-brandkit": "node scripts/apply-brandkit.js"
   },
   "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.11",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
     "class-variance-authority": "^0.7.1",

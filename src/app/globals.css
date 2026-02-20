@@ -334,16 +334,16 @@
     border: 1px solid oklch(1 0 0 / 10%);
   }
 
-  /* Text Gradient */
+  /* Text Gradient — monochromatic blue, sem mistura com amarelo */
   .text-gradient {
-    background: linear-gradient(135deg, var(--royal) 0%, var(--royal-light) 100%);
+    background: linear-gradient(135deg, #38b6ff 0%, #1a8fd4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-reverse {
-    background: linear-gradient(135deg, var(--royal-light) 0%, var(--royal) 100%);
+    background: linear-gradient(135deg, #1a8fd4 0%, #38b6ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -640,12 +640,12 @@ button.btn-outline:active,
 
 button.btn-glow,
 .btn-glow {
-  background: linear-gradient(135deg, var(--royal) 0%, var(--royal-light) 100%) !important;
-  color: white !important;
+  background: var(--accent) !important;
+  color: #111111 !important;
   border: none !important;
   box-shadow:
-    0 0 20px rgba(56, 182, 255, 0.4),
-    0 4px 15px rgba(56, 182, 255, 0.3);
+    0 0 20px rgba(255, 222, 89, 0.35),
+    0 4px 15px rgba(255, 222, 89, 0.25);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -657,7 +657,7 @@ button.btn-glow::before,
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(135deg, var(--royal-light) 0%, var(--royal) 100%);
+  background: rgba(255, 255, 255, 0.15);
   opacity: 0;
   transition: opacity 0.4s ease;
   border-radius: inherit;
@@ -665,10 +665,10 @@ button.btn-glow::before,
 
 button.btn-glow:hover,
 .btn-glow:hover {
-  color: white !important;
+  color: #111111 !important;
   box-shadow:
-    0 0 35px rgba(56, 182, 255, 0.6),
-    0 8px 30px rgba(56, 182, 255, 0.45) !important;
+    0 0 35px rgba(255, 222, 89, 0.55),
+    0 8px 30px rgba(255, 222, 89, 0.4) !important;
   transform: translateY(-3px) scale(1.02);
 }
 
@@ -688,16 +688,15 @@ button.btn-glow > span,
 .btn-glow > span {
   position: relative;
   z-index: 10;
-  color: white !important;
+  color: #111111 !important;
 }
 
 button.btn-glow svg,
 .btn-glow svg,
 button.btn-glow path,
 .btn-glow path {
-  color: white !important;
-  fill: white !important;
-  stroke: white;
+  color: #111111 !important;
+  fill: none !important;
 }
 
 button.btn-primary > *,

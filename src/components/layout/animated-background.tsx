@@ -6,13 +6,16 @@ import { motion } from 'framer-motion';
 export function AnimatedBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
+      {/* Base: off-white azulado no light, preto no dark */}
+      <div className="absolute inset-0 bg-[#f4f9ff] dark:bg-[#000000]" />
 
-      {/* Animated mesh gradient */}
+      {/* Gradient tonal suave */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/8 dark:to-primary/5" />
+
+      {/* Grid pattern */}
       <div className="absolute inset-0">
         <svg
-          className="absolute w-full h-full opacity-30 dark:opacity-20"
+          className="absolute w-full h-full opacity-[0.12] dark:opacity-[0.08]"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
@@ -27,7 +30,7 @@ export function AnimatedBackground() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="0.5"
-                className="text-primary/20"
+                className="text-primary"
               />
             </pattern>
           </defs>
@@ -35,71 +38,42 @@ export function AnimatedBackground() {
         </svg>
       </div>
 
-      {/* Floating orbs */}
+      {/* Orb 1 — top left */}
       <motion.div
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -50, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full"
+        animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-[5%] left-[5%] w-[600px] h-[600px] rounded-full opacity-40 dark:opacity-25"
         style={{
-          background: 'radial-gradient(circle, oklch(0.50 0.18 260 / 0.3) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-      />
-
-      <motion.div
-        animate={{
-          x: [0, -80, 0],
-          y: [0, 80, 0],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute bottom-[10%] right-[10%] w-[600px] h-[600px] rounded-full"
-        style={{
-          background: 'radial-gradient(circle, oklch(0.65 0.15 245 / 0.25) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, #38b6ff 0%, transparent 70%)',
           filter: 'blur(80px)',
         }}
       />
 
+      {/* Orb 2 — bottom right */}
       <motion.div
-        animate={{
-          x: [0, 60, 0],
-          y: [0, 100, 0],
-          scale: [1, 0.9, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="absolute top-[40%] right-[20%] w-[400px] h-[400px] rounded-full"
+        animate={{ x: [0, -80, 0], y: [0, 80, 0], scale: [1, 1.3, 1] }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute bottom-[5%] right-[5%] w-[700px] h-[700px] rounded-full opacity-30 dark:opacity-20"
         style={{
-          background: 'radial-gradient(circle, oklch(0.55 0.12 280 / 0.2) 0%, transparent 70%)',
-          filter: 'blur(50px)',
+          background: 'radial-gradient(circle, #38b6ff 0%, transparent 70%)',
+          filter: 'blur(100px)',
         }}
       />
 
-      {/* Noise texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
+      {/* Orb 3 — center right */}
+      <motion.div
+        animate={{ x: [0, 60, 0], y: [0, 100, 0], scale: [1, 0.9, 1] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-[35%] right-[15%] w-[450px] h-[450px] rounded-full opacity-20 dark:opacity-15"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          background: 'radial-gradient(circle, #1a8fd4 0%, transparent 70%)',
+          filter: 'blur(70px)',
         }}
       />
 
-      {/* Radial gradient overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--background)_70%)]" />
+
+      {/* Vinheta nas bordas — suave no light, mais forte no dark */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_40%,var(--background)_100%)] opacity-60 dark:opacity-80" />
     </div>
   );
 }

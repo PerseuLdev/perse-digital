@@ -204,7 +204,7 @@ export function ModelCard({ model, onClickDemo, onClickChoose }: ModelCardProps)
 
         <div className="space-y-4">
           <Button 
-            className="w-full bg-gradient-to-r from-royal to-royal-light shadow-lg shadow-royal/20 hover:scale-[1.02] transition-transform"
+            className="w-full bg-accent text-[#111111] shadow-lg shadow-accent/20 hover:shadow-accent/35 hover:scale-[1.02] transition-all"
             onClick={onClickChoose}
           >
             {t('select')}

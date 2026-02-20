@@ -12,7 +12,6 @@ import {
   Smartphone,
   Check,
   ChevronRight,
-  Star,
 } from 'lucide-react';
 import { AnimatedBackground } from '@/components/layout/animated-background';
 import { Navbar } from '@/components/layout/navbar';
@@ -23,6 +22,7 @@ import { ParallaxBanner } from '@/components/sections/parallax-banner';
 import { FAQSection } from '@/components/sections/faq-section';
 import { ArticlesSection } from '@/components/sections/articles-section';
 import { LeadForm } from '@/components/sections/lead-form';
+import { TestimonialsSection } from '@/components/sections/testimonials-section';
 import { Footer } from '@/components/layout/footer';
 import { Button } from '@/components/ui/button';
 import { GlassCard } from '@/components/ui/glass-card';
@@ -252,39 +252,7 @@ export default function HomePage() {
         </section>
 
         {/* ========== TESTIMONIALS SECTION ========== */}
-        <section className="relative z-10 px-6 py-32">
-          <div className="max-w-7xl mx-auto">
-            <SectionHeader
-              title={t('testimonials.title')}
-              subtitle={t('testimonials.subtitle')}
-            />
-
-            <div className="grid md:grid-cols-3 gap-8 mt-16">
-              {[
-                {
-                  quote: t('testimonials.items.t1.quote'),
-                  author: t('testimonials.items.t1.author'),
-                  role: t('testimonials.items.t1.role'),
-                  avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-                },
-                {
-                  quote: t('testimonials.items.t2.quote'),
-                  author: t('testimonials.items.t2.author'),
-                  role: t('testimonials.items.t2.role'),
-                  avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-                },
-                {
-                  quote: t('testimonials.items.t3.quote'),
-                  author: t('testimonials.items.t3.author'),
-                  role: t('testimonials.items.t3.role'),
-                  avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
-                },
-              ].map((testimonial, index) => (
-                <TestimonialCard key={index} {...testimonial} index={index} />
-              ))}
-            </div>
-          </div>
-        </section>
+        <TestimonialsSection />
 
         {/* ========== ARTICLES SECTION ========== */}
         <ArticlesSection />
@@ -669,53 +637,3 @@ function StepCard({
   );
 }
 
-function TestimonialCard({
-  quote,
-  author,
-  role,
-  avatar,
-  index,
-}: {
-  quote: string;
-  author: string;
-  role: string;
-  avatar: string;
-  index: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-    >
-      <GlassCard variant="bordered" className="p-8 h-full">
-        <div className="flex gap-1 mb-4">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-          ))}
-        </div>
-
-        <p className="text-lg text-foreground/90 mb-6 leading-relaxed">
-          &ldquo;{quote}&rdquo;
-        </p>
-
-        <div className="flex items-center gap-4">
-          <div className="relative w-14 h-14 rounded-full overflow-hidden ring-2 ring-primary/20">
-            <Image
-              src={avatar}
-              alt={author}
-              fill
-              className="object-cover"
-              sizes="56px"
-            />
-          </div>
-          <div>
-            <div className="font-semibold text-lg">{author}</div>
-            <div className="text-sm text-muted-foreground">{role}</div>
-          </div>
-        </div>
-      </GlassCard>
-    </motion.div>
-  );
-}

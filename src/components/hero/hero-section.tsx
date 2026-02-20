@@ -126,7 +126,7 @@ function CTAButton({
         font-medium text-[15px] tracking-wide
         transition-all duration-500 ease-out cursor-pointer
         ${variant === 'primary'
-          ? 'bg-foreground text-background hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.35)] dark:hover:shadow-[0_20px_40px_-12px_rgba(255,255,255,0.15)]'
+          ? 'bg-accent text-[#111111] hover:shadow-[0_20px_40px_-12px_rgba(255,222,89,0.45)]'
           : 'bg-transparent border border-foreground/20 text-foreground hover:border-foreground/40 hover:bg-foreground/5'
         }
       `}
@@ -236,7 +236,7 @@ export function HeroSection() {
                     initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent"
+                    className="text-primary"
                   >
                     {t('hero.headlineHighlight')}
                   </motion.span>

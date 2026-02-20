@@ -185,7 +185,7 @@ export function HeroMockups() {
               key={activeIndex}
               className="h-full origin-left rounded-full"
               style={{
-                background: 'linear-gradient(90deg, var(--royal), var(--royal-light))',
+                background: 'var(--royal)',
                 animation: `hero-progress ${AUTO_ROTATE_MS}ms linear forwards`,
                 animationPlayState: isHovered ? 'paused' : 'running',
               }}
@@ -365,7 +365,7 @@ export function HeroMockups() {
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className={`h-1.5 rounded-full cursor-pointer ${
                   i === activeIndex
-                    ? 'bg-gradient-to-r from-royal to-royal-light shadow-[0_0_6px_var(--glow-royal)]'
+                    ? 'bg-primary shadow-[0_0_6px_var(--glow-royal)]'
                     : 'bg-foreground/40'
                 }`}
                 style={{ width: i === activeIndex ? 24 : 6 }}

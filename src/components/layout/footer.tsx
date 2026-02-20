@@ -106,7 +106,7 @@ export function Footer() {
               />
               <Button 
                 type="submit"
-                className="w-full bg-gradient-to-r from-royal to-royal-light hover:opacity-90 transition-opacity"
+                className="w-full bg-accent text-[#111111] hover:opacity-90 transition-opacity"
               >
                 {t('footer.newsletter.button')}
               </Button>

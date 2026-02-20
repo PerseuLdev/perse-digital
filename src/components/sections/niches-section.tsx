@@ -1,8 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import Image from 'next/image';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -13,32 +12,38 @@ const niches = [
   {
     key: 'health',
     image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=400&fit=crop',
-    color: 'from-emerald-500 to-teal-600',
+    themeColor: '160 55% 28%',
+    icon: '🏥',
   },
   {
     key: 'beauty',
     image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&h=400&fit=crop',
-    color: 'from-pink-500 to-rose-600',
+    themeColor: '340 65% 38%',
+    icon: '✨',
   },
   {
     key: 'fitness',
     image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop',
-    color: 'from-orange-500 to-amber-600',
+    themeColor: '25 75% 38%',
+    icon: '💪',
   },
   {
     key: 'law',
     image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop',
-    color: 'from-slate-600 to-slate-800',
+    themeColor: '220 18% 28%',
+    icon: '⚖️',
   },
   {
     key: 'education',
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop',
-    color: 'from-blue-500 to-indigo-600',
+    themeColor: '225 60% 38%',
+    icon: '📚',
   },
   {
     key: 'psychology',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=400&fit=crop',
-    color: 'from-purple-500 to-violet-600',
+    themeColor: '270 55% 35%',
+    icon: '🧠',
   },
 ];
 
@@ -54,41 +59,67 @@ function NicheCard({ niche, index, t }: { niche: typeof niches[0]; index: number
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group relative"
+      style={{ '--theme-color': niche.themeColor } as React.CSSProperties}
+      className="group w-full h-80 cursor-pointer"
     >
-      <div className="relative h-80 rounded-3xl overflow-hidden cursor-pointer">
-        {/* Image */}
-        <Image
-          src={niche.image}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      {/* Card container — escala no hover com glow colorido */}
+      <div
+        className="relative w-full h-full rounded-2xl overflow-hidden transition-all duration-500 ease-in-out group-hover:scale-[1.03]"
+        style={{
+          boxShadow: `0 0 40px -15px hsl(${niche.themeColor} / 0.4)`,
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 60px -15px hsl(${niche.themeColor} / 0.65)`;
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 40px -15px hsl(${niche.themeColor} / 0.4)`;
+        }}
+      >
+        {/* Imagem com zoom paralaxe */}
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110"
+          style={{ backgroundImage: `url(${niche.image})` }}
         />
 
-        {/* Overlay gradient */}
-        <div className={`absolute inset-0 bg-gradient-to-t ${niche.color} opacity-60 mix-blend-multiply`} />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        {/* Gradient overlay temático */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(to top, hsl(${niche.themeColor} / 0.92), hsl(${niche.themeColor} / 0.55) 35%, transparent 65%)`,
+          }}
+        />
 
-        {/* Content */}
-        <div className="absolute inset-0 p-6 flex flex-col justify-end">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ delay: 0.2 + index * 0.1 }}
+        {/* Conteúdo */}
+        <div className="relative flex flex-col justify-end h-full p-5 text-white">
+          <h3 className="text-2xl font-bold tracking-tight">
+            {title} <span className="ml-1">{niche.icon}</span>
+          </h3>
+          <p className="text-sm text-white/75 mt-1 font-medium line-clamp-2">{description}</p>
+
+          {/* Barra glassmorphic "Ver modelos" */}
+          <div
+            className="mt-5 flex items-center justify-between rounded-lg px-4 py-3 transition-all duration-300"
+            style={{
+              background: `hsl(${niche.themeColor} / 0.25)`,
+              backdropFilter: 'blur(12px)',
+              border: `1px solid hsl(${niche.themeColor} / 0.35)`,
+            }}
+            // @ts-ignore
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLDivElement;
+              el.style.background = `hsl(${niche.themeColor} / 0.45)`;
+              el.style.borderColor = `hsl(${niche.themeColor} / 0.55)`;
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLDivElement;
+              el.style.background = `hsl(${niche.themeColor} / 0.25)`;
+              el.style.borderColor = `hsl(${niche.themeColor} / 0.35)`;
+            }}
           >
-            <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
-            <p className="text-white/80 text-sm mb-4">{description}</p>
-
-            <div className="flex items-center gap-2 text-white/90 text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-              <span>{t('viewTemplates')}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </motion.div>
+            <span className="text-sm font-semibold tracking-wide">{t('viewTemplates')}</span>
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </div>
         </div>
-
-        {/* Hover border effect */}
-        <div className="absolute inset-0 rounded-3xl border-2 border-white/0 group-hover:border-white/30 transition-colors duration-300" />
       </div>
     </motion.div>
   );
