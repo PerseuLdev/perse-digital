@@ -1,7 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
-import { useTranslations } from 'next-intl';
+import { useRef, useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { Loader2 } from 'lucide-react';
 import { motion, useInView, useScroll, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -31,8 +32,33 @@ import { WhatsAppButton } from '@/components/ui/whatsapp-button';
 
 export default function HomePage() {
   const t = useTranslations();
+  const locale = useLocale();
   const containerRef = useRef(null);
-  
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+
+  const handleSubscribe = async (tier: 'essential' | 'professional' | 'elite') => {
+    setLoadingPlan(tier);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceType: 'subscription', planTier: tier, locale }),
+      });
+      if (!res.ok) throw new Error('Checkout failed');
+      const { url } = await res.json();
+      window.location.href = url;
+    } catch {
+      const tierLabel = tier.charAt(0).toUpperCase() + tier.slice(1);
+      const message =
+        locale === 'pt'
+          ? `Olá! Tenho interesse no plano de manutenção ${tierLabel}. Como procedemos?`
+          : `Hi! I'm interested in the ${tierLabel} maintenance plan. How do we proceed?`;
+      window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
+    } finally {
+      setLoadingPlan(null);
+    }
+  };
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"]
@@ -138,6 +164,8 @@ export default function HomePage() {
                 currency={t('pricing.currency.symbol')}
                 period={t('pricing.period')}
                 delay={0}
+                onClick={() => handleSubscribe('essential')}
+                isLoading={loadingPlan === 'essential'}
               />
 
               <PricingCard
@@ -158,6 +186,8 @@ export default function HomePage() {
                 period={t('pricing.period')}
                 featured
                 delay={0.1}
+                onClick={() => handleSubscribe('professional')}
+                isLoading={loadingPlan === 'professional'}
               />
 
               <PricingCard
@@ -176,6 +206,8 @@ export default function HomePage() {
                 currency={t('pricing.currency.symbol')}
                 period={t('pricing.period')}
                 delay={0.2}
+                onClick={() => handleSubscribe('elite')}
+                isLoading={loadingPlan === 'elite'}
               />
             </div>
 
@@ -416,6 +448,8 @@ function PricingCard({
   period,
   featured = false,
   delay,
+  onClick,
+  isLoading = false,
 }: {
   name: string;
   description: string;
@@ -427,6 +461,8 @@ function PricingCard({
   period: string;
   featured?: boolean;
   delay: number;
+  onClick?: () => void;
+  isLoading?: boolean;
 }) {
   return (
     <motion.div
@@ -471,8 +507,16 @@ function PricingCard({
           variant={featured ? 'glow' : 'outline'}
           size="lg"
           className="w-full"
+          onClick={onClick}
+          disabled={isLoading}
         >
-          {cta}
+          {isLoading ? (
+            <span className="flex items-center gap-2">
+              <Loader2 className="w-4 h-4 animate-spin" />
+            </span>
+          ) : (
+            cta
+          )}
         </Button>
       </GlassCard>
     </motion.div>

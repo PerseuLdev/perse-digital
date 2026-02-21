@@ -1,6 +1,7 @@
 'use client';
 
-import { CheckCircle2, Clock, ShieldCheck, Zap, Globe, BadgePercent, CreditCard } from 'lucide-react';
+import { useState } from 'react';
+import { CheckCircle2, Loader2, ShieldCheck, Zap, Globe, BadgePercent } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { BrandkitExplainer } from './brandkit-explainer';
@@ -16,10 +17,27 @@ export function SalesContent({ model }: SalesContentProps) {
   const tm = useTranslations(`models.items.${model.id}`);
   const locale = useLocale();
 
-  const handleBuy = () => {
-    const modelTitle = tm('title');
-    const message = `Olá! Quero comprar o modelo ${modelTitle}. Como procedemos com o pagamento e envio do Brandkit?`;
-    window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleBuy = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ modelId: model.id, priceType: 'setup', locale }),
+      });
+      if (!res.ok) throw new Error('Checkout failed');
+      const { url } = await res.json();
+      window.location.href = url;
+    } catch {
+      // Fallback: WhatsApp
+      const modelTitle = tm('title');
+      const message = `Olá! Quero comprar o modelo ${modelTitle}. Como procedemos com o pagamento e envio do Brandkit?`;
+      window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -117,9 +135,17 @@ export function SalesContent({ model }: SalesContentProps) {
       <div className="sticky bottom-0 pt-4 pb-2 bg-gradient-to-t from-white via-white to-transparent">
         <Button
           onClick={handleBuy}
-          className="w-full bg-royal hover:bg-royal-dark text-white h-14 rounded-2xl text-lg font-bold shadow-xl shadow-royal/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+          disabled={isLoading}
+          className="w-full bg-royal hover:bg-royal-dark text-white h-14 rounded-2xl text-lg font-bold shadow-xl shadow-royal/20 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:scale-100"
         >
-          {t('buyButton')}
+          {isLoading ? (
+            <span className="flex items-center gap-2">
+              <Loader2 className="w-5 h-5 animate-spin" />
+              {locale === 'pt' ? 'Redirecionando...' : 'Redirecting...'}
+            </span>
+          ) : (
+            t('buyButton')
+          )}
         </Button>
       </div>
     </div>
