@@ -1,9 +1,22 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export function AnimatedBackground() {
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  const isStatic = isMobile || !!shouldReduceMotion;
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
       {/* Base: off-white azulado no light, preto no dark */}
@@ -40,8 +53,8 @@ export function AnimatedBackground() {
 
       {/* Orb 1 — top left */}
       <motion.div
-        animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        animate={isStatic ? undefined : { x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
+        transition={isStatic ? undefined : { duration: 20, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-[5%] left-[5%] w-[600px] h-[600px] rounded-full opacity-40 dark:opacity-25"
         style={{
           background: 'radial-gradient(circle, #38b6ff 0%, transparent 70%)',
@@ -51,8 +64,8 @@ export function AnimatedBackground() {
 
       {/* Orb 2 — bottom right */}
       <motion.div
-        animate={{ x: [0, -80, 0], y: [0, 80, 0], scale: [1, 1.3, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+        animate={isStatic ? undefined : { x: [0, -80, 0], y: [0, 80, 0], scale: [1, 1.3, 1] }}
+        transition={isStatic ? undefined : { duration: 25, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute bottom-[5%] right-[5%] w-[700px] h-[700px] rounded-full opacity-30 dark:opacity-20"
         style={{
           background: 'radial-gradient(circle, #38b6ff 0%, transparent 70%)',
@@ -62,15 +75,14 @@ export function AnimatedBackground() {
 
       {/* Orb 3 — center right */}
       <motion.div
-        animate={{ x: [0, 60, 0], y: [0, 100, 0], scale: [1, 0.9, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        animate={isStatic ? undefined : { x: [0, 60, 0], y: [0, 100, 0], scale: [1, 0.9, 1] }}
+        transition={isStatic ? undefined : { duration: 18, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-[35%] right-[15%] w-[450px] h-[450px] rounded-full opacity-20 dark:opacity-15"
         style={{
           background: 'radial-gradient(circle, #1a8fd4 0%, transparent 70%)',
           filter: 'blur(70px)',
         }}
       />
-
 
       {/* Vinheta nas bordas — suave no light, mais forte no dark */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_40%,var(--background)_100%)] opacity-60 dark:opacity-80" />

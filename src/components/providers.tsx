@@ -1,6 +1,7 @@
 'use client';
 
 import { ThemeProvider } from 'next-themes';
+import { MotionConfig } from 'framer-motion';
 import { type ReactNode } from 'react';
 
 interface ProvidersProps {
@@ -9,13 +10,15 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="dark"
-      enableSystem
-      disableTransitionOnChange={false}
-    >
-      {children}
-    </ThemeProvider>
+    <MotionConfig reducedMotion="user">
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        disableTransitionOnChange={false}
+      >
+        {children}
+      </ThemeProvider>
+    </MotionConfig>
   );
 }
