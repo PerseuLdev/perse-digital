@@ -124,9 +124,9 @@ export function Footer() {
           </p>
           
           <div className="flex items-center gap-6">
-            <a href="#" className="text-muted-foreground text-sm hover:text-primary transition-colors duration-200">
+            <Link href="/privacidade" className="text-muted-foreground text-sm hover:text-primary transition-colors duration-200">
               {t('footer.links.legal.privacy')}
-            </a>
+            </Link>
             <a href="#" className="text-muted-foreground text-sm hover:text-primary transition-colors duration-200">
               {t('footer.links.legal.terms')}
             </a>
