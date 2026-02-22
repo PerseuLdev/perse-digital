@@ -12,15 +12,12 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
 const routeItems = [
-  { key: 'home', href: '/' as const },
   { key: 'templates', href: '/templates' as const },
   { key: 'about', href: '/sobre' as const },
 ];
 
 const anchorItems = [
   { key: 'pricing', href: '/#pricing' },
-  { key: 'howItWorks', href: '/#how-it-works' },
-  { key: 'faq', href: '/#faq' },
 ];
 
 const allNavKeys = [...routeItems.map(i => i.key), ...anchorItems.map(i => i.key)];
@@ -178,9 +175,11 @@ export function Navbar() {
             </div>
 
             {/* CTA */}
-            <Button variant="glow" size="sm" className="hidden sm:flex">
-              {t('getStarted')}
-            </Button>
+            <a href="/#pricing">
+              <Button variant="glow" size="sm" className="hidden sm:flex">
+                {t('getStarted')}
+              </Button>
+            </a>
 
             {/* Mobile Menu Toggle */}
             <motion.button

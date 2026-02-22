@@ -22,7 +22,6 @@ import { NichesSection } from '@/components/sections/niches-section';
 import { AboutSection } from '@/components/sections/about-section';
 import { ParallaxBanner } from '@/components/sections/parallax-banner';
 import { FAQSection } from '@/components/sections/faq-section';
-import { ArticlesSection } from '@/components/sections/articles-section';
 import { LeadForm } from '@/components/sections/lead-form';
 import { TestimonialsSection } from '@/components/sections/testimonials-section';
 import { Footer } from '@/components/layout/footer';

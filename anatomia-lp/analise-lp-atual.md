@@ -14,11 +14,11 @@
 
 ### 🟡 Importante
 
-- [ ] **M5** — Simplificar Navbar (reduzir links, CTA → `#pricing`)
-- [ ] **M6** — Mover `NichesSection` para depois de Benefits
-- [ ] **M7** — Remover `ArticlesSection` do funil principal
-- [ ] **M8** — Adicionar estrelas ★★★★★ nos Testimonials
-- [ ] **M9** — Remover ou reduzir Parallax Banners
+- [x] **M5** — Simplificar Navbar (reduzir links, CTA → `#pricing`) ✅
+- [x] **M6** — Mover `NichesSection` para depois de Benefits ✅
+- [x] **M7** — Remover `ArticlesSection` do funil principal ✅
+- [x] **M8** — Adicionar estrelas ★★★★★ nos Testimonials ✅
+- [x] **M9** — Remover ou reduzir Parallax Banners ✅
 
 ### 🟢 Melhorias
 
