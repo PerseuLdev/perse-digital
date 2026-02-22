@@ -183,7 +183,15 @@
       "symbol": "$",
       "code": "USD"
     },
-    "period": "/month",
+    "period": {
+      "monthly": "/month",
+      "annual": "/month"
+    },
+    "toggle": {
+      "monthly": "Monthly",
+      "annual": "Annual",
+      "saveBadge": "2 months free"
+    },
     "plans": {
       "essential": {
         "name": "Essential",
@@ -191,6 +199,10 @@
         "prices": {
           "BRL": "49",
           "USD": "19"
+        },
+        "annualPrices": {
+          "BRL": "39",
+          "USD": "15"
         },
         "features": [
           "1 Model of choice",
@@ -206,6 +218,10 @@
         "prices": {
           "BRL": "99",
           "USD": "39"
+        },
+        "annualPrices": {
+          "BRL": "79",
+          "USD": "31"
         },
         "badge": "Recommended",
         "features": [
@@ -223,6 +239,10 @@
         "prices": {
           "BRL": "199",
           "USD": "79"
+        },
+        "annualPrices": {
+          "BRL": "159",
+          "USD": "63"
         },
         "features": [
           "Everything in Professional",

@@ -183,7 +183,15 @@
       "symbol": "R$",
       "code": "BRL"
     },
-    "period": "/mês",
+    "period": {
+      "monthly": "/mês",
+      "annual": "/mês"
+    },
+    "toggle": {
+      "monthly": "Mensal",
+      "annual": "Anual",
+      "saveBadge": "2 meses grátis"
+    },
     "plans": {
       "essential": {
         "name": "Essencial",
@@ -191,6 +199,10 @@
         "prices": {
           "BRL": "49",
           "USD": "19"
+        },
+        "annualPrices": {
+          "BRL": "39",
+          "USD": "15"
         },
         "features": [
           "1 Modelo à escolha",
@@ -206,6 +218,10 @@
         "prices": {
           "BRL": "99",
           "USD": "39"
+        },
+        "annualPrices": {
+          "BRL": "79",
+          "USD": "31"
         },
         "badge": "Recomendado",
         "features": [
@@ -223,6 +239,10 @@
         "prices": {
           "BRL": "199",
           "USD": "79"
+        },
+        "annualPrices": {
+          "BRL": "159",
+          "USD": "63"
         },
         "features": [
           "Tudo do Profissional",

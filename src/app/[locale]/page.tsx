@@ -35,6 +35,7 @@ export default function HomePage() {
   const locale = useLocale();
   const containerRef = useRef(null);
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+  const [isAnnual, setIsAnnual] = useState(true);
 
   const handleSubscribe = async (tier: 'essential' | 'professional' | 'elite') => {
     setLoadingPlan(tier);
@@ -205,11 +206,53 @@ export default function HomePage() {
               subtitle={t('pricing.subtitle')}
             />
 
-            <div className="grid md:grid-cols-3 gap-8 mt-16">
+            {/* Toggle mensal / anual */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex items-center justify-center gap-3 mt-10"
+            >
+              <span className={`text-sm font-medium transition-colors ${!isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
+                {t('pricing.toggle.monthly')}
+              </span>
+
+              <button
+                onClick={() => setIsAnnual(!isAnnual)}
+                className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isAnnual ? 'bg-primary' : 'bg-border'}`}
+                aria-label="Toggle billing period"
+              >
+                <span
+                  className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${isAnnual ? 'translate-x-6' : 'translate-x-0'}`}
+                />
+              </button>
+
+              <span className={`text-sm font-medium transition-colors ${isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
+                {t('pricing.toggle.annual')}
+              </span>
+
+              {/* Badge de desconto */}
+              <motion.span
+                key={String(isAnnual)}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: isAnnual ? 1 : 0, scale: isAnnual ? 1 : 0.8 }}
+                transition={{ duration: 0.2 }}
+                className="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
+              >
+                {t('pricing.toggle.saveBadge')}
+              </motion.span>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
               <PricingCard
                 name={t('pricing.plans.essential.name')}
                 description={t('pricing.plans.essential.description')}
-                price={t('pricing.plans.essential.prices.' + t('pricing.currency.code'))}
+                price={isAnnual
+                  ? t('pricing.plans.essential.annualPrices.' + t('pricing.currency.code'))
+                  : t('pricing.plans.essential.prices.' + t('pricing.currency.code'))
+                }
+                originalPrice={isAnnual ? t('pricing.plans.essential.prices.' + t('pricing.currency.code')) : undefined}
                 features={[
                   t('pricing.plans.essential.features.0'),
                   t('pricing.plans.essential.features.1'),
@@ -219,7 +262,7 @@ export default function HomePage() {
                 ]}
                 cta={t('pricing.cta')}
                 currency={t('pricing.currency.symbol')}
-                period={t('pricing.period')}
+                period={t(isAnnual ? 'pricing.period.annual' : 'pricing.period.monthly')}
                 delay={0}
                 onClick={() => handleSubscribe('essential')}
                 isLoading={loadingPlan === 'essential'}
@@ -228,7 +271,11 @@ export default function HomePage() {
               <PricingCard
                 name={t('pricing.plans.professional.name')}
                 description={t('pricing.plans.professional.description')}
-                price={t('pricing.plans.professional.prices.' + t('pricing.currency.code'))}
+                price={isAnnual
+                  ? t('pricing.plans.professional.annualPrices.' + t('pricing.currency.code'))
+                  : t('pricing.plans.professional.prices.' + t('pricing.currency.code'))
+                }
+                originalPrice={isAnnual ? t('pricing.plans.professional.prices.' + t('pricing.currency.code')) : undefined}
                 badge={t('pricing.plans.professional.badge')}
                 features={[
                   t('pricing.plans.professional.features.0'),
@@ -240,7 +287,7 @@ export default function HomePage() {
                 ]}
                 cta={t('pricing.cta')}
                 currency={t('pricing.currency.symbol')}
-                period={t('pricing.period')}
+                period={t(isAnnual ? 'pricing.period.annual' : 'pricing.period.monthly')}
                 featured
                 delay={0.1}
                 onClick={() => handleSubscribe('professional')}
@@ -250,7 +297,11 @@ export default function HomePage() {
               <PricingCard
                 name={t('pricing.plans.elite.name')}
                 description={t('pricing.plans.elite.description')}
-                price={t('pricing.plans.elite.prices.' + t('pricing.currency.code'))}
+                price={isAnnual
+                  ? t('pricing.plans.elite.annualPrices.' + t('pricing.currency.code'))
+                  : t('pricing.plans.elite.prices.' + t('pricing.currency.code'))
+                }
+                originalPrice={isAnnual ? t('pricing.plans.elite.prices.' + t('pricing.currency.code')) : undefined}
                 features={[
                   t('pricing.plans.elite.features.0'),
                   t('pricing.plans.elite.features.1'),
@@ -261,7 +312,7 @@ export default function HomePage() {
                 ]}
                 cta={t('pricing.cta')}
                 currency={t('pricing.currency.symbol')}
-                period={t('pricing.period')}
+                period={t(isAnnual ? 'pricing.period.annual' : 'pricing.period.monthly')}
                 delay={0.2}
                 onClick={() => handleSubscribe('elite')}
                 isLoading={loadingPlan === 'elite'}
@@ -437,6 +488,7 @@ function PricingCard({
   name,
   description,
   price,
+  originalPrice,
   badge,
   features,
   cta,
@@ -450,6 +502,7 @@ function PricingCard({
   name: string;
   description: string;
   price: string;
+  originalPrice?: string;
   badge?: string;
   features: string[];
   cta: string;
@@ -484,8 +537,16 @@ function PricingCard({
         </div>
 
         <div className="text-center mb-8">
-          <span className="text-5xl font-bold">{currency}{price}</span>
-          <span className="text-muted-foreground">{period}</span>
+          {/* Preço original riscado (âncora) */}
+          {originalPrice && (
+            <div className="text-sm text-muted-foreground line-through mb-1">
+              {currency}{originalPrice}{period}
+            </div>
+          )}
+          <div className="flex items-end justify-center gap-1">
+            <span className="text-5xl font-bold">{currency}{price}</span>
+            <span className="text-muted-foreground pb-1.5">{period}</span>
+          </div>
         </div>
 
         <ul className="space-y-4 mb-8">
