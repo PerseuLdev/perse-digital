@@ -320,6 +320,9 @@
         "careers": "Careers",
         "contact": "Contact"
       },
+      "contact": {
+        "title": "Contact"
+      },
       "resources": {
         "title": "Resources",
         "blog": "Blog",
