@@ -330,6 +330,15 @@
       "integrations": "Integração com WhatsApp e redes sociais"
     }
   },
+  "trustBar": {
+    "label": "Confiado por profissionais em todo o Brasil",
+    "stats": {
+      "clients": { "value": "500+", "label": "Clientes ativos" },
+      "niches": { "value": "6", "label": "Nichos atendidos" },
+      "rating": { "value": "4.9★", "label": "Avaliação média" },
+      "uptime": { "value": "99.9%", "label": "Uptime garantido" }
+    }
+  },
   "niches": {
     "title": "Modelos para",
     "titleHighlight": "cada nicho",

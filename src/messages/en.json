@@ -330,6 +330,15 @@
       "integrations": "WhatsApp and social media integration"
     }
   },
+  "trustBar": {
+    "label": "Trusted by professionals across Brazil",
+    "stats": {
+      "clients": { "value": "500+", "label": "Active clients" },
+      "niches": { "value": "6", "label": "Niches served" },
+      "rating": { "value": "4.9★", "label": "Average rating" },
+      "uptime": { "value": "99.9%", "label": "Guaranteed uptime" }
+    }
+  },
   "niches": {
     "title": "Models for",
     "titleHighlight": "every niche",

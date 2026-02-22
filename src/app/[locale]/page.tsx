@@ -17,6 +17,7 @@ import {
 import { AnimatedBackground } from '@/components/layout/animated-background';
 import { Navbar } from '@/components/layout/navbar';
 import { HeroSection } from '@/components/hero/hero-section';
+import { TrustBar } from '@/components/sections/trust-bar';
 import { NichesSection } from '@/components/sections/niches-section';
 import { AboutSection } from '@/components/sections/about-section';
 import { ParallaxBanner } from '@/components/sections/parallax-banner';
@@ -79,17 +80,10 @@ export default function HomePage() {
         {/* Hero Section */}
         <HeroSection />
 
-        {/* Niches Section - com fotos de profissionais */}
-        <NichesSection />
+        {/* Trust Bar — credibilidade imediata após o hero */}
+        <TrustBar />
 
-        {/* Parallax Banner 1 */}
-        <ParallaxBanner
-          title={t('parallax.banner1.title')}
-          subtitle={t('parallax.banner1.subtitle')}
-          image="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1920&h=1080&fit=crop"
-        />
-
-        {/* About Section - com fotos da equipe */}
+        {/* About Section - benefícios para o cliente */}
         <AboutSection />
 
         {/* ========== FEATURES SECTION ========== */}
@@ -133,12 +127,76 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Parallax Banner 2 */}
+        {/* Niches Section — após features, antes do processo */}
+        <NichesSection />
+
+        {/* Parallax Banner */}
         <ParallaxBanner
-          title={t('parallax.banner2.title')}
-          subtitle={t('parallax.banner2.subtitle')}
-          image="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&h=1080&fit=crop"
+          title={t('parallax.banner1.title')}
+          subtitle={t('parallax.banner1.subtitle')}
+          image="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1920&h=1080&fit=crop"
         />
+
+        {/* ========== HOW IT WORKS SECTION ========== */}
+        <section
+          ref={containerRef}
+          className="relative z-10 px-6 py-32 overflow-hidden"
+          id="how-it-works"
+        >
+          {/* Ambient atmosphere */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-1/4 -left-48 w-[700px] h-[700px] rounded-full bg-royal/[0.04] blur-[130px]" />
+            <div className="absolute bottom-1/4 -right-48 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[130px]" />
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <SectionHeader
+              title={t('howItWorks.title')}
+              subtitle={t('howItWorks.subtitle')}
+            />
+
+            <div className="relative mt-24">
+              {/* Timeline track — desktop only */}
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-primary/[0.08] -translate-x-1/2" />
+
+              {/* Animated spine — glow layer */}
+              <motion.div
+                className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[8px] bg-gradient-to-b from-royal to-royal-light opacity-20 -translate-x-1/2 origin-top blur-[5px]"
+                style={{ scaleY }}
+              />
+              {/* Animated spine — sharp layer */}
+              <motion.div
+                className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-royal to-royal-light -translate-x-1/2 origin-top"
+                style={{ scaleY }}
+              />
+
+              <div className="flex flex-col gap-20 md:gap-28">
+                {[
+                  {
+                    step: '01',
+                    title: t('howItWorks.steps.choose.title'),
+                    description: t('howItWorks.steps.choose.description'),
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+                  },
+                  {
+                    step: '02',
+                    title: t('howItWorks.steps.customize.title'),
+                    description: t('howItWorks.steps.customize.description'),
+                    image: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&h=400&fit=crop',
+                  },
+                  {
+                    step: '03',
+                    title: t('howItWorks.steps.launch.title'),
+                    description: t('howItWorks.steps.launch.description'),
+                    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
+                  },
+                ].map((item, index) => (
+                  <StepCard key={index} {...item} index={index} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* ========== PRICING SECTION ========== */}
         <section className="relative z-10 px-6 py-32" id="pricing">
@@ -222,80 +280,13 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ========== HOW IT WORKS SECTION ========== */}
-        <section
-          ref={containerRef}
-          className="relative z-10 px-6 py-32 overflow-hidden"
-          id="how-it-works"
-        >
-          {/* Ambient atmosphere */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-1/4 -left-48 w-[700px] h-[700px] rounded-full bg-royal/[0.04] blur-[130px]" />
-            <div className="absolute bottom-1/4 -right-48 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[130px]" />
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <SectionHeader
-              title={t('howItWorks.title')}
-              subtitle={t('howItWorks.subtitle')}
-            />
-
-            <div className="relative mt-24">
-              {/* Timeline track — desktop only */}
-              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-primary/[0.08] -translate-x-1/2" />
-
-              {/* Animated spine — glow layer */}
-              <motion.div
-                className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[8px] bg-gradient-to-b from-royal to-royal-light opacity-20 -translate-x-1/2 origin-top blur-[5px]"
-                style={{ scaleY }}
-              />
-              {/* Animated spine — sharp layer */}
-              <motion.div
-                className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-royal to-royal-light -translate-x-1/2 origin-top"
-                style={{ scaleY }}
-              />
-
-              <div className="flex flex-col gap-20 md:gap-28">
-                {[
-                  {
-                    step: '01',
-                    title: t('howItWorks.steps.choose.title'),
-                    description: t('howItWorks.steps.choose.description'),
-                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
-                  },
-                  {
-                    step: '02',
-                    title: t('howItWorks.steps.customize.title'),
-                    description: t('howItWorks.steps.customize.description'),
-                    image: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&h=400&fit=crop',
-                  },
-                  {
-                    step: '03',
-                    title: t('howItWorks.steps.launch.title'),
-                    description: t('howItWorks.steps.launch.description'),
-                    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop',
-                  },
-                ].map((item, index) => (
-                  <StepCard key={index} {...item} index={index} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ========== TESTIMONIALS SECTION ========== */}
         <TestimonialsSection />
-
-        {/* ========== ARTICLES SECTION ========== */}
-        <ArticlesSection />
 
         {/* ========== FAQ SECTION ========== */}
         <FAQSection />
 
-        {/* ========== LEAD FORM SECTION ========== */}
-        <LeadForm />
-
-        {/* ========== CTA SECTION ========== */}
+        {/* ========== CTA SECTION — gancho visual antes do formulário ========== */}
         <section className="relative z-10 px-6 py-32">
           <div className="max-w-5xl mx-auto">
             <motion.div
@@ -359,6 +350,9 @@ export default function HomePage() {
                   <Button
                     variant="secondary"
                     size="xl"
+                    onClick={() => {
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="bg-white text-primary hover:bg-white/90 shadow-2xl shadow-black/20 text-lg px-12"
                   >
                     {t('cta.button')}
@@ -369,6 +363,9 @@ export default function HomePage() {
             </motion.div>
           </div>
         </section>
+
+        {/* ========== LEAD FORM — formulário de contato via WhatsApp ========== */}
+        <LeadForm />
 
         <Footer />
 
