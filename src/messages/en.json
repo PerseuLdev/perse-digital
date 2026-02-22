@@ -20,7 +20,8 @@
     "subheadline": "No expensive subscriptions. Your professional site, live and branded, in days.",
     "cta": {
       "primary": "I want my website",
-      "secondary": "Learn More"
+      "secondary": "Learn More",
+      "microcopy": "No commitment · Response within 24h"
     },
     "stats": {
       "templates": "Models",
@@ -279,6 +280,14 @@
       "q5": {
         "question": "Is the website responsive?",
         "answer": "All our models are 100% responsive and work perfectly on phones, tablets, and computers."
+      },
+      "q6": {
+        "question": "Do I need technical knowledge to update the content?",
+        "answer": "No. We provide a simple admin panel where you can update texts, photos, and information without touching any code. If you need help, our support team is available."
+      },
+      "q7": {
+        "question": "How does post-delivery support work?",
+        "answer": "All plans include WhatsApp support for questions and adjustments. The Professional and Elite plans include priority support with reduced response times and monthly maintenance included."
       }
     }
   },

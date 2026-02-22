@@ -20,7 +20,8 @@
     "subheadline": "Sem mensalidade cara. Seu site bonito, rápido e com a sua cara — no ar em dias.",
     "cta": {
       "primary": "Quero meu site",
-      "secondary": "Saiba Mais"
+      "secondary": "Saiba Mais",
+      "microcopy": "Sem compromisso · Resposta em até 24h"
     },
     "stats": {
       "templates": "Modelos",
@@ -279,6 +280,14 @@
       "q5": {
         "question": "O site é responsivo?",
         "answer": "Todos os nossos modelos são 100% responsivos e funcionam perfeitamente em celulares, tablets e computadores."
+      },
+      "q6": {
+        "question": "Preciso de conhecimento técnico para atualizar o conteúdo?",
+        "answer": "Não. Oferecemos um painel de administração simples onde você atualiza textos, fotos e informações sem precisar tocar em código. Se precisar de ajuda, nosso suporte está disponível."
+      },
+      "q7": {
+        "question": "Como funciona o suporte após a entrega?",
+        "answer": "Todos os planos incluem suporte via WhatsApp para dúvidas e ajustes. Os planos Professional e Elite incluem suporte prioritário com tempo de resposta reduzido e manutenção mensal inclusa."
       }
     }
   },

@@ -22,10 +22,10 @@
 
 ### 🟢 Melhorias
 
-- [ ] **M10** — Micro-copy abaixo do CTA do Hero
+- [x] **M10** — Micro-copy abaixo do CTA do Hero ✅
 - [ ] **M11** — Toggle mensal/anual no Pricing
-- [ ] **M12** — Ampliar FAQ para 7–8 perguntas
-- [ ] **M13** — Simplificar Footer
+- [x] **M12** — Ampliar FAQ para 7–8 perguntas ✅
+- [x] **M13** — Simplificar Footer ✅
 
 ---
 

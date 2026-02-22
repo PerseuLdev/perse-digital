@@ -63,7 +63,7 @@ function FAQItem({ question, answer, index }: FAQItemProps) {
 
 export function FAQSection() {
   const t = useTranslations('faq');
-  const faqKeys = ['q1', 'q2', 'q3', 'q4', 'q5'];
+  const faqKeys = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7'];
 
   return (
     <section className="relative z-10 px-6 py-32" id="faq">

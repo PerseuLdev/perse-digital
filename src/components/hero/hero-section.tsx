@@ -255,7 +255,7 @@ export function HeroSection() {
             </motion.p>
 
             {/* CTA */}
-            <div className="relative z-50 flex items-center lg:items-start mb-12">
+            <div className="relative z-50 flex flex-col items-center lg:items-start gap-3 mb-12">
               <Link href={`/${locale}/templates`}>
                 <CTAButton
                   variant="primary"
@@ -265,6 +265,14 @@ export function HeroSection() {
                   {t('hero.cta.primary')}
                 </CTAButton>
               </Link>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="text-xs text-foreground/40 tracking-wide"
+              >
+                {t('hero.cta.microcopy')}
+              </motion.p>
             </div>
 
             {/* Stats - Minimal, refined */}
