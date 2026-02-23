@@ -2,18 +2,14 @@
 
 import { useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Loader2 } from 'lucide-react';
 import { motion, useInView, useScroll, useSpring } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
-  ArrowRight,
-  Sparkles,
-  Zap,
-  Shield,
-  Smartphone,
   Check,
   ChevronRight,
 } from 'lucide-react';
+import { UltraFastIcon, SeoIcon, SecureIcon, MobileIcon } from '@/components/icons/FeatureIcons';
 import { AnimatedBackground } from '@/components/layout/animated-background';
 import { Navbar } from '@/components/layout/navbar';
 import { HeroSection } from '@/components/hero/hero-section';
@@ -30,35 +26,45 @@ import { GlassCard } from '@/components/ui/glass-card';
 import { BackToTop } from '@/components/ui/back-to-top';
 import { WhatsAppButton } from '@/components/ui/whatsapp-button';
 
+type Niche = 'health' | 'fitness' | 'law';
+
+const nicheData: Record<Niche, {
+  label: string;
+  templateId: string;
+  essential: string[];
+  professional: string[];
+  premium: string[];
+}> = {
+  health: {
+    label: 'Saúde',
+    templateId: 'dental-clinic',
+    essential: ['Bio + Especialidades', 'Localização + WhatsApp', 'Página de contato'],
+    professional: ['Agendamento Online', 'Blog de saúde + SEO', 'Google Maps integrado'],
+    premium: ['Área do Paciente', 'Histórico de consultas', 'Lembretes automáticos'],
+  },
+  fitness: {
+    label: 'Fitness',
+    templateId: 'muscle-perse',
+    essential: ['Apresentação + Bio', 'Serviços + Preços', 'WhatsApp direto'],
+    professional: ['Planos de Aula em vídeo', 'Calendário de aulas', 'Captação de leads'],
+    premium: ['Área de Membros', 'App-like (PWA)', 'Acompanhamento de treino'],
+  },
+  law: {
+    label: 'Jurídico',
+    templateId: 'law-firm-premium',
+    essential: ['Site Institucional', 'Áreas de atuação + OAB', 'Formulário de contato'],
+    professional: ['Blog Jurídico + SEO', 'Landing Page por causa', 'Captação de leads'],
+    premium: ['Chatbot IA', 'Triagem de processos', 'Área do cliente'],
+  },
+};
+
 export default function HomePage() {
   const t = useTranslations();
   const locale = useLocale();
   const containerRef = useRef(null);
-  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
-  const [isAnnual, setIsAnnual] = useState(true);
+  const [selectedNiche, setSelectedNiche] = useState<Niche>('health');
 
-  const handleSubscribe = async (tier: 'essential' | 'professional' | 'elite') => {
-    setLoadingPlan(tier);
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ priceType: 'subscription', planTier: tier, locale }),
-      });
-      if (!res.ok) throw new Error('Checkout failed');
-      const { url } = await res.json();
-      window.location.href = url;
-    } catch {
-      const tierLabel = tier.charAt(0).toUpperCase() + tier.slice(1);
-      const message =
-        locale === 'pt'
-          ? `Olá! Tenho interesse no plano de manutenção ${tierLabel}. Como procedemos?`
-          : `Hi! I'm interested in the ${tierLabel} maintenance plan. How do we proceed?`;
-      window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
-    } finally {
-      setLoadingPlan(null);
-    }
-  };
+  const previewUrl = (templateId: string) => `/${locale}/templates/${templateId}/preview`;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -97,28 +103,28 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
               {[
                 {
-                  icon: Zap,
+                  icon: UltraFastIcon,
                   title: t('whyNextjs.features.speed.title'),
                   description: t('whyNextjs.features.speed.description'),
                   gradient: 'from-amber-500 to-orange-600',
                 },
                 {
-                  icon: Sparkles,
+                  icon: SeoIcon,
                   title: t('whyNextjs.features.seo.title'),
                   description: t('whyNextjs.features.seo.description'),
-                  gradient: 'from-royal to-royal-light',
+                  gradient: 'from-violet-500 to-purple-600',
                 },
                 {
-                  icon: Shield,
+                  icon: SecureIcon,
                   title: t('whyNextjs.features.security.title'),
                   description: t('whyNextjs.features.security.description'),
                   gradient: 'from-emerald-500 to-teal-600',
                 },
                 {
-                  icon: Smartphone,
+                  icon: MobileIcon,
                   title: t('whyNextjs.features.mobile.title'),
                   description: t('whyNextjs.features.mobile.description'),
-                  gradient: 'from-violet-500 to-purple-600',
+                  gradient: 'from-purple-500 to-indigo-600',
                 },
               ].map((feature, index) => (
                 <FeatureCard key={index} {...feature} index={index} />
@@ -206,127 +212,71 @@ export default function HomePage() {
               subtitle={t('pricing.subtitle')}
             />
 
-            {/* Toggle mensal / anual */}
+            {/* Niche tabs */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center justify-center gap-3 mt-10"
+              className="flex items-center justify-center gap-2 mt-10"
             >
-              <span className={`text-sm font-medium transition-colors ${!isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
-                {t('pricing.toggle.monthly')}
-              </span>
-
-              <button
-                onClick={() => setIsAnnual(!isAnnual)}
-                className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isAnnual ? 'bg-primary' : 'bg-border'}`}
-                aria-label="Toggle billing period"
-              >
-                <span
-                  className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${isAnnual ? 'translate-x-6' : 'translate-x-0'}`}
-                />
-              </button>
-
-              <span className={`text-sm font-medium transition-colors ${isAnnual ? 'text-foreground' : 'text-muted-foreground'}`}>
-                {t('pricing.toggle.annual')}
-              </span>
-
-              {/* Badge de desconto */}
-              <motion.span
-                key={String(isAnnual)}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: isAnnual ? 1 : 0, scale: isAnnual ? 1 : 0.8 }}
-                transition={{ duration: 0.2 }}
-                className="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
-              >
-                {t('pricing.toggle.saveBadge')}
-              </motion.span>
+              {(Object.keys(nicheData) as Niche[]).map((niche) => (
+                <button
+                  key={niche}
+                  onClick={() => setSelectedNiche(niche)}
+                  className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                    selectedNiche === niche
+                      ? 'bg-primary text-white shadow-md shadow-primary/30'
+                      : 'bg-border/50 text-muted-foreground hover:bg-border hover:text-foreground'
+                  }`}
+                >
+                  {nicheData[niche].label}
+                </button>
+              ))}
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 mt-12">
               <PricingCard
                 name={t('pricing.plans.essential.name')}
                 description={t('pricing.plans.essential.description')}
-                price={isAnnual
-                  ? t('pricing.plans.essential.annualPrices.' + t('pricing.currency.code'))
-                  : t('pricing.plans.essential.prices.' + t('pricing.currency.code'))
-                }
-                originalPrice={isAnnual ? t('pricing.plans.essential.prices.' + t('pricing.currency.code')) : undefined}
-                features={[
-                  t('pricing.plans.essential.features.0'),
-                  t('pricing.plans.essential.features.1'),
-                  t('pricing.plans.essential.features.2'),
-                  t('pricing.plans.essential.features.3'),
-                  t('pricing.plans.essential.features.4'),
-                ]}
+                price={t('pricing.plans.essential.price')}
+                anchorPrice={t('pricing.plans.essential.anchorPrice')}
+                features={nicheData[selectedNiche].essential}
                 cta={t('pricing.cta')}
                 currency={t('pricing.currency.symbol')}
-                period={t(isAnnual ? 'pricing.period.annual' : 'pricing.period.monthly')}
+                setupLabel={t('pricing.setupLabel')}
+                ctaHref={previewUrl(nicheData[selectedNiche].templateId)}
                 delay={0}
-                onClick={() => handleSubscribe('essential')}
-                isLoading={loadingPlan === 'essential'}
               />
 
               <PricingCard
                 name={t('pricing.plans.professional.name')}
                 description={t('pricing.plans.professional.description')}
-                price={isAnnual
-                  ? t('pricing.plans.professional.annualPrices.' + t('pricing.currency.code'))
-                  : t('pricing.plans.professional.prices.' + t('pricing.currency.code'))
-                }
-                originalPrice={isAnnual ? t('pricing.plans.professional.prices.' + t('pricing.currency.code')) : undefined}
+                price={t('pricing.plans.professional.price')}
+                anchorPrice={t('pricing.plans.professional.anchorPrice')}
                 badge={t('pricing.plans.professional.badge')}
-                features={[
-                  t('pricing.plans.professional.features.0'),
-                  t('pricing.plans.professional.features.1'),
-                  t('pricing.plans.professional.features.2'),
-                  t('pricing.plans.professional.features.3'),
-                  t('pricing.plans.professional.features.4'),
-                  t('pricing.plans.professional.features.5'),
-                ]}
+                features={nicheData[selectedNiche].professional}
                 cta={t('pricing.cta')}
                 currency={t('pricing.currency.symbol')}
-                period={t(isAnnual ? 'pricing.period.annual' : 'pricing.period.monthly')}
+                setupLabel={t('pricing.setupLabel')}
+                ctaHref={previewUrl(nicheData[selectedNiche].templateId)}
                 featured
                 delay={0.1}
-                onClick={() => handleSubscribe('professional')}
-                isLoading={loadingPlan === 'professional'}
               />
 
               <PricingCard
-                name={t('pricing.plans.elite.name')}
-                description={t('pricing.plans.elite.description')}
-                price={isAnnual
-                  ? t('pricing.plans.elite.annualPrices.' + t('pricing.currency.code'))
-                  : t('pricing.plans.elite.prices.' + t('pricing.currency.code'))
-                }
-                originalPrice={isAnnual ? t('pricing.plans.elite.prices.' + t('pricing.currency.code')) : undefined}
-                features={[
-                  t('pricing.plans.elite.features.0'),
-                  t('pricing.plans.elite.features.1'),
-                  t('pricing.plans.elite.features.2'),
-                  t('pricing.plans.elite.features.3'),
-                  t('pricing.plans.elite.features.4'),
-                  t('pricing.plans.elite.features.5'),
-                ]}
-                cta={t('pricing.cta')}
+                name={t('pricing.plans.premium.name')}
+                description={t('pricing.plans.premium.description')}
+                price={t('pricing.plans.premium.price')}
+                priceLabel={t('pricing.plans.premium.priceLabel')}
+                features={nicheData[selectedNiche].premium}
+                cta={t('pricing.ctaPremium')}
                 currency={t('pricing.currency.symbol')}
-                period={t(isAnnual ? 'pricing.period.annual' : 'pricing.period.monthly')}
+                ctaHref={`https://wa.me/5514991071072?text=${encodeURIComponent('Olá! Tenho interesse no plano Premium. Como procedemos?')}`}
+                isExternal
                 delay={0.2}
-                onClick={() => handleSubscribe('elite')}
-                isLoading={loadingPlan === 'elite'}
               />
             </div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-center text-muted-foreground mt-12"
-            >
-              {t('pricing.guarantee')}
-            </motion.p>
           </div>
         </section>
 
@@ -471,14 +421,16 @@ function FeatureCard({
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
-      <GlassCard variant="bordered" className="p-8 h-full group">
-        <div
-          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}
-        >
-          <Icon className="w-8 h-8 text-white" />
+      <GlassCard variant="bordered" className="p-8 h-full group relative overflow-hidden">
+        {/* Ambient background glow matching the icon color */}
+        <div className={`absolute -inset-4 bg-gradient-to-br ${gradient} opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 rounded-full blur-2xl`} />
+        
+        <div className="relative w-20 h-20 mb-8 group-hover:scale-[1.12] transition-transform duration-500 ease-out origin-left">
+          <Icon className="w-full h-full drop-shadow-2xl" />
         </div>
-        <h3 className="text-xl font-bold mb-3">{title}</h3>
-        <p className="text-muted-foreground leading-relaxed">{description}</p>
+        
+        <h3 className="text-xl font-bold mb-3 relative z-10">{title}</h3>
+        <p className="text-muted-foreground leading-relaxed relative z-10">{description}</p>
       </GlassCard>
     </motion.div>
   );
@@ -488,30 +440,32 @@ function PricingCard({
   name,
   description,
   price,
-  originalPrice,
+  anchorPrice,
+  priceLabel,
   badge,
   features,
   cta,
   currency,
-  period,
+  setupLabel,
+  ctaHref,
+  isExternal = false,
   featured = false,
   delay,
-  onClick,
-  isLoading = false,
 }: {
   name: string;
   description: string;
   price: string;
-  originalPrice?: string;
+  anchorPrice?: string;
+  priceLabel?: string;
   badge?: string;
   features: string[];
   cta: string;
   currency: string;
-  period: string;
+  setupLabel?: string;
+  ctaHref: string;
+  isExternal?: boolean;
   featured?: boolean;
   delay: number;
-  onClick?: () => void;
-  isLoading?: boolean;
 }) {
   return (
     <motion.div
@@ -523,7 +477,7 @@ function PricingCard({
     >
       <GlassCard
         variant={featured ? 'glow' : 'bordered'}
-        className={`p-8 h-full relative ${featured ? 'border-2 border-primary' : ''}`}
+        className={`p-8 h-full relative flex flex-col ${featured ? 'border-2 border-primary' : ''}`}
       >
         {badge && (
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-royal to-royal-light text-white text-sm font-semibold shadow-lg">
@@ -537,22 +491,27 @@ function PricingCard({
         </div>
 
         <div className="text-center mb-8">
-          {/* Preço original riscado (âncora) */}
-          {originalPrice && (
+          {/* Preço âncora riscado */}
+          {anchorPrice && (
             <div className="text-sm text-muted-foreground line-through mb-1">
-              {currency}{originalPrice}{period}
+              {currency} {anchorPrice}
             </div>
           )}
           <div className="flex items-end justify-center gap-1">
-            <span className="text-5xl font-bold">{currency}{price}</span>
-            <span className="text-muted-foreground pb-1.5">{period}</span>
+            <span className="text-5xl font-bold">{currency} {price}</span>
+            {priceLabel && (
+              <span className="text-muted-foreground pb-1.5">{priceLabel}</span>
+            )}
           </div>
+          {setupLabel && (
+            <p className="text-xs text-muted-foreground mt-2">{setupLabel}</p>
+          )}
         </div>
 
-        <ul className="space-y-4 mb-8">
+        <ul className="space-y-4 mb-8 flex-1">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start gap-3">
-              <div className="p-1 rounded-full bg-primary/10 mt-0.5">
+              <div className="p-1 rounded-full bg-primary/10 mt-0.5 shrink-0">
                 <Check className="w-4 h-4 text-primary" />
               </div>
               <span className="text-foreground/80">{feature}</span>
@@ -560,21 +519,31 @@ function PricingCard({
           ))}
         </ul>
 
-        <Button
-          variant={featured ? 'glow' : 'outline'}
-          size="lg"
-          className="w-full"
-          onClick={onClick}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <span className="flex items-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin" />
-            </span>
-          ) : (
-            cta
-          )}
-        </Button>
+        {isExternal ? (
+          <a
+            href={ctaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`w-full inline-flex items-center justify-center rounded-xl px-6 py-3 text-base font-semibold transition-all duration-200 ${
+              featured
+                ? 'bg-gradient-to-r from-royal to-royal-light text-white shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-[1.02]'
+                : 'border border-border hover:bg-accent'
+            }`}
+          >
+            {cta}
+          </a>
+        ) : (
+          <Link
+            href={ctaHref}
+            className={`w-full inline-flex items-center justify-center rounded-xl px-6 py-3 text-base font-semibold transition-all duration-200 ${
+              featured
+                ? 'bg-gradient-to-r from-royal to-royal-light text-white shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-[1.02]'
+                : 'border border-border hover:bg-accent'
+            }`}
+          >
+            {cta}
+          </Link>
+        )}
       </GlassCard>
     </motion.div>
   );

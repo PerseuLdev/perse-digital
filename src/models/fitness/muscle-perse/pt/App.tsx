@@ -7,6 +7,7 @@ import { SectionHeading } from './components/SectionHeading';
 import { Check, ArrowRight, Instagram, Linkedin, Mail, MapPin, X, Dumbbell } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { ServicePlan, Testimonial, FaqItem } from './types';
+import { TierLock } from '@/components/ui/tier-lock';
 
 // --- DATA ---
 const services: ServicePlan[] = [
@@ -267,105 +268,115 @@ function App() {
       </section>
 
       {/* STATS STRIP */}
-      <div className="border-y border-white/10 bg-brand-dark">
-        <div className="container mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {statsData.map((stat, i) => (
-            <AnimatedStat key={i} {...stat} />
-          ))}
+      <TierLock requiredTier="professional">
+        <div className="border-y border-white/10 bg-brand-dark">
+          <div className="container mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {statsData.map((stat, i) => (
+              <AnimatedStat key={i} {...stat} />
+            ))}
+          </div>
         </div>
-      </div>
+      </TierLock>
 
       {/* METHODOLOGY / ABOUT */}
-      <section id="method" className="py-24 bg-brand-black relative">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-brand-orange z-0"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop" 
-                alt="Trainer" 
-                className="relative z-10 w-full h-[600px] object-cover grayscale brightness-75 contrast-125"
-              />
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-brand-orange z-0"></div>
-            </motion.div>
+      <TierLock requiredTier="professional">
+        <section id="method" className="py-24 bg-brand-black relative">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-brand-orange z-0"></div>
+                <img
+                  src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=2070&auto=format&fit=crop"
+                  alt="Trainer"
+                  className="relative z-10 w-full h-[600px] object-cover grayscale brightness-75 contrast-125"
+                />
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-brand-orange z-0"></div>
+              </motion.div>
 
-            <div>
-              <SectionHeading subtitle="Filosofia" title="Disciplina vence Motivação" />
-              <div className="space-y-6 text-gray-400">
-                <p className="text-lg">
-                  A maioria das pessoas falha porque depende de motivação. Eu ensino disciplina. Meu trabalho não é apenas te passar uma série de exercícios, é reestruturar sua mentalidade para o sucesso.
-                </p>
-                <p>
-                  Utilizo uma abordagem baseada em evidências científicas, combinando periodização de treino avançada com estratégias nutricionais flexíveis. O objetivo é criar um físico estético, funcional e duradouro.
-                </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
-                  {['Hipertrofia Maximizada', 'Perda de Gordura Real', 'Correção Postural', 'Força Funcional'].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-brand-orange"></div>
-                      <span className="font-heading uppercase font-medium text-white tracking-wide">{item}</span>
-                    </div>
-                  ))}
-                </div>
+              <div>
+                <SectionHeading subtitle="Filosofia" title="Disciplina vence Motivação" />
+                <div className="space-y-6 text-gray-400">
+                  <p className="text-lg">
+                    A maioria das pessoas falha porque depende de motivação. Eu ensino disciplina. Meu trabalho não é apenas te passar uma série de exercícios, é reestruturar sua mentalidade para o sucesso.
+                  </p>
+                  <p>
+                    Utilizo uma abordagem baseada em evidências científicas, combinando periodização de treino avançada com estratégias nutricionais flexíveis. O objetivo é criar um físico estético, funcional e duradouro.
+                  </p>
 
-                <div className="pt-8">
-                  <div className="font-heading font-bold text-xl text-white">CARLOS "IRON" MENDES</div>
-                  <div className="text-brand-orange text-sm uppercase tracking-wider">Head Coach & Founder</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                    {['Hipertrofia Maximizada', 'Perda de Gordura Real', 'Correção Postural', 'Força Funcional'].map((item, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <div className="w-2 h-2 bg-brand-orange"></div>
+                        <span className="font-heading uppercase font-medium text-white tracking-wide">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-8">
+                    <div className="font-heading font-bold text-xl text-white">CARLOS "IRON" MENDES</div>
+                    <div className="text-brand-orange text-sm uppercase tracking-wider">Head Coach & Founder</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </TierLock>
 
       {/* SERVICES */}
-      <section id="services" className="py-24 bg-brand-dark">
-        <div className="container mx-auto px-4">
-          <SectionHeading subtitle="O que ofereço" title="Planos de Alta Performance" align="center" />
-          
-          <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-6xl mx-auto">
-            {services.map((service, i) => (
-              <ServiceCard key={i} service={service} index={i} />
-            ))}
+      <TierLock requiredTier="professional">
+        <section id="services" className="py-24 bg-brand-dark">
+          <div className="container mx-auto px-4">
+            <SectionHeading subtitle="O que ofereço" title="Planos de Alta Performance" align="center" />
+
+            <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-6xl mx-auto">
+              {services.map((service, i) => (
+                <ServiceCard key={i} service={service} index={i} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </TierLock>
 
       {/* RESULTS / TESTIMONIALS */}
-      <section id="results" className="py-24 bg-brand-black">
-        <div className="container mx-auto px-4">
-          <SectionHeading subtitle="Prova Social" title="Resultados Reais" />
-          
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            {testimonials.map((t, i) => (
-              <TestimonialCard key={i} testimonial={t} index={i} />
-            ))}
+      <TierLock requiredTier="professional">
+        <section id="results" className="py-24 bg-brand-black">
+          <div className="container mx-auto px-4">
+            <SectionHeading subtitle="Prova Social" title="Resultados Reais" />
+
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
+              {testimonials.map((t, i) => (
+                <TestimonialCard key={i} testimonial={t} index={i} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </TierLock>
 
       {/* FAQ */}
-      <section id="faq" className="py-24 bg-brand-dark">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <SectionHeading subtitle="Dúvidas" title="Perguntas Frequentes" align="center" />
-          
-          <div className="mt-12 border-t border-white/10">
-            {faqs.map((faq, i) => (
-              <AccordionItem 
-                key={i} 
-                item={faq} 
-                isOpen={openFaqIndex === i} 
-                onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)} 
-              />
-            ))}
+      <TierLock requiredTier="professional">
+        <section id="faq" className="py-24 bg-brand-dark">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <SectionHeading subtitle="Dúvidas" title="Perguntas Frequentes" align="center" />
+
+            <div className="mt-12 border-t border-white/10">
+              {faqs.map((faq, i) => (
+                <AccordionItem
+                  key={i}
+                  item={faq}
+                  isOpen={openFaqIndex === i}
+                  onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </TierLock>
 
       {/* LEAD CAPTURE / CONTACT */}
       <section id="contact" className="py-24 bg-brand-orange relative overflow-hidden">

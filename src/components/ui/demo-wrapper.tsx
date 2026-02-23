@@ -1,18 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Monitor,
   Smartphone,
   Tablet,
-  ArrowLeft,
-  ExternalLink,
   ChevronLeft,
   Layout,
   PanelRightOpen,
   PanelRightClose,
-  X
+  X,
+  Crown,
 } from 'lucide-react';
+import type { Tier } from '@/contexts/tier-context';
 import { BrowserMockup } from './browser-mockup';
 import { MobileMockup } from './mobile-mockup';
 import { Button } from '@/components/ui/button';
@@ -25,12 +25,26 @@ interface DemoWrapperProps {
   url: string;
   onClose: () => void;
   children?: React.ReactNode;
+  selectedTier?: Tier;
+  onTierChange?: (tier: Tier) => void;
 }
 
-export function DemoWrapper({ title, url, onClose, children }: DemoWrapperProps) {
+export function DemoWrapper({ title, url, onClose, children, selectedTier = 'essential', onTierChange }: DemoWrapperProps) {
   const t = useTranslations('demo');
   const [device, setDevice] = useState<'desktop' | 'tablet' | 'mobile' | 'split'>('desktop');
   const [showSales, setShowSales] = useState(true);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const isPremium = selectedTier === 'premium';
+
+  // Broadcast tier changes to all iframes on the page
+  useEffect(() => {
+    const broadcast = () => {
+      document.querySelectorAll<HTMLIFrameElement>('iframe').forEach((frame) => {
+        frame.contentWindow?.postMessage({ type: 'PERSE_TIER_CHANGE', tier: selectedTier }, '*');
+      });
+    };
+    broadcast();
+  }, [selectedTier]);
 
   const containerSizes = {
     desktop: 'w-full h-full',
@@ -41,8 +55,16 @@ export function DemoWrapper({ title, url, onClose, children }: DemoWrapperProps)
 
   return (
     <div className="fixed inset-0 z-[100] bg-slate-100 flex flex-col overflow-hidden">
+      {/* Premium banner */}
+      {isPremium && (
+        <div className="flex items-center justify-center gap-2 bg-amber-500 text-black text-xs font-bold py-2 px-4 text-center shrink-0">
+          <Crown className="w-3.5 h-3.5 shrink-0" />
+          <span>Plano Premium — Projeto 100% personalizado com funcionalidades exclusivas</span>
+        </div>
+      )}
+
       {/* Top Bar */}
-      <header className="h-16 bg-white border-b flex items-center justify-between px-4 md:px-8 shadow-sm relative z-20">
+      <header className={`h-16 bg-white flex items-center justify-between px-4 md:px-8 shadow-sm relative z-20 border-b transition-colors ${isPremium ? 'border-amber-400/60' : 'border-slate-200'}`}>
         <div className="flex items-center gap-4">
           <button 
             onClick={onClose}
@@ -140,27 +162,34 @@ export function DemoWrapper({ title, url, onClose, children }: DemoWrapperProps)
         <div className="flex-1 overflow-auto bg-slate-200 flex justify-center items-start transition-all duration-500">
           <div className={cn(
             "transition-all duration-500 bg-white overflow-hidden relative",
-            containerSizes[device]
+            containerSizes[device],
+            isPremium && device !== 'split' ? 'ring-2 ring-amber-400/70 ring-offset-2' : '',
           )}>
             {/* Mockup Notch for Mobile */}
             {device === 'mobile' && (
                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-900 rounded-b-2xl z-10" />
             )}
-            
+
             {device === 'split' ? (
               <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
                 <div className="w-full lg:w-2/3 max-w-4xl">
-                   <BrowserMockup url={url} title={title} className="shadow-2xl" />
+                   <BrowserMockup url={url} title={title} className={cn("shadow-2xl", isPremium ? "ring-2 ring-amber-400/70" : "")} />
                 </div>
                 <div className="w-[280px] lg:w-[320px] shrink-0">
-                   <MobileMockup url={url} title={title} className="shadow-2xl" />
+                   <MobileMockup url={url} title={title} className={cn("shadow-2xl", isPremium ? "ring-2 ring-amber-400/70" : "")} />
                 </div>
               </div>
             ) : (
-              <iframe 
-                src={url} 
+              <iframe
+                ref={iframeRef}
+                src={url}
                 className="w-full h-full border-none"
                 title={title}
+                onLoad={() => {
+                  iframeRef.current?.contentWindow?.postMessage(
+                    { type: 'PERSE_TIER_CHANGE', tier: selectedTier }, '*'
+                  );
+                }}
               />
             )}
           </div>

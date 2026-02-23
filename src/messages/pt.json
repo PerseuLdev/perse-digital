@@ -178,84 +178,34 @@
   },
   "pricing": {
     "title": "Planos & Preços",
-    "subtitle": "Escolha o plano ideal para o seu negócio",
+    "subtitle": "Site profissional com setup único — sem assinatura obrigatória",
     "currency": {
-      "symbol": "R$",
-      "code": "BRL"
+      "symbol": "R$"
     },
-    "period": {
-      "monthly": "/mês",
-      "annual": "/mês"
-    },
-    "toggle": {
-      "monthly": "Mensal",
-      "annual": "Anual",
-      "saveBadge": "2 meses grátis"
-    },
+    "setupLabel": "setup único",
     "plans": {
       "essential": {
         "name": "Essencial",
-        "description": "Perfeito para quem está começando",
-        "prices": {
-          "BRL": "49",
-          "USD": "19"
-        },
-        "annualPrices": {
-          "BRL": "39",
-          "USD": "15"
-        },
-        "features": [
-          "1 Modelo à escolha",
-          "Domínio personalizado",
-          "SSL Gratuito",
-          "Suporte por email",
-          "Atualizações mensais"
-        ]
+        "description": "Presença digital profissional",
+        "price": "690",
+        "anchorPrice": "999"
       },
       "professional": {
         "name": "Profissional",
-        "description": "Mais popular",
-        "prices": {
-          "BRL": "99",
-          "USD": "39"
-        },
-        "annualPrices": {
-          "BRL": "79",
-          "USD": "31"
-        },
-        "badge": "Recomendado",
-        "features": [
-          "Tudo do Essencial",
-          "CMS para edições",
-          "Analytics avançado",
-          "Integração WhatsApp",
-          "Suporte prioritário",
-          "Otimização SEO mensal"
-        ]
+        "description": "Site completo com mais funcionalidades",
+        "price": "1.800",
+        "anchorPrice": "2.499",
+        "badge": "Recomendado"
       },
-      "elite": {
-        "name": "Elite",
-        "description": "Para quem quer o melhor",
-        "prices": {
-          "BRL": "199",
-          "USD": "79"
-        },
-        "annualPrices": {
-          "BRL": "159",
-          "USD": "63"
-        },
-        "features": [
-          "Tudo do Profissional",
-          "Design personalizado",
-          "Multi-idiomas",
-          "Integrações customizadas",
-          "Suporte 24/7",
-          "Consultoria mensal"
-        ]
+      "premium": {
+        "name": "Premium",
+        "description": "Projeto personalizado por completo",
+        "price": "5k+",
+        "priceLabel": "/ Projeto"
       }
     },
-    "cta": "Começar Agora",
-    "guarantee": "Garantia de 30 dias ou seu dinheiro de volta"
+    "cta": "Ver Modelo",
+    "ctaPremium": "Falar com especialista"
   },
   "howItWorks": {
     "title": "Como Funciona",
@@ -363,7 +313,7 @@
     }
   },
   "trustBar": {
-    "label": "Confiado por profissionais em todo o Brasil",
+    "label": "Confiado por profissionais em todo o mundo",
     "stats": {
       "clients": { "value": "500+", "label": "Clientes ativos" },
       "niches": { "value": "6", "label": "Nichos atendidos" },

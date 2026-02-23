@@ -2,6 +2,7 @@
 
 import React from 'react';
 import '../styles.css';
+import { TierLock } from '@/components/ui/tier-lock';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -36,29 +37,43 @@ const App: React.FC = () => {
         <PracticeAreas />
         
         {/* O que temos feito */}
-        <CaseStudies />
+        <TierLock requiredTier="professional">
+          <CaseStudies />
+        </TierLock>
 
         {/* Quem confia */}
-        <Trust />
-        
+        <TierLock requiredTier="professional">
+          <Trust />
+        </TierLock>
+
         {/* Features */}
-        <Features />
+        <TierLock requiredTier="professional">
+          <Features />
+        </TierLock>
 
         {/* Team */}
-        <Team />
+        <TierLock requiredTier="professional">
+          <Team />
+        </TierLock>
 
         {/* Depoimentos */}
-        <div id="depoimentos">
-          <Testimonials />
-        </div>
-        
+        <TierLock requiredTier="professional">
+          <div id="depoimentos">
+            <Testimonials />
+          </div>
+        </TierLock>
+
         {/* Artigos */}
-        <div id="blog">
-          <BlogSection />
-        </div>
+        <TierLock requiredTier="professional">
+          <div id="blog">
+            <BlogSection />
+          </div>
+        </TierLock>
 
         {/* FAQ */}
-        <FAQ />
+        <TierLock requiredTier="professional">
+          <FAQ />
+        </TierLock>
 
         {/* Form Split */}
         <div id="contato">
@@ -66,7 +81,9 @@ const App: React.FC = () => {
         </div>
 
         {/* Banner CTA */}
-        <CTA />
+        <TierLock requiredTier="professional">
+          <CTA />
+        </TierLock>
 
       </main>
 

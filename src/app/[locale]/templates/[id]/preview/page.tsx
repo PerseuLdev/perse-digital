@@ -2,15 +2,16 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import { DemoWrapper } from '@/components/ui/demo-wrapper';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { SalesContent } from '@/components/sections/model-sales/sales-content';
-
 import { MODELS } from '@/lib/models-data';
+import type { Tier } from '@/contexts/tier-context';
 
 export default function TemplatePreviewPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
+  const [selectedTier, setSelectedTier] = useState<Tier>('essential');
 
   const template = useMemo(() => {
     return MODELS.find(t => t.id === id);
@@ -46,12 +47,14 @@ export default function TemplatePreviewPage() {
   }
 
   return (
-    <DemoWrapper 
+    <DemoWrapper
       title={template.title}
       url={demoUrl}
       onClose={() => router.back()}
+      selectedTier={selectedTier}
+      onTierChange={setSelectedTier}
     >
-      <SalesContent model={template} />
+      <SalesContent model={template} selectedTier={selectedTier} onTierChange={setSelectedTier} />
     </DemoWrapper>
   );
 }

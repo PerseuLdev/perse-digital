@@ -16,6 +16,7 @@ import FadeIn from './components/FadeIn';
 import SchedulingModal from './components/SchedulingModal';
 import BackToTop from './components/BackToTop';
 import EmergencyFloat from './components/EmergencyFloat';
+import { TierLock } from '@/components/ui/tier-lock';
 
 const App: React.FC = () => {
   const [isSchedulingModalOpen, setIsSchedulingModalOpen] = useState(false);
@@ -30,42 +31,54 @@ const App: React.FC = () => {
       
       <main>
         <Hero onOpenSchedule={openModal} />
-        
+
         <FadeIn>
           <About />
         </FadeIn>
-        
+
         <FadeIn>
           <Services />
         </FadeIn>
 
-        <FadeIn>
-          <BeforeAfter />
-        </FadeIn>
-        
-        <FadeIn>
-          <Team />
-        </FadeIn>
-        
-        <FadeIn>
-          <Testimonials />
-        </FadeIn>
-        
-        <FadeIn>
-          <FAQ />
-        </FadeIn>
-        
+        <TierLock requiredTier="professional">
+          <FadeIn>
+            <BeforeAfter />
+          </FadeIn>
+        </TierLock>
+
+        <TierLock requiredTier="professional">
+          <FadeIn>
+            <Team />
+          </FadeIn>
+        </TierLock>
+
+        <TierLock requiredTier="professional">
+          <FadeIn>
+            <Testimonials />
+          </FadeIn>
+        </TierLock>
+
+        <TierLock requiredTier="professional">
+          <FadeIn>
+            <FAQ />
+          </FadeIn>
+        </TierLock>
+
         <Contact />
 
         <MapSection />
       </main>
 
       <Footer />
-      
+
       {/* Modals & Floating Elements */}
-<EmergencyFloat />
+      <TierLock requiredTier="professional">
+        <EmergencyFloat />
+      </TierLock>
       <BackToTop />
-      <SchedulingModal isOpen={isSchedulingModalOpen} onClose={closeModal} />
+      <TierLock requiredTier="professional">
+        <SchedulingModal isOpen={isSchedulingModalOpen} onClose={closeModal} />
+      </TierLock>
       
     </div>
   );
