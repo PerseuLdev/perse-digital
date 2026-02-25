@@ -14,7 +14,9 @@
     "apply-brandkit": "node scripts/apply-brandkit.js"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "@radix-ui/react-avatar": "^1.1.11",
+    "@react-pdf/renderer": "^4.3.2",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
     "class-variance-authority": "^0.7.1",
@@ -28,6 +30,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.1",
+    "resend": "^6.9.2",
     "stripe": "^20.3.1",
     "tailwind-merge": "^3.4.0",
     "three": "^0.182.0",

@@ -1,25 +1,29 @@
 export type Currency = 'BRL' | 'USD';
-export type PlanTier = 'essential' | 'professional' | 'elite';
+export type PlanTier = 'essential' | 'professional';
+export type BrlPaymentMethod = 'pix' | 'card';
 
 export function getCurrencyForLocale(locale: string): Currency {
   return locale === 'pt' ? 'BRL' : 'USD';
 }
 
-export function getPaymentMethodsForCurrency(currency: Currency): string[] {
-  if (currency === 'BRL') return ['card', 'pix', 'boleto'];
+export function getPaymentMethodsForCurrency(
+  currency: Currency,
+  brlMethod?: BrlPaymentMethod,
+): string[] {
+  if (currency === 'BRL') {
+    return brlMethod === 'pix' ? ['pix'] : ['card'];
+  }
   return ['card'];
 }
 
-export function getSetupPriceId(currency: Currency): string | undefined {
-  const key = `STRIPE_PRICE_SETUP_${currency}` as keyof NodeJS.ProcessEnv;
-  return process.env[key];
-}
-
-export function getSubscriptionPriceId(
+export function getPriceId(
   tier: PlanTier,
   currency: Currency,
+  brlMethod?: BrlPaymentMethod,
 ): string | undefined {
-  const key =
-    `STRIPE_PRICE_${tier.toUpperCase()}_${currency}` as keyof NodeJS.ProcessEnv;
-  return process.env[key];
+  if (currency === 'USD') {
+    return process.env[`STRIPE_PRICE_${tier.toUpperCase()}_USD`];
+  }
+  const method = (brlMethod ?? 'card').toUpperCase();
+  return process.env[`STRIPE_PRICE_${tier.toUpperCase()}_${method}_BRL`];
 }

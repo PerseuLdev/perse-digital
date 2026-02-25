@@ -3,8 +3,14 @@ import Link from 'next/link';
 import { CheckCircle2 } from 'lucide-react';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
+import { getStripe } from '@/lib/stripe';
 
 const WHATSAPP_NUMBER = '5514991071072';
+
+const TIER_LABEL: Record<string, string> = {
+  essential: 'Essencial',
+  professional: 'Profissional',
+};
 
 const content = {
   pt: {
@@ -15,10 +21,13 @@ const content = {
       'Você receberá um e-mail de confirmação da Stripe',
       'Nossa equipe entrará em contato em até 24 horas',
       'Prepare seu Brandkit (logo, cores e textos da marca)',
-      'Entrega do site em até 72 horas após receber o Brandkit',
+      'Entrega do site em até 7 dias úteis após receber o Brandkit',
     ],
-    waMessage:
-      'Olá! Acabei de realizar o pagamento e quero enviar meu Brandkit para dar início ao projeto.',
+    waMessage: (tier: string, modelId: string) => {
+      const label = TIER_LABEL[tier] ?? tier;
+      const model = modelId ? ` (${modelId})` : '';
+      return `Olá! Acabei de confirmar o pagamento do plano ${label}${model}. Quero enviar meu Brandkit para dar início ao projeto.`;
+    },
     waButton: 'Enviar Brandkit pelo WhatsApp',
     backLink: 'Voltar ao início',
   },
@@ -30,25 +39,45 @@ const content = {
       'You will receive a confirmation email from Stripe',
       'Our team will reach out within 24 hours',
       'Prepare your Brandkit (logo, brand colors and copy)',
-      'Your site will be delivered within 72 hours of receiving the Brandkit',
+      'Your site will be delivered within 7 business days of receiving the Brandkit',
     ],
-    waMessage:
-      'Hi! I just completed my payment and would like to send my Brandkit to get started.',
+    waMessage: (tier: string, modelId: string) => {
+      const model = modelId ? ` (${modelId})` : '';
+      return `Hi! I just confirmed my ${tier} plan payment${model}. I'd like to send my Brandkit to get the project started.`;
+    },
     waButton: 'Send Brandkit via WhatsApp',
     backLink: 'Back to home',
   },
 };
 
+async function getSessionMeta(sessionId: string) {
+  try {
+    const session = await getStripe().checkout.sessions.retrieve(sessionId);
+    return {
+      tier: session.metadata?.tier ?? '',
+      modelId: session.metadata?.modelId ?? '',
+    };
+  } catch {
+    return { tier: '', modelId: '' };
+  }
+}
+
 export default async function CheckoutSuccessPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ session_id?: string }>;
 }) {
   const { locale } = await params;
+  const { session_id } = await searchParams;
   setRequestLocale(locale);
 
+  const { tier, modelId } = session_id ? await getSessionMeta(session_id) : { tier: '', modelId: '' };
+
   const t = locale === 'pt' ? content.pt : content.en;
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t.waMessage)}`;
+  const waMessage = t.waMessage(tier, modelId);
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
