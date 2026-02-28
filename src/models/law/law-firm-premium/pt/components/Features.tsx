@@ -26,7 +26,7 @@ export const Features: React.FC = () => {
           {features.map((f, i) => (
             <FadeIn key={i} delay={i * 0.1} className="p-8 border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-colors rounded-sm group">
               <div className="mb-6 inline-block p-3 rounded-full bg-gold-500/10 text-gold-500 group-hover:scale-110 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300">
-                {React.cloneElement(f.icon as React.ReactElement<any>, { className: "w-6 h-6" })}
+                {React.cloneElement(f.icon as React.ReactElement, { className: "w-6 h-6" })}
               </div>
               <h3 className="text-xl font-serif text-white mb-3">{f.title}</h3>
               <p className="text-neutral-500 font-light text-sm leading-relaxed">{f.text}</p>

@@ -104,26 +104,63 @@ async function notifyTeam(payment: Awaited<ReturnType<Payment['get']>>) {
     return;
   }
 
-  try {
-    await resend.emails.send({
+  const sharedRows = `
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Cliente</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${customerName}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">E-mail</td><td style="padding:8px 0;font-size:14px;color:#111">${customerEmail}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Modelo</td><td style="padding:8px 0;font-size:14px;color:#111">${modelId || '—'}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Plano</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${tierLabel}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Pagamento</td><td style="padding:8px 0;font-size:14px;color:#111">${methodLabel}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Valor</td><td style="padding:8px 0;font-size:18px;font-weight:700;color:#16a34a">${amount}</td></tr>
+  `;
+
+  const emailPromises: Promise<unknown>[] = [];
+
+  // Notify owner
+  emailPromises.push(
+    resend.emails.send({
       from: 'Perse Digital <onboarding@resend.dev>',
       to: notificationEmail,
       subject: `🎉 Nova venda — ${tierLabel} (${modelId || 'sem modelo'})`,
       html: `
         <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f9fafb;border-radius:12px">
           <h2 style="margin:0 0 24px;font-size:20px;color:#111">🎉 Nova venda confirmada</h2>
-          <table style="width:100%;border-collapse:collapse">
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Cliente</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${customerName}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">E-mail</td><td style="padding:8px 0;font-size:14px;color:#111">${customerEmail}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Modelo</td><td style="padding:8px 0;font-size:14px;color:#111">${modelId || '—'}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Plano</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${tierLabel}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Pagamento</td><td style="padding:8px 0;font-size:14px;color:#111">${methodLabel}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Valor</td><td style="padding:8px 0;font-size:18px;font-weight:700;color:#16a34a">${amount}</td></tr>
-          </table>
+          <table style="width:100%;border-collapse:collapse">${sharedRows}</table>
           <p style="margin:24px 0 0;font-size:12px;color:#9ca3af">Pagamento MP: ${payment.id}</p>
         </div>
       `,
-    });
+    }),
+  );
+
+  // Send receipt to buyer (only if we have a real email)
+  if (customerEmail && customerEmail !== 'N/A') {
+    const buyerFirstName = payment.payer?.first_name || 'Cliente';
+    emailPromises.push(
+      resend.emails.send({
+        from: 'Perse Digital <onboarding@resend.dev>',
+        to: customerEmail,
+        subject: `Seu pagamento foi confirmado — Perse Digital`,
+        html: `
+          <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f9fafb;border-radius:12px">
+            <h2 style="margin:0 0 8px;font-size:20px;color:#111">Pagamento confirmado! 🎉</h2>
+            <p style="margin:0 0 24px;font-size:14px;color:#6b7280">Olá, ${buyerFirstName}! Recebemos o seu pagamento com sucesso.</p>
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Plano</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${tierLabel}</td></tr>
+              <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Modelo</td><td style="padding:8px 0;font-size:14px;color:#111">${modelId || '—'}</td></tr>
+              <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Valor pago</td><td style="padding:8px 0;font-size:18px;font-weight:700;color:#16a34a">${amount}</td></tr>
+            </table>
+            <div style="margin:24px 0;padding:16px;background:#eff6ff;border-radius:8px;border-left:3px solid #3b82f6">
+              <p style="margin:0;font-size:14px;color:#1e40af;font-weight:600">Próximos passos</p>
+              <p style="margin:8px 0 0;font-size:13px;color:#1d4ed8">Nossa equipe entrará em contato em breve pelo WhatsApp para solicitar seu Brandkit e iniciar o desenvolvimento.</p>
+            </div>
+            <p style="margin:24px 0 0;font-size:12px;color:#9ca3af">Perse Digital · ID do pagamento: ${payment.id}</p>
+          </div>
+        `,
+      }),
+    );
+  }
+
+  try {
+    await Promise.all(emailPromises);
   } catch (err) {
     console.error('[mp-webhook] Failed to send email:', err);
   }

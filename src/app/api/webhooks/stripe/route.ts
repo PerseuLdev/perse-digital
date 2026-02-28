@@ -67,10 +67,10 @@ export async function POST(request: NextRequest) {
 }
 
 async function notifyTeam(session: Stripe.Checkout.Session) {
-  const { tier, paymentMethod, modelId, locale } = session.metadata ?? {};
+  const { tier, paymentMethod, modelId, locale, buyerName } = session.metadata ?? {};
   const customerEmail = session.customer_details?.email ?? 'N/A';
-  const customerName = session.customer_details?.name ?? 'N/A';
-  const currency = session.currency?.toUpperCase() ?? 'BRL';
+  const customerName = session.customer_details?.name ?? buyerName ?? 'N/A';
+  const currency = session.currency?.toUpperCase() ?? 'USD';
   const amount = session.amount_total
     ? (session.amount_total / 100).toLocaleString(locale === 'pt' ? 'pt-BR' : 'en-US', {
         style: 'currency',
@@ -87,26 +87,83 @@ async function notifyTeam(session: Stripe.Checkout.Session) {
     return;
   }
 
-  try {
-    await resend.emails.send({
+  const sharedRows = `
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Customer</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${customerName}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Email</td><td style="padding:8px 0;font-size:14px;color:#111">${customerEmail}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Model</td><td style="padding:8px 0;font-size:14px;color:#111">${modelId || '—'}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Plan</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${tierLabel}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Payment</td><td style="padding:8px 0;font-size:14px;color:#111">${methodLabel}</td></tr>
+    <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Amount</td><td style="padding:8px 0;font-size:18px;font-weight:700;color:#16a34a">${amount}</td></tr>
+  `;
+
+  const emailPromises: Promise<unknown>[] = [];
+
+  // Notify owner
+  emailPromises.push(
+    resend.emails.send({
       from: 'Perse Digital <onboarding@resend.dev>',
       to: notificationEmail,
       subject: `🎉 Nova venda — ${tierLabel} (${modelId || 'sem modelo'})`,
       html: `
         <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f9fafb;border-radius:12px">
           <h2 style="margin:0 0 24px;font-size:20px;color:#111">🎉 Nova venda confirmada</h2>
-          <table style="width:100%;border-collapse:collapse">
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Cliente</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${customerName}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">E-mail</td><td style="padding:8px 0;font-size:14px;color:#111">${customerEmail}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Modelo</td><td style="padding:8px 0;font-size:14px;color:#111">${modelId || '—'}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Plano</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${tierLabel}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Pagamento</td><td style="padding:8px 0;font-size:14px;color:#111">${methodLabel}</td></tr>
-            <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Valor</td><td style="padding:8px 0;font-size:18px;font-weight:700;color:#16a34a">${amount}</td></tr>
-          </table>
+          <table style="width:100%;border-collapse:collapse">${sharedRows}</table>
           <p style="margin:24px 0 0;font-size:12px;color:#9ca3af">Sessão Stripe: ${session.id}</p>
         </div>
       `,
-    });
+    }),
+  );
+
+  // Send receipt to buyer (only if we have a real email)
+  if (customerEmail && customerEmail !== 'N/A') {
+    const firstName = (session.customer_details?.name ?? buyerName ?? '').split(' ')[0] || 'there';
+    const isPT = locale === 'pt';
+    emailPromises.push(
+      resend.emails.send({
+        from: 'Perse Digital <onboarding@resend.dev>',
+        to: customerEmail,
+        subject: isPT
+          ? 'Seu pagamento foi confirmado — Perse Digital'
+          : 'Your payment was confirmed — Perse Digital',
+        html: isPT
+          ? `
+            <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f9fafb;border-radius:12px">
+              <h2 style="margin:0 0 8px;font-size:20px;color:#111">Pagamento confirmado! 🎉</h2>
+              <p style="margin:0 0 24px;font-size:14px;color:#6b7280">Olá, ${firstName}! Recebemos o seu pagamento com sucesso.</p>
+              <table style="width:100%;border-collapse:collapse">
+                <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Plano</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${tierLabel}</td></tr>
+                <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Modelo</td><td style="padding:8px 0;font-size:14px;color:#111">${modelId || '—'}</td></tr>
+                <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Valor pago</td><td style="padding:8px 0;font-size:18px;font-weight:700;color:#16a34a">${amount}</td></tr>
+              </table>
+              <div style="margin:24px 0;padding:16px;background:#eff6ff;border-radius:8px;border-left:3px solid #3b82f6">
+                <p style="margin:0;font-size:14px;color:#1e40af;font-weight:600">Próximos passos</p>
+                <p style="margin:8px 0 0;font-size:13px;color:#1d4ed8">Nossa equipe entrará em contato em breve pelo WhatsApp para solicitar seu Brandkit e iniciar o desenvolvimento.</p>
+              </div>
+              <p style="margin:24px 0 0;font-size:12px;color:#9ca3af">Perse Digital · Sessão: ${session.id}</p>
+            </div>
+          `
+          : `
+            <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#f9fafb;border-radius:12px">
+              <h2 style="margin:0 0 8px;font-size:20px;color:#111">Payment confirmed! 🎉</h2>
+              <p style="margin:0 0 24px;font-size:14px;color:#6b7280">Hi ${firstName}! We've received your payment successfully.</p>
+              <table style="width:100%;border-collapse:collapse">
+                <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Plan</td><td style="padding:8px 0;font-size:14px;font-weight:600;color:#111">${tierLabel}</td></tr>
+                <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Model</td><td style="padding:8px 0;font-size:14px;color:#111">${modelId || '—'}</td></tr>
+                <tr><td style="padding:8px 0;color:#6b7280;font-size:14px">Amount paid</td><td style="padding:8px 0;font-size:18px;font-weight:700;color:#16a34a">${amount}</td></tr>
+              </table>
+              <div style="margin:24px 0;padding:16px;background:#eff6ff;border-radius:8px;border-left:3px solid #3b82f6">
+                <p style="margin:0;font-size:14px;color:#1e40af;font-weight:600">Next steps</p>
+                <p style="margin:8px 0 0;font-size:13px;color:#1d4ed8">Our team will reach out shortly via WhatsApp to request your Brandkit and kick off development.</p>
+              </div>
+              <p style="margin:24px 0 0;font-size:12px;color:#9ca3af">Perse Digital · Session: ${session.id}</p>
+            </div>
+          `,
+      }),
+    );
+  }
+
+  try {
+    await Promise.all(emailPromises);
   } catch (err) {
     console.error('[webhook] Failed to send Resend email:', err);
   }

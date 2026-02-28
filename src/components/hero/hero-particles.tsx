@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 interface Particle {
@@ -13,20 +13,20 @@ interface Particle {
 }
 
 export function HeroParticles() {
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false
+  );
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)');
-    setIsMobile(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
   }, []);
 
-  useEffect(() => {
-    if (shouldReduceMotion) return;
+  const particles = useMemo(() => {
+    if (shouldReduceMotion) return [];
     const count = isMobile ? 15 : 50;
     const newParticles: Particle[] = [];
     for (let i = 0; i < count; i++) {
@@ -39,7 +39,7 @@ export function HeroParticles() {
         delay: Math.random() * 5,
       });
     }
-    setParticles(newParticles);
+    return newParticles;
   }, [isMobile, shouldReduceMotion]);
 
   if (shouldReduceMotion) return null;

@@ -15,8 +15,10 @@ export function TierSelector() {
 
   useEffect(() => {
     try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsInIframe(window.self !== window.top);
     } catch {
+       
       setIsInIframe(true); // cross-origin iframe blocks access
     }
   }, []);

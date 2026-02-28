@@ -21,8 +21,10 @@ const Reveal: React.FC<RevealProps> = ({
   // Detectar iframe após mount para evitar hydration mismatch
   useEffect(() => {
     const inIframe = typeof window !== 'undefined' && window.self !== window.top;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsInIframe(inIframe);
     if (inIframe) {
+       
       setIsVisible(true);
     }
   }, []);

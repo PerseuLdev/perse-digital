@@ -1,0 +1,1 @@
+NUNCA mencione Claude Code em nenhum commit, mensagem ou arquivo!!!!

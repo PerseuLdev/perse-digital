@@ -12,11 +12,15 @@ export async function POST(request: NextRequest) {
       tier,
       paymentMethod,
       locale,
+      email,
+      name,
     }: {
       modelId?: string;
       tier: PlanTier;
       paymentMethod?: PaymentMethod;
       locale: string;
+      email?: string;
+      name?: string;
     } = body;
 
     if (!tier || !locale) {
@@ -45,6 +49,14 @@ export async function POST(request: NextRequest) {
               currency_id: 'BRL',
             },
           ],
+          ...(email || name
+            ? {
+                payer: {
+                  ...(email ? { email } : {}),
+                  ...(name ? { name } : {}),
+                },
+              }
+            : {}),
           payment_methods: {
             excluded_payment_types: method === 'pix'
               ? [{ id: 'credit_card' }, { id: 'debit_card' }]
@@ -85,10 +97,12 @@ export async function POST(request: NextRequest) {
       payment_method_types: ['card'],
       success_url: `${baseUrl}/en/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/en/checkout/cancel`,
+      ...(email ? { customer_email: email } : {}),
       metadata: {
         modelId: modelId ?? '',
         tier,
         locale,
+        ...(name ? { buyerName: name } : {}),
       },
     });
 

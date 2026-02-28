@@ -646,6 +646,15 @@
       "description": "100% custom development: exclusive features, custom integrations, and dedicated support beyond the base model.",
       "guarantee": "Free quote, no commitment"
     },
+    "leadForm": {
+      "back": "Go back",
+      "title": "Almost there!",
+      "subtitle": "We need a few details to send your receipt and track your order.",
+      "namePlaceholder": "Your full name",
+      "emailPlaceholder": "your@email.com",
+      "whatsappPlaceholder": "WhatsApp (optional)",
+      "cta": "Continue"
+    },
     "contract": {
       "back": "Go back",
       "title": "Before proceeding",

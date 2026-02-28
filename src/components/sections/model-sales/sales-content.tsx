@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Loader2, ShieldCheck, Zap, Globe, Crown, MessageCircle, FileText, ArrowLeft, CreditCard, QrCode } from 'lucide-react';
+import { CheckCircle2, Loader2, ShieldCheck, Zap, Globe, Crown, MessageCircle, FileText, ArrowLeft, CreditCard, QrCode, User, Mail, Phone } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { BrandkitExplainer } from './brandkit-explainer';
@@ -58,6 +58,8 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
   const locale = useLocale();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [showLeadForm, setShowLeadForm] = useState(false);
+  const [leadData, setLeadData] = useState<{ name: string; email: string; whatsapp: string } | null>(null);
   const [showContract, setShowContract] = useState(false);
   const [contractAccepted, setContractAccepted] = useState(false);
   const [paymentMethodChoice, setPaymentMethodChoice] = useState<'card' | 'pix'>('card');
@@ -80,8 +82,28 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
   const contractHref = isPT ? '/terms' : '/en/terms';
 
   const handleBuyClick = () => {
+    setShowLeadForm(true);
+  };
+
+  const handleLeadSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value.trim(),
+      email: (form.elements.namedItem('email') as HTMLInputElement).value.trim(),
+      whatsapp: (form.elements.namedItem('whatsapp') as HTMLInputElement).value.trim(),
+    };
+    setLeadData(data);
+    setShowLeadForm(false);
     setContractAccepted(false);
     setShowContract(true);
+
+    // Fire-and-forget — don't block UX
+    fetch('/api/leads', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...data, tier: selectedTier, modelId: model.id, locale }),
+    }).catch((err) => console.error('[leads] POST failed:', err));
   };
 
   const handleConfirmCheckout = async () => {
@@ -91,7 +113,14 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ modelId: model.id, tier: selectedTier, paymentMethod: isPT ? paymentMethodChoice : 'card', locale }),
+        body: JSON.stringify({
+          modelId: model.id,
+          tier: selectedTier,
+          paymentMethod: isPT ? paymentMethodChoice : 'card',
+          locale,
+          email: leadData?.email,
+          name: leadData?.name,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? 'Checkout failed');
@@ -115,6 +144,84 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
 
   return (
     <div className="relative flex flex-col h-full overflow-y-auto px-6 py-8 space-y-8 custom-scrollbar">
+
+      {/* Lead capture modal */}
+      <AnimatePresence>
+        {showLeadForm && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+            className="absolute inset-0 z-50 flex flex-col bg-white px-6 py-8 space-y-6"
+          >
+            <button
+              onClick={() => setShowLeadForm(false)}
+              className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 transition-colors w-fit"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              {t('leadForm.back')}
+            </button>
+
+            <div className="space-y-1">
+              <h3 className="text-lg font-bold text-slate-900">{t('leadForm.title')}</h3>
+              <p className="text-sm text-slate-500">{t('leadForm.subtitle')}</p>
+            </div>
+
+            <form onSubmit={handleLeadSubmit} className="flex flex-col gap-4 flex-1">
+              <label className="flex flex-col gap-1.5">
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    defaultValue={leadData?.name ?? ''}
+                    placeholder={t('leadForm.namePlaceholder')}
+                    className="w-full pl-9 pr-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition"
+                  />
+                </div>
+              </label>
+
+              <label className="flex flex-col gap-1.5">
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    defaultValue={leadData?.email ?? ''}
+                    placeholder={t('leadForm.emailPlaceholder')}
+                    className="w-full pl-9 pr-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition"
+                  />
+                </div>
+              </label>
+
+              <label className="flex flex-col gap-1.5">
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                  <input
+                    name="whatsapp"
+                    type="tel"
+                    defaultValue={leadData?.whatsapp ?? ''}
+                    placeholder={t('leadForm.whatsappPlaceholder')}
+                    className="w-full pl-9 pr-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-royal/30 focus:border-royal transition"
+                  />
+                </div>
+              </label>
+
+              <div className="sticky bottom-0 pt-4 pb-2 bg-gradient-to-t from-white via-white/90 to-transparent mt-auto">
+                <Button
+                  type="submit"
+                  className="w-full bg-royal hover:bg-royal-dark text-white h-14 rounded-2xl text-base font-bold shadow-lg shadow-royal/15 hover:shadow-royal/25 transition-colors"
+                >
+                  {t('leadForm.cta')}
+                </Button>
+              </div>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Contract modal */}
       <AnimatePresence>

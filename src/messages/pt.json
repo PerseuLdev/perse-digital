@@ -646,6 +646,15 @@
       "description": "Desenvolvimento 100% sob medida: funcionalidades exclusivas, integrações customizadas e suporte dedicado além do modelo base.",
       "guarantee": "Orçamento gratuito e sem compromisso"
     },
+    "leadForm": {
+      "back": "Voltar",
+      "title": "Quase lá!",
+      "subtitle": "Precisamos de algumas informações para enviar seu recibo e acompanhar seu pedido.",
+      "namePlaceholder": "Seu nome completo",
+      "emailPlaceholder": "seu@email.com",
+      "whatsappPlaceholder": "WhatsApp (opcional)",
+      "cta": "Continuar"
+    },
     "contract": {
       "back": "Voltar",
       "title": "Antes de prosseguir",
