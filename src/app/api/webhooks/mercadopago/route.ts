@@ -68,7 +68,13 @@ export async function POST(request: NextRequest) {
     if (payment.status === 'approved') {
       await notifyTeam(payment);
     }
-  } catch (err) {
+  } catch (err: unknown) {
+    // 404 = payment doesn't exist (e.g. MP test notifications with fake IDs)
+    const status = (err as { status?: number })?.status;
+    if (status === 404) {
+      console.log(`[mp-webhook] Payment ${dataId} not found (test notification), skipping`);
+      return NextResponse.json({ received: true });
+    }
     console.error('[mp-webhook] Failed to fetch payment:', err);
     return NextResponse.json({ error: 'Failed to process payment' }, { status: 500 });
   }
