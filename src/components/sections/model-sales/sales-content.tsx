@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Loader2, ShieldCheck, Zap, Globe, BadgePercent, Crown, MessageCircle, FileText, ArrowLeft } from 'lucide-react';
+import { CheckCircle2, Loader2, ShieldCheck, Zap, Globe, Crown, MessageCircle, FileText, ArrowLeft, CreditCard, QrCode } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { BrandkitExplainer } from './brandkit-explainer';
@@ -11,34 +11,40 @@ import type { Tier } from '@/contexts/tier-context';
 
 const TIER_DATA = {
   essential: {
-    label: 'Essencial',
-    price: 690,
-    anchor: 999,
-    pix: 620,
+    priceBRL: 690,
+    anchorBRL: 999,
+    pixBRL: 620,
+    priceUSD: 497,
+    anchorUSD: 697,
     pixDiscount: '-10%',
     isCustom: false,
   },
   professional: {
-    label: 'Profissional',
-    price: 1800,
-    anchor: 2499,
-    pix: 1620,
+    priceBRL: 1800,
+    anchorBRL: 2499,
+    pixBRL: 1620,
+    priceUSD: 997,
+    anchorUSD: 1397,
     pixDiscount: '-10%',
     isCustom: false,
   },
   premium: {
-    label: 'Premium',
     isCustom: true,
-    price: null,
-    anchor: null,
-    pix: null,
+    priceBRL: null,
+    anchorBRL: null,
+    pixBRL: null,
+    priceUSD: null,
+    anchorUSD: null,
     pixDiscount: null,
   },
 } as const;
 
-function formatBRL(value: number) {
-  return value.toLocaleString('pt-BR');
-}
+// How many of the 5 default service features are unlocked (green) for each tier
+const TIER_UNLOCKED_FEATURES: Record<Tier, number> = {
+  essential: 3,
+  professional: 5,
+  premium: 5,
+};
 
 interface SalesContentProps {
   model: Model;
@@ -54,39 +60,24 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
   const [isLoading, setIsLoading] = useState(false);
   const [showContract, setShowContract] = useState(false);
   const [contractAccepted, setContractAccepted] = useState(false);
+  const [paymentMethodChoice, setPaymentMethodChoice] = useState<'card' | 'pix'>('card');
   const tier = TIER_DATA[selectedTier];
 
-  const contractContent = locale === 'pt' ? {
-    back: 'Voltar',
-    title: 'Antes de prosseguir',
-    subtitle: 'Revise os termos do serviço contratado.',
-    items: [
-      'Entrega em até 7 dias úteis após receber o Brandkit',
-      'Até 2 rodadas de ajustes incluídas no escopo',
-      'Pagamento único — sem mensalidade ou taxa recorrente',
-      'Domínio e hospedagem são de responsabilidade do cliente',
-    ],
-    contractHref: '/terms',
-    pdfLink: 'Ver termos do serviço',
-    checkboxLabel: 'Li e aceito os termos do contrato de serviço',
-    cta: 'Prosseguir para pagamento',
-    redirecting: 'Redirecionando...',
-  } : {
-    back: 'Go back',
-    title: 'Before proceeding',
-    subtitle: 'Please review the service terms.',
-    items: [
-      'Delivery within 7 business days after receiving your Brandkit',
-      'Up to 2 rounds of revisions included',
-      'One-time payment — no recurring fees',
-      'Domain and hosting are the client\'s responsibility',
-    ],
-    contractHref: '/en/terms',
-    pdfLink: 'View full Terms of Service',
-    checkboxLabel: 'I have read and agree to the service contract terms',
-    cta: 'Proceed to payment',
-    redirecting: 'Redirecting...',
-  };
+  const currencySymbol = t('pricing.currencySymbol');
+  const isPT = locale === 'pt';
+
+  function formatPrice(value: number) {
+    return isPT
+      ? value.toLocaleString('pt-BR')
+      : value.toLocaleString('en-US');
+  }
+
+  const price = isPT ? tier.priceBRL : tier.priceUSD;
+  const anchor = isPT ? tier.anchorBRL : tier.anchorUSD;
+  const pixPrice = isPT ? tier.pixBRL : null;
+  const effectivePrice = paymentMethodChoice === 'pix' && isPT && pixPrice != null ? pixPrice : price;
+
+  const contractHref = isPT ? '/terms' : '/en/terms';
 
   const handleBuyClick = () => {
     setContractAccepted(false);
@@ -100,14 +91,15 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ modelId: model.id, tier: selectedTier, paymentMethod: 'card', locale }),
+        body: JSON.stringify({ modelId: model.id, tier: selectedTier, paymentMethod: isPT ? paymentMethodChoice : 'card', locale }),
       });
-      if (!res.ok) throw new Error('Checkout failed');
-      const { url } = await res.json();
-      window.location.href = url;
-    } catch {
-      const modelTitle = tm('title');
-      const message = `Olá! Quero o modelo ${modelTitle} no plano ${tier.label}. Como procedemos?`;
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? 'Checkout failed');
+      if (!data.url) throw new Error('No checkout URL returned');
+      window.location.href = data.url;
+    } catch (err) {
+      console.error('[checkout] Error:', err);
+      const message = t('whatsappFallback', { modelTitle: tm('title'), tierLabel: t(`tiers.${selectedTier}`) });
       window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
     } finally {
       setIsLoading(false);
@@ -115,10 +107,11 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
   };
 
   const handlePremiumCTA = () => {
-    const modelTitle = tm('title');
-    const message = `Olá! Tenho interesse no plano Premium para o modelo ${modelTitle}. Como funciona o projeto personalizado?`;
+    const message = t('whatsappPremium', { modelTitle: tm('title') });
     window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
   };
+
+  const unlockedFeatures = TIER_UNLOCKED_FEATURES[selectedTier];
 
   return (
     <div className="relative flex flex-col h-full overflow-y-auto px-6 py-8 space-y-8 custom-scrollbar">
@@ -138,31 +131,31 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
               className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 transition-colors w-fit"
             >
               <ArrowLeft className="w-4 h-4" />
-              {contractContent.back}
+              {t('contract.back')}
             </button>
 
             <div className="space-y-1">
-              <h3 className="text-lg font-bold text-slate-900">{contractContent.title}</h3>
-              <p className="text-sm text-slate-500">{contractContent.subtitle}</p>
+              <h3 className="text-lg font-bold text-slate-900">{t('contract.title')}</h3>
+              <p className="text-sm text-slate-500">{t('contract.subtitle')}</p>
             </div>
 
             <ul className="space-y-3">
-              {contractContent.items.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
+              {[0, 1, 2, 3].map((i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-slate-600">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                  {item}
+                  {t(`contract.items.${i}` as Parameters<typeof t>[0])}
                 </li>
               ))}
             </ul>
 
             <a
-              href={contractContent.contractHref}
+              href={contractHref}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-royal hover:underline font-medium"
             >
               <FileText className="w-4 h-4" />
-              {contractContent.pdfLink}
+              {t('contract.pdfLink')}
             </a>
 
             <label className="flex items-start gap-3 cursor-pointer select-none">
@@ -173,7 +166,7 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
                 className="mt-0.5 w-4 h-4 accent-royal cursor-pointer"
               />
               <span className="text-sm text-slate-700">
-                {contractContent.checkboxLabel}
+                {t('contract.checkboxLabel')}
               </span>
             </label>
 
@@ -186,16 +179,17 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
                 {isLoading ? (
                   <span className="flex items-center gap-2">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    {contractContent.redirecting}
+                    {t('contract.redirecting')}
                   </span>
                 ) : (
-                  contractContent.cta
+                  t('contract.cta')
                 )}
               </Button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
       {/* Header */}
       <div className="space-y-5">
         {/* Delivery badge */}
@@ -240,7 +234,7 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
                       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                     />
                   )}
-                  {TIER_DATA[key].label}
+                  {t(`tiers.${key}` as Parameters<typeof t>[0])}
                 </button>
               );
             })}
@@ -264,64 +258,88 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
                 <div className="relative space-y-3">
                   <div className="flex items-center gap-2">
                     <Crown className="w-4 h-4 text-amber-600" />
-                    <span className="text-[11px] font-bold text-amber-700 uppercase tracking-widest">Projeto Personalizado</span>
+                    <span className="text-[11px] font-bold text-amber-700 uppercase tracking-widest">{t('premium.badge')}</span>
                   </div>
                   <div>
-                    <p className="text-xs text-amber-700/60 font-medium mb-0.5">A partir de</p>
-                    <span className="text-5xl font-black text-amber-700 tracking-tighter">R$ 5k</span>
+                    <p className="text-xs text-amber-700/60 font-medium mb-0.5">{t('premium.from')}</p>
+                    <span className="text-5xl font-black text-amber-700 tracking-tighter">{t('premium.price')}</span>
                   </div>
                   <p className="text-sm text-amber-800/80 leading-relaxed">
-                    Desenvolvimento 100% sob medida: funcionalidades exclusivas, integrações customizadas e suporte dedicado além do modelo base.
+                    {t('premium.description')}
                   </p>
                   <div className="flex items-center gap-2 text-amber-700/70 text-xs pt-3 border-t border-amber-200/60">
                     <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>Orçamento gratuito e sem compromisso</span>
+                    <span>{t('premium.guarantee')}</span>
                   </div>
                 </div>
               </div>
-        ) : (
-          /* Essential / Professional */
-          <div className="relative overflow-hidden p-6 rounded-2xl bg-white border border-slate-200 shadow-[0_2px_16px_-4px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)]">
-            <div className="relative space-y-4">
-              {/* Anchor price */}
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] text-slate-400 uppercase tracking-wide font-medium">{t('pricing.from')}</span>
-                <span className="text-base font-semibold text-slate-300 line-through">
-                  R$ {formatBRL(tier.anchor!)}
-                </span>
-              </div>
-
-              <div className="space-y-3">
-                {/* Main price */}
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-xs font-medium text-slate-400">por</span>
-                  <span className="text-5xl font-black text-royal tracking-tighter">R$ {formatBRL(tier.price!)}</span>
-                </div>
-                <p className="text-[11px] text-slate-400 -mt-1">setup único</p>
-
-                {/* Pix block */}
-                <div className="flex items-center gap-3 p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-100">
-                  <BadgePercent className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <div className="flex-1">
-                    <p className="text-sm font-bold text-emerald-900">
-                      ou R$ {formatBRL(tier.pix!)} no Pix
-                    </p>
-                    <p className="text-[11px] text-emerald-700/70">pagamento à vista</p>
+            ) : (
+              /* Essential / Professional */
+              <div className="relative overflow-hidden p-6 rounded-2xl bg-white border border-slate-200 shadow-[0_2px_16px_-4px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)]">
+                <div className="relative space-y-4">
+                  {/* Anchor price */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] text-slate-400 uppercase tracking-wide font-medium">{t('pricing.from')}</span>
+                    <span className="text-base font-semibold text-slate-300 line-through">
+                      {currencySymbol} {formatPrice(anchor!)}
+                    </span>
                   </div>
-                  <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold tracking-wide">
-                    {tier.pixDiscount}
-                  </span>
+
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-xs font-medium text-slate-400">{t('pricing.for')}</span>
+                    <span className={`text-5xl font-black tracking-tighter transition-colors ${paymentMethodChoice === 'pix' && isPT ? 'text-emerald-600' : 'text-royal'}`}>
+                      {currencySymbol} {formatPrice(effectivePrice!)}
+                    </span>
+                  </div>
+
+                  {/* Payment method selector — BRL only */}
+                  {isPT && (
+                    <div className="space-y-2 pt-1">
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Forma de pagamento</p>
+
+                      {/* Card */}
+                      <button
+                        onClick={() => setPaymentMethodChoice('card')}
+                        className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all ${paymentMethodChoice === 'card' ? 'border-royal bg-royal/5' : 'border-slate-100 hover:border-slate-200'}`}
+                      >
+                        <div className={`w-4 h-4 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors ${paymentMethodChoice === 'card' ? 'border-royal' : 'border-slate-300'}`}>
+                          {paymentMethodChoice === 'card' && <div className="w-2 h-2 rounded-full bg-royal" />}
+                        </div>
+                        <CreditCard className="w-4 h-4 text-slate-400 shrink-0" />
+                        <div className="flex-1">
+                          <p className="text-sm font-bold text-slate-900">R$ {formatPrice(price!)}</p>
+                          <p className="text-[11px] text-slate-400">em até 12x no cartão</p>
+                        </div>
+                      </button>
+
+                      {/* PIX */}
+                      <button
+                        onClick={() => setPaymentMethodChoice('pix')}
+                        className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all ${paymentMethodChoice === 'pix' ? 'border-emerald-500 bg-emerald-50' : 'border-slate-100 hover:border-slate-200'}`}
+                      >
+                        <div className={`w-4 h-4 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors ${paymentMethodChoice === 'pix' ? 'border-emerald-500' : 'border-slate-300'}`}>
+                          {paymentMethodChoice === 'pix' && <div className="w-2 h-2 rounded-full bg-emerald-500" />}
+                        </div>
+                        <QrCode className="w-4 h-4 text-emerald-600 shrink-0" />
+                        <div className="flex-1">
+                          <p className="text-sm font-bold text-emerald-900">R$ {formatPrice(pixPrice!)}</p>
+                          <p className="text-[11px] text-emerald-700/70">Pix à vista</p>
+                        </div>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold tracking-wide shrink-0">
+                          {tier.pixDiscount}
+                        </span>
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Guarantee */}
+                  <div className="flex items-center gap-2 text-slate-400 text-xs pt-3 border-t border-slate-100">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+                    <span>{t('pricing.guarantee')}</span>
+                  </div>
                 </div>
               </div>
-
-              {/* Guarantee */}
-              <div className="flex items-center gap-2 text-slate-400 text-xs pt-3 border-t border-slate-100">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                <span>{t('pricing.guarantee')}</span>
-              </div>
-            </div>
-          </div>
-        )}
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -333,43 +351,92 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
           {t('whatsIncluded')}
         </h3>
 
-        {/* Features — clean divide-y list, no cards */}
-        <motion.div 
-          className="divide-y divide-slate-100"
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: { opacity: 0 },
-            show: { opacity: 1, transition: { staggerChildren: 0.05 } }
-          }}
-        >
-          {Object.keys(tm.raw('features') || {}).map((key) => (
-            <motion.div 
-              key={key} 
-              variants={{
-                hidden: { opacity: 0, x: -10 },
-                show: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } }
-              }}
-              className="flex items-center gap-3 py-2.5"
-            >
-              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-              <span className="text-sm font-medium text-slate-700">{tm(`features.${key}`)}</span>
-            </motion.div>
-          ))}
-          {[0, 1, 2, 3, 4].map((i) => (
-            <motion.div 
-              key={`def-${i}`}
-              variants={{
-                hidden: { opacity: 0, x: -10 },
-                show: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } }
-              }}
-              className="flex items-center gap-3 py-2.5"
-            >
-              <CheckCircle2 className="w-4 h-4 text-slate-300 shrink-0" />
-              <span className="text-sm text-slate-400">{t(`features.${i}`)}</span>
-            </motion.div>
-          ))}
-        </motion.div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedTier}
+            className="divide-y divide-slate-100"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+          >
+            {/* Model-specific features */}
+            {Object.keys(tm.raw('features') || {}).map((key) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+                className="flex items-center gap-3 py-2.5"
+              >
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span className="text-sm font-medium text-slate-700">{tm(`features.${key}`)}</span>
+              </motion.div>
+            ))}
+
+            {/* Default service features — uses model-specific locked sections when available */}
+            {(() => {
+              const modelLockedSections = tm.raw('lockedSections') as Record<string, string> | null | undefined;
+              const allUnlocked = selectedTier !== 'essential';
+
+              if (modelLockedSections && Object.keys(modelLockedSections).length > 0) {
+                return (
+                  <>
+                    {/* First 3 service features — always included */}
+                    {Array.from({ length: 3 }, (_, i) => (
+                      <motion.div
+                        key={`def-${i}`}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 24, delay: i * 0.04 }}
+                        className="flex items-center gap-3 py-2.5"
+                      >
+                        <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-500" />
+                        <span className="text-sm font-medium text-slate-700">
+                          {t(`features.${i}` as Parameters<typeof t>[0])}
+                        </span>
+                      </motion.div>
+                    ))}
+                    {/* Model-specific locked sections — gray for Essential, green for Professional/Premium */}
+                    {Object.keys(modelLockedSections).map((key, i) => (
+                      <motion.div
+                        key={`locked-${i}`}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 24, delay: (3 + i) * 0.04 }}
+                        className="flex items-center gap-3 py-2.5"
+                      >
+                        <CheckCircle2 className={`w-4 h-4 shrink-0 transition-colors duration-300 ${allUnlocked ? 'text-emerald-500' : 'text-slate-300'}`} />
+                        <span className={`text-sm transition-colors duration-300 ${allUnlocked ? 'font-medium text-slate-700' : 'text-slate-400'}`}>
+                          {tm(`lockedSections.${key}`)}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </>
+                );
+              }
+
+              // Fallback: generic features with tier-based unlocking
+              return Array.from({ length: 5 }, (_, i) => {
+                const unlocked = i < unlockedFeatures;
+                return (
+                  <motion.div
+                    key={`def-${i}`}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 24, delay: i * 0.04 }}
+                    className="flex items-center gap-3 py-2.5"
+                  >
+                    <CheckCircle2 className={`w-4 h-4 shrink-0 transition-colors duration-300 ${unlocked ? 'text-emerald-500' : 'text-slate-300'}`} />
+                    <span className={`text-sm transition-colors duration-300 ${unlocked ? 'font-medium text-slate-700' : 'text-slate-400'}`}>
+                      {t(`features.${i}` as Parameters<typeof t>[0])}
+                    </span>
+                  </motion.div>
+                );
+              });
+            })()}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Domain Notice */}
@@ -392,7 +459,7 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
               className="w-full bg-amber-500 hover:bg-amber-400 text-zinc-900 h-14 rounded-2xl text-base font-bold shadow-lg shadow-amber-400/20 hover:shadow-amber-400/30 transition-colors"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
-              Falar com especialista
+              {t('ctaPremium')}
             </Button>
           </motion.div>
         ) : (
@@ -405,7 +472,7 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
               {isLoading ? (
                 <span className="flex items-center gap-2">
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  {locale === 'pt' ? 'Redirecionando...' : 'Redirecting...'}
+                  {t('contract.redirecting')}
                 </span>
               ) : (
                 t('buyButton')

@@ -93,6 +93,13 @@
           "0": "Personalized consultation",
           "1": "24/7 support",
           "2": "Hybrid plans"
+        },
+        "lockedSections": {
+          "0": "Performance stats",
+          "1": "Methodology & about the coach",
+          "2": "Training plans",
+          "3": "Student testimonials",
+          "4": "Frequently asked questions"
         }
       },
       "home-nursing": {
@@ -113,6 +120,14 @@
           "1": "Advanced dental technology",
           "2": "Interactive before & after gallery",
           "3": "24/7 emergency service"
+        },
+        "lockedSections": {
+          "0": "Before & after gallery",
+          "1": "Professional team",
+          "2": "Patient testimonials",
+          "3": "Frequently asked questions",
+          "4": "Full online scheduling",
+          "5": "24h emergency button"
         }
       },
       "law-firm-premium": {
@@ -123,6 +138,16 @@
           "1": "6 legal practice areas",
           "2": "Contact form and WhatsApp",
           "3": "Case studies, testimonials and FAQ"
+        },
+        "lockedSections": {
+          "0": "Success case studies",
+          "1": "Trusted clients",
+          "2": "Office highlights",
+          "3": "Legal team",
+          "4": "Client testimonials",
+          "5": "Legal blog",
+          "6": "Frequently asked questions",
+          "7": "Contact banner"
         }
       }
     },
@@ -604,15 +629,47 @@
       }
     },
     "buyButton": "Buy this Model",
+    "ctaPremium": "Talk to a specialist",
     "deliveryTime": "48h Business Delivery",
     "domainNotice": "Domain (e.g. yoursite.com) is not included. You can register yours and we handle all the setup.",
+    "whatsappFallback": "Hello! I want the {modelTitle} model on the {tierLabel} plan. How do we proceed?",
+    "whatsappPremium": "Hello! I'm interested in the Premium plan for the {modelTitle} model. How does the custom project work?",
+    "tiers": {
+      "essential": "Essential",
+      "professional": "Professional",
+      "premium": "Premium"
+    },
+    "premium": {
+      "badge": "Custom Project",
+      "from": "Starting at",
+      "price": "$5k",
+      "description": "100% custom development: exclusive features, custom integrations, and dedicated support beyond the base model.",
+      "guarantee": "Free quote, no commitment"
+    },
+    "contract": {
+      "back": "Go back",
+      "title": "Before proceeding",
+      "subtitle": "Please review the service terms.",
+      "items": [
+        "Delivery within 7 business days after receiving your Brandkit",
+        "Up to 2 rounds of revisions included",
+        "One-time payment — no recurring fees",
+        "Domain and hosting are the client's responsibility"
+      ],
+      "pdfLink": "View full Terms of Service",
+      "checkboxLabel": "I have read and agree to the service contract terms",
+      "cta": "Proceed to payment",
+      "redirecting": "Redirecting..."
+    },
     "pricing": {
       "from": "From",
-      "originalPrice": "$997",
       "for": "for",
-      "currentPrice": "$497",
-      "pixDiscount": "-$500",
-      "guarantee": "7-day money-back guarantee"
+      "guarantee": "7-day money-back guarantee",
+      "setupFee": "one-time setup",
+      "currencySymbol": "$",
+      "pixPrefix": "or",
+      "pixSuffix": "via Pix",
+      "pixPaymentType": "one-time payment"
     }
   }
 }

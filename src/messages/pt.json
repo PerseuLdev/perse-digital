@@ -93,6 +93,13 @@
           "0": "Consultoria personalizada",
           "1": "Acompanhamento 24/7",
           "2": "Planos híbridos"
+        },
+        "lockedSections": {
+          "0": "Estatísticas de performance",
+          "1": "Metodologia & sobre o coach",
+          "2": "Planos de treinamento",
+          "3": "Depoimentos de alunos",
+          "4": "Perguntas frequentes"
         }
       },
       "home-nursing": {
@@ -113,6 +120,14 @@
           "1": "Tecnologia odontológica avançada",
           "2": "Galeria antes e depois interativa",
           "3": "Atendimento emergencial 24h"
+        },
+        "lockedSections": {
+          "0": "Galeria antes & depois",
+          "1": "Equipe de profissionais",
+          "2": "Depoimentos de pacientes",
+          "3": "Perguntas frequentes",
+          "4": "Agendamento online completo",
+          "5": "Botão de emergência 24h"
         }
       },
       "law-firm-premium": {
@@ -123,6 +138,16 @@
           "1": "6 áreas de atuação jurídica",
           "2": "Formulário de contato e WhatsApp",
           "3": "Cases, depoimentos e FAQ"
+        },
+        "lockedSections": {
+          "0": "Cases de sucesso",
+          "1": "Clientes que confiam",
+          "2": "Diferenciais do escritório",
+          "3": "Equipe de advogados",
+          "4": "Depoimentos de clientes",
+          "5": "Blog jurídico",
+          "6": "Perguntas frequentes",
+          "7": "Banner de contato"
         }
       }
     },
@@ -604,18 +629,48 @@
       }
     },
     "buyButton": "Comprar este Modelo",
+    "ctaPremium": "Falar com especialista",
     "deliveryTime": "Entrega em 48h úteis",
     "domainNotice": "O domínio (ex: seusite.com.br) não está incluso. Você pode registrar o seu e nós fazemos toda a configuração.",
+    "whatsappFallback": "Olá! Quero o modelo {modelTitle} no plano {tierLabel}. Como procedemos?",
+    "whatsappPremium": "Olá! Tenho interesse no plano Premium para o modelo {modelTitle}. Como funciona o projeto personalizado?",
+    "tiers": {
+      "essential": "Essencial",
+      "professional": "Profissional",
+      "premium": "Premium"
+    },
+    "premium": {
+      "badge": "Projeto Personalizado",
+      "from": "A partir de",
+      "price": "R$ 5k",
+      "description": "Desenvolvimento 100% sob medida: funcionalidades exclusivas, integrações customizadas e suporte dedicado além do modelo base.",
+      "guarantee": "Orçamento gratuito e sem compromisso"
+    },
+    "contract": {
+      "back": "Voltar",
+      "title": "Antes de prosseguir",
+      "subtitle": "Revise os termos do serviço contratado.",
+      "items": [
+        "Entrega em até 7 dias úteis após receber o Brandkit",
+        "Até 2 rodadas de ajustes incluídas no escopo",
+        "Pagamento único — sem mensalidade ou taxa recorrente",
+        "Domínio e hospedagem são de responsabilidade do cliente"
+      ],
+      "pdfLink": "Ver termos do serviço",
+      "checkboxLabel": "Li e aceito os termos do contrato de serviço",
+      "cta": "Prosseguir para pagamento",
+      "redirecting": "Redirecionando..."
+    },
     "pricing": {
       "from": "De",
       "originalPrice": "R$ 1.197",
       "for": "por",
-      "installments": "12x de R$ 58",
-      "or": "ou",
-      "pixPrice": "R$ 597",
-      "pixLabel": "no Pix",
-      "pixDiscount": "-R$ 600",
-      "guarantee": "7 dias de garantia"
+      "guarantee": "7 dias de garantia",
+      "setupFee": "setup único",
+      "currencySymbol": "R$",
+      "pixPrefix": "ou",
+      "pixSuffix": "no Pix",
+      "pixPaymentType": "pagamento à vista"
     }
   }
 }
