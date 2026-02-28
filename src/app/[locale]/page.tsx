@@ -64,7 +64,8 @@ export default function HomePage() {
   const containerRef = useRef(null);
   const [selectedNiche, setSelectedNiche] = useState<Niche>('health');
 
-  const previewUrl = (templateId: string) => `/${locale}/templates/${templateId}/preview`;
+  const previewUrl = (templateId: string) =>
+    `/${locale}/templates/${templateId}/preview?returnTo=${encodeURIComponent(`/${locale}#pricing`)}`;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,

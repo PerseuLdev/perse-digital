@@ -133,7 +133,7 @@ function ModelsContent() {
                 >
                   <ModelCard
                     model={model}
-                    onClickDemo={() => router.push(`/templates/${model.id}/preview`)}
+                    onClickDemo={() => router.push(`/templates/${model.id}/preview?returnTo=${encodeURIComponent('/templates')}`)}
                     onClickChoose={() => window.open(`https://wa.me/5514991071072?text=${sharedT('whatsappMessage')} (Model: ${model.title})`, '_blank')}
                   />
                 </motion.div>

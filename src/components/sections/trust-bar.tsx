@@ -2,13 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { Star, Users, Globe, Clock } from 'lucide-react';
+import { TrustUsersIcon, TrustGlobeIcon, TrustStarIcon, TrustClockIcon } from '@/components/icons/TrustIcons';
 
 const stats = [
-  { icon: Users, valueKey: 'clients', gradient: 'from-royal to-royal-light' },
-  { icon: Globe,  valueKey: 'niches',  gradient: 'from-emerald-500 to-teal-600' },
-  { icon: Star,   valueKey: 'rating',  gradient: 'from-amber-400 to-orange-500' },
-  { icon: Clock,  valueKey: 'uptime',  gradient: 'from-violet-500 to-purple-600' },
+  { icon: TrustUsersIcon, valueKey: 'clients' },
+  { icon: TrustGlobeIcon, valueKey: 'niches' },
+  { icon: TrustStarIcon,  valueKey: 'rating' },
+  { icon: TrustClockIcon, valueKey: 'uptime' },
 ];
 
 export function TrustBar() {
@@ -37,17 +37,17 @@ export function TrustBar() {
 
           {/* Stats row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-border/50">
-            {stats.map(({ icon: Icon, valueKey, gradient }, index) => (
+            {stats.map(({ icon: Icon, valueKey }, index) => (
               <motion.div
                 key={valueKey}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
-                className="flex flex-col items-center gap-2 md:px-6"
+                className="flex flex-col items-center gap-2 md:px-6 group"
               >
-                <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-sm`}>
-                  <Icon className="w-4 h-4 text-white" />
+                <div className="relative w-12 h-12 mb-1 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-full h-full drop-shadow-md" />
                 </div>
                 <span className="text-2xl font-bold tracking-tight">
                   {t(`stats.${valueKey}.value`)}

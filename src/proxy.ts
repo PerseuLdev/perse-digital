@@ -7,5 +7,5 @@ export const config = {
   // Match all pathnames except for
   // - … mixed-case (e.g. /_next)
   // - … static files (e.g. /favicon.ico)
-  matcher: ['/', '/(pt|en)/:path*', '/((?!_next|_vercel|.*\\..*).*)'],
+  matcher: ['/', '/(pt|en)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)'],
 };

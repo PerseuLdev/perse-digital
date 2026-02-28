@@ -18,7 +18,7 @@ const content = {
     subtitle: 'Seu recibo foi enviado para o seu e-mail.',
     stepsTitle: 'Próximos passos',
     steps: [
-      'Você receberá um e-mail de confirmação da Stripe',
+      'Você receberá um e-mail de confirmação',
       'Nossa equipe entrará em contato em até 24 horas',
       'Prepare seu Brandkit (logo, cores e textos da marca)',
       'Entrega do site em até 7 dias úteis após receber o Brandkit',
@@ -67,13 +67,24 @@ export default async function CheckoutSuccessPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ session_id?: string }>;
+  searchParams: Promise<{ session_id?: string; external_reference?: string }>;
 }) {
   const { locale } = await params;
-  const { session_id } = await searchParams;
+  const { session_id, external_reference } = await searchParams;
   setRequestLocale(locale);
 
-  const { tier, modelId } = session_id ? await getSessionMeta(session_id) : { tier: '', modelId: '' };
+  let tier = '';
+  let modelId = '';
+
+  if (session_id) {
+    // Stripe flow
+    ({ tier, modelId } = await getSessionMeta(session_id));
+  } else if (external_reference) {
+    // Mercado Pago flow — decode "tier|modelId" directly
+    const [refTier, refModelId] = external_reference.split('|');
+    tier = refTier ?? '';
+    modelId = refModelId ?? '';
+  }
 
   const t = locale === 'pt' ? content.pt : content.en;
   const waMessage = t.waMessage(tier, modelId);

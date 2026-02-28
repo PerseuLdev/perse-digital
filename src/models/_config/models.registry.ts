@@ -6,6 +6,7 @@ import { config as musclePerseConfig } from '../fitness/muscle-perse/config';
 import { config as homeNursingConfig } from '../health/home-nursing/config';
 import { config as dentalClinicConfig } from '../health/dental-clinic/config';
 import { config as lawFirmPremiumConfig } from '../law/law-firm-premium/config';
+import { config as constructionConfig } from '../services/construction/config';
 import type { ModelConfig } from './types';
 
 /**
@@ -20,6 +21,7 @@ export const MODELS_REGISTRY: ModelConfig[] = [
   homeNursingConfig,
   dentalClinicConfig,
   lawFirmPremiumConfig,
+  constructionConfig,
 ];
 
 /**
