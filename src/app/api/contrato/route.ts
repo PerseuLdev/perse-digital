@@ -37,13 +37,14 @@ export async function GET(request: NextRequest) {
       logoBase64,
     });
 
-    const buffer = await renderToBuffer(element);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const buffer = await renderToBuffer(element as any);
 
     const filename = clientName
       ? `contrato-perse-digital-${clientName.toLowerCase().replace(/\s+/g, '-')}.pdf`
       : 'contrato-perse-digital.pdf';
 
-    return new NextResponse(buffer, {
+    return new NextResponse(buffer as unknown as BodyInit, {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
