@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Perse Digital - Professional Websites for less than $2/day",
-    "description": "Transform your digital presence with modern, fast, SEO-optimized websites. Exclusive models for professionals."
+    "title": "Perse Digital - Websites for Independent Professionals & Freelancers",
+    "description": "Websites for doctors, lawyers, therapists, personal trainers and freelancers. Get found on Google and win more clients — from $2/day."
   },
   "nav": {
     "home": "Home",
@@ -14,14 +14,14 @@
     "about": "About Us"
   },
   "hero": {
-    "badge": "From just $2 per day",
-    "headline": "Your first professional website,",
-    "headlineHighlight": "starting from $2 a day.",
-    "subheadline": "No expensive subscriptions. Your professional site, live and branded, in days.",
+    "badge": "For doctors, lawyers, therapists, coaches and more",
+    "headline": "You're the best at what you do.",
+    "headlineHighlight": "Now let Google know it.",
+    "subheadline": "Websites for independent professionals who want to rank on Google, build credibility, and get clients — beyond Instagram.",
     "cta": {
-      "primary": "I want my website",
-      "secondary": "Learn More",
-      "microcopy": "No commitment · Response within 24h"
+      "primary": "Get found on Google",
+      "secondary": "See models",
+      "microcopy": "No commitment · Live in 48h"
     },
     "stats": {
       "templates": "Models",
@@ -180,8 +180,8 @@
     }
   },
   "whyNextjs": {
-    "title": "Why choose Perse Digital?",
-    "subtitle": "Cutting-edge technology for exceptional results",
+    "title": "Why independent professionals choose us",
+    "subtitle": "Everything you need to grow without depending on algorithms",
     "features": {
       "speed": {
         "title": "Ultra Fast",
@@ -234,7 +234,7 @@
   },
   "howItWorks": {
     "title": "How It Works",
-    "subtitle": "In 3 simple steps your website will be live",
+    "subtitle": "In 3 simple steps, your business stops being invisible online",
     "steps": {
       "choose": {
         "title": "Choose Your Model",
@@ -287,7 +287,7 @@
     }
   },
   "footer": {
-    "description": "Transforming professionals into digital references.",
+    "description": "Digital presence for independent professionals and freelancers.",
     "links": {
       "company": {
         "title": "Company",
@@ -325,9 +325,9 @@
     "whatsappMessage": "Hello! I would like to know more about Perse Digital services."
   },
   "about": {
-    "title": "Made by people who understand",
-    "titleHighlight": "self-employed professionals",
-    "description": "We know you don't have time to worry about technology. That's why we created a complete solution so you can focus on what really matters: serving your clients.",
+    "title": "Built for self-employed professionals",
+    "titleHighlight": "who have no time to waste",
+    "description": "You see clients, you sell, you deliver. But who takes care of your online presence? Perse Digital was built so independent professionals can have a website that works for them — no tech skills needed.",
     "cta": "View models",
     "benefits": {
       "seo": "SEO-optimized websites to rank on Google",
@@ -338,7 +338,7 @@
     }
   },
   "trustBar": {
-    "label": "Trusted by professionals worldwide",
+    "label": "Chosen by independent professionals across Brazil",
     "stats": {
       "clients": { "value": "500+", "label": "Active clients" },
       "niches": { "value": "6", "label": "Niches served" },
@@ -349,7 +349,7 @@
   "niches": {
     "title": "Models for",
     "titleHighlight": "every niche",
-    "subtitle": "Specially developed for self-employed professionals who want to stand out in the market",
+    "subtitle": "Each model was designed for the daily reality of freelancers who want to be found online",
     "viewTemplates": "View models",
     "items": {
       "health": {
@@ -381,17 +381,17 @@
   "parallax": {
     "imageAlt": "Professionals working",
     "banner1": {
-      "title": "More than 500 professionals have already transformed their businesses",
-      "subtitle": "Join doctors, lawyers, personal trainers and many others who trusted Perse Digital"
+      "title": "500+ independent professionals ditched Instagram-only and went to Google",
+      "subtitle": "Doctors, lawyers, therapists, personal trainers — all finding new clients every day"
     },
     "banner2": {
-      "title": "Your next client is searching for you on Google",
-      "subtitle": "Be ready to be found with a professional and optimized website"
+      "title": "While you sleep, your website works",
+      "subtitle": "A professional site captures leads, shows your portfolio and takes bookings — 24 hours a day, 7 days a week"
     }
   },
   "testimonials": {
     "title": "What our clients say",
-    "subtitle": "Real stories from professionals who transformed their businesses",
+    "subtitle": "How independent professionals transformed the way they attract clients",
     "items": {
       "t1": {
         "quote": "My office never had so much visibility. Patients find me easily on Google now!",
@@ -411,10 +411,10 @@
     }
   },
   "cta": {
-    "title": "Ready to transform",
-    "titleLine2": "your digital presence?",
-    "subtitle": "Join more than 500 professionals who are already standing out online.",
-    "button": "Get Started",
+    "title": "Stop losing clients to competitors",
+    "titleLine2": "who show up on Google before you.",
+    "subtitle": "Join 500+ independent professionals who already own their digital presence.",
+    "button": "I want my website now",
     "imageAlt": "Team celebrating success"
   },
   "professionals": {
