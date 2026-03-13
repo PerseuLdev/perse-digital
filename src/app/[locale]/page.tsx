@@ -256,6 +256,7 @@ export default function HomePage() {
                 price={t('pricing.plans.professional.price')}
                 anchorPrice={t('pricing.plans.professional.anchorPrice')}
                 badge={t('pricing.plans.professional.badge')}
+                savingsLabel={t('pricing.plans.professional.savingsLabel')}
                 features={nicheData[selectedNiche].professional}
                 cta={t('pricing.cta')}
                 currency={t('pricing.currency.symbol')}
@@ -444,6 +445,7 @@ function PricingCard({
   anchorPrice,
   priceLabel,
   badge,
+  savingsLabel,
   features,
   cta,
   currency,
@@ -459,6 +461,7 @@ function PricingCard({
   anchorPrice?: string;
   priceLabel?: string;
   badge?: string;
+  savingsLabel?: string;
   features: string[];
   cta: string;
   currency: string;
@@ -498,14 +501,21 @@ function PricingCard({
               {currency} {anchorPrice}
             </div>
           )}
+          {/* "A partir de" label acima do preço (para plano Agência) */}
+          {priceLabel && (
+            <div className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">
+              {priceLabel}
+            </div>
+          )}
           <div className="flex items-end justify-center gap-1">
             <span className="text-5xl font-bold">{currency} {price}</span>
-            {priceLabel && (
-              <span className="text-muted-foreground pb-1.5">{priceLabel}</span>
-            )}
           </div>
           {setupLabel && (
             <p className="text-xs text-muted-foreground mt-2">{setupLabel}</p>
+          )}
+          {/* Linha de economia percebida (ex: "Economize R$2.000 vs Agência") */}
+          {savingsLabel && (
+            <p className="text-xs font-semibold text-emerald-500 mt-2">{savingsLabel}</p>
           )}
         </div>
 
