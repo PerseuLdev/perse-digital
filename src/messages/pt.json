@@ -211,22 +211,23 @@
     "plans": {
       "essential": {
         "name": "Essencial",
-        "description": "Presença digital profissional",
-        "price": "690",
-        "anchorPrice": "999"
+        "description": "Para quem está começando",
+        "price": "797",
+        "anchorPrice": "1.197"
       },
       "professional": {
         "name": "Profissional",
-        "description": "Site completo com mais funcionalidades",
-        "price": "1.800",
-        "anchorPrice": "2.499",
-        "badge": "Recomendado"
+        "description": "Para quem quer resultado de verdade",
+        "price": "1.497",
+        "anchorPrice": "2.497",
+        "badge": "Mais escolhido",
+        "savingsLabel": "Economize R$2.000 vs Agência"
       },
       "premium": {
-        "name": "Premium",
-        "description": "Projeto personalizado por completo",
-        "price": "5k+",
-        "priceLabel": "/ Projeto"
+        "name": "Agência",
+        "description": "Para agências e times",
+        "price": "3.497",
+        "priceLabel": "/ a partir de"
       }
     },
     "cta": "Ver Modelo",
