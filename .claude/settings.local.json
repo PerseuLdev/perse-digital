@@ -3,7 +3,13 @@
     "allow": [
       "Bash(curl:*)",
       "Bash(git add:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git commit -m \"feat: update BRL pricing with psychology-driven values:*)",
+      "Bash(git commit -m \"feat: update Portuguese pricing copy with psychology elements:*)",
+      "Bash(git commit -m \"feat: update English pricing copy with psychology elements:*)",
+      "Bash(git commit -m \"feat: enhance PricingCard component with savings label and improved layout:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
