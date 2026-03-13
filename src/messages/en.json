@@ -257,32 +257,36 @@
     "contactUs": "Contact us",
     "items": {
       "q1": {
-        "question": "Do I need to know how to code?",
-        "answer": "No! Our models come ready to use. You just need to add your content through a simple and intuitive panel."
+        "question": "How does the purchase process work?",
+        "answer": "It's simple: choose the ideal model for your niche, send your business information, and within 7 business days your website will be live, ready to attract clients."
       },
       "q2": {
-        "question": "How long does it take for the website to be ready?",
-        "answer": "After payment confirmation and information submission, your website is ready within 48 business hours."
+        "question": "Does the site come with content or do I need to create everything?",
+        "answer": "Each model comes with structure, design, and example texts adapted to your niche. You just need to send your information, photos, and contact details — our team personalizes everything for you."
       },
       "q3": {
+        "question": "How long does it take for the website to be ready?",
+        "answer": "After payment confirmation and information submission, your website is ready within 7 business days."
+      },
+      "q4": {
         "question": "Is the domain included with the model?",
         "answer": "No. Domain registration (.com, .net, etc.) is not included with the model purchase. You can register your domain through services like Namecheap or GoDaddy, and we handle all the technical setup for you."
       },
-      "q4": {
-        "question": "Can I cancel anytime?",
-        "answer": "Yes, you can cancel whenever you want. We offer a 30-day full refund guarantee."
-      },
       "q5": {
+        "question": "Is there a guarantee?",
+        "answer": "Yes. We offer a 7-day satisfaction guarantee in accordance with Brazilian Consumer Protection Code. If you're not satisfied, we refund 100% of the amount."
+      },
+      "q6": {
         "question": "Is the website responsive?",
         "answer": "All our models are 100% responsive and work perfectly on phones, tablets, and computers."
       },
-      "q6": {
-        "question": "Do I need technical knowledge to update the content?",
-        "answer": "No. We provide a simple admin panel where you can update texts, photos, and information without touching any code. If you need help, our support team is available."
-      },
       "q7": {
+        "question": "Do I need technical knowledge?",
+        "answer": "No. Our support team is available to help with any questions or adjustments you need."
+      },
+      "q8": {
         "question": "How does post-delivery support work?",
-        "answer": "All plans include WhatsApp support for questions and adjustments. The Professional and Elite plans include priority support with reduced response times and monthly maintenance included."
+        "answer": "All plans include 30 days of WhatsApp support after delivery. Monthly maintenance is an additional service that can be contracted separately."
       }
     }
   },

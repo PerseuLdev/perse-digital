@@ -257,32 +257,36 @@
     "contactUs": "Entre em contato conosco",
     "items": {
       "q1": {
-        "question": "Preciso saber programar?",
-        "answer": "Não! Nossos modelos vêm prontos para uso. Você só precisa adicionar seu conteúdo através de um painel simples e intuitivo."
+        "question": "Como funciona o processo de compra?",
+        "answer": "É simples: escolha o modelo ideal para o seu nicho, envie as informações do seu negócio e em até 7 dias úteis seu site estará no ar, pronto para atrair clientes."
       },
       "q2": {
-        "question": "Quanto tempo leva para o site ficar pronto?",
-        "answer": "Após a confirmação do pagamento e envio das informações, seu site fica pronto em até 48 horas úteis."
+        "question": "O site já vem com conteúdo ou preciso criar tudo?",
+        "answer": "Cada modelo vem com estrutura, design e textos de exemplo adaptados ao seu nicho. Você só precisa enviar suas informações, fotos e dados de contato — nossa equipe personaliza tudo para você."
       },
       "q3": {
+        "question": "Quanto tempo leva para o site ficar pronto?",
+        "answer": "Após a confirmação do pagamento e envio das informações, seu site fica pronto em até 7 dias úteis."
+      },
+      "q4": {
         "question": "O domínio está incluso no modelo?",
         "answer": "Não. O registro de domínio (.com.br, .com, etc.) não está incluso na compra do modelo. Você pode registrar seu domínio em serviços como Registro.br ou Namecheap, e nós cuidamos de toda a configuração técnica para você."
       },
-      "q4": {
-        "question": "Posso cancelar a qualquer momento?",
-        "answer": "Sim, você pode cancelar quando quiser. Oferecemos garantia de 30 dias com reembolso total."
-      },
       "q5": {
+        "question": "Tem garantia?",
+        "answer": "Sim. Oferecemos garantia de 7 dias conforme o Código de Defesa do Consumidor. Se não ficar satisfeito, devolvemos 100% do valor."
+      },
+      "q6": {
         "question": "O site é responsivo?",
         "answer": "Todos os nossos modelos são 100% responsivos e funcionam perfeitamente em celulares, tablets e computadores."
       },
-      "q6": {
-        "question": "Preciso de conhecimento técnico para atualizar o conteúdo?",
-        "answer": "Não. Oferecemos um painel de administração simples onde você atualiza textos, fotos e informações sem precisar tocar em código. Se precisar de ajuda, nosso suporte está disponível."
-      },
       "q7": {
+        "question": "Preciso de conhecimento técnico?",
+        "answer": "Não. Nosso suporte está disponível para ajudar com qualquer dúvida ou ajuste necessário."
+      },
+      "q8": {
         "question": "Como funciona o suporte após a entrega?",
-        "answer": "Todos os planos incluem suporte via WhatsApp para dúvidas e ajustes. Os planos Professional e Elite incluem suporte prioritário com tempo de resposta reduzido e manutenção mensal inclusa."
+        "answer": "Todos os planos incluem 30 dias de suporte via WhatsApp após a entrega. Manutenção mensal é um serviço adicional que pode ser contratado à parte."
       }
     }
   },
