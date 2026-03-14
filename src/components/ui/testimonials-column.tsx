@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 
 export interface TestimonialItem {
   text: string;
@@ -20,16 +19,12 @@ export const TestimonialsColumn = ({
   duration?: number;
 }) => {
   return (
-    <div className={className}>
-      <motion.div
-        animate={{ translateY: "-50%" }}
-        transition={{
-          duration,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-6 pb-6"
+    <div className={className} style={{ overflow: 'hidden' }}>
+      <div
+        className="flex flex-col gap-6 pb-6 animate-scroll-up"
+        style={
+          { '--scroll-duration': `${duration}s`, willChange: 'transform' } as React.CSSProperties
+        }
       >
         {[...Array(2)].map((_, index) => (
           <React.Fragment key={index}>
@@ -66,7 +61,7 @@ export const TestimonialsColumn = ({
             ))}
           </React.Fragment>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };
