@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 export function TrustUsersIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -12,47 +10,35 @@ export function TrustUsersIcon({ className }: { className?: string }) {
         </linearGradient>
         <linearGradient id="tu-grad-2" x1="10" y1="50" x2="90" y2="50" gradientUnits="userSpaceOnUse">
           <stop stopColor="#93C5FD" />
-          <stop offset="1" stopColor="#1D4ED8" />
+          <stop offset="1" stopColor="#1E40AF" />
         </linearGradient>
         <filter id="glow-tu" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feGaussianBlur stdDeviation="6" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
       </defs>
       
       {/* Outer ambient glow */}
-      <circle cx="50" cy="50" r="40" fill="url(#tu-grad-1)" opacity="0.15" filter="url(#glow-tu)" />
+      <circle cx="50" cy="50" r="42" fill="url(#tu-grad-1)" opacity="0.15" filter="url(#glow-tu)" />
       
-      {/* Network lines */}
-      <motion.path 
-        d="M50 45 L35 60 M50 45 L65 60" 
-        stroke="url(#tu-grad-2)" strokeWidth="2" strokeLinecap="round" opacity="0.5"
-        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-      />
+      {/* Network lines connecting users */}
+      <path d="M50 48 L32 58 M50 48 L68 58" stroke="url(#tu-grad-2)" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
       
-      {/* Main figure */}
-      <motion.circle 
-        cx="50" cy="35" r="10" 
-        fill="url(#tu-grad-1)" 
-        animate={{ y: [0, -3, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} 
-      />
-      <motion.path 
-        d="M30 75C30 60 40 50 50 50C60 50 70 60 70 75" 
-        stroke="url(#tu-grad-1)" strokeWidth="8" strokeLinecap="round" 
-        animate={{ y: [0, -3, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} 
-      />
+      {/* Main user figure */}
+      <circle cx="50" cy="34" r="11" fill="url(#tu-grad-1)" filter="url(#glow-tu)" />
+      <path d="M28 76C28 60 38 50 50 50C62 50 72 60 72 76" stroke="url(#tu-grad-1)" strokeWidth="8" strokeLinecap="round" />
       
-      {/* Side figures */}
-      <circle cx="32" cy="42" r="6" fill="#60A5FA" opacity="0.6" />
-      <path d="M18 70C18 60 25 54 32 54" stroke="#60A5FA" strokeWidth="5" strokeLinecap="round" opacity="0.6" />
+      {/* Side user figures */}
+      <circle cx="30" cy="44" r="7" fill="#60A5FA" opacity="0.8" />
+      <path d="M16 72C16 61 23 54 30 54" stroke="#60A5FA" strokeWidth="5" strokeLinecap="round" opacity="0.8" />
       
-      <circle cx="68" cy="42" r="6" fill="#60A5FA" opacity="0.6" />
-      <path d="M82 70C82 60 75 54 68 54" stroke="#60A5FA" strokeWidth="5" strokeLinecap="round" opacity="0.6" />
+      <circle cx="70" cy="44" r="7" fill="#60A5FA" opacity="0.8" />
+      <path d="M84 72C84 61 77 54 70 54" stroke="#60A5FA" strokeWidth="5" strokeLinecap="round" opacity="0.8" />
       
-      {/* Floating particles */}
-      <motion.circle cx="20" cy="25" r="2" fill="#93C5FD" animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }} transition={{ duration: 2, repeat: Infinity }} />
-      <motion.circle cx="80" cy="30" r="2.5" fill="#93C5FD" animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }} transition={{ duration: 2.5, repeat: Infinity, delay: 1 }} />
-      <motion.circle cx="50" cy="15" r="1.5" fill="#93C5FD" animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
+      {/* Accents */}
+      <circle cx="22" cy="25" r="3" fill="#93C5FD" opacity="0.6" />
+      <circle cx="78" cy="28" r="4" fill="#93C5FD" opacity="0.5" />
+      <circle cx="55" cy="16" r="2" fill="#93C5FD" opacity="0.7" />
     </svg>
   );
 }
@@ -70,39 +56,35 @@ export function TrustGlobeIcon({ className }: { className?: string }) {
           <stop offset="1" stopColor="#065F46" />
         </linearGradient>
         <filter id="glow-tg" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feGaussianBlur stdDeviation="5" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
       </defs>
       
-      <circle cx="50" cy="50" r="40" fill="url(#tg-grad-1)" opacity="0.15" filter="url(#glow-tg)" />
+      <circle cx="50" cy="50" r="42" fill="url(#tg-grad-1)" opacity="0.15" filter="url(#glow-tg)" />
       
       {/* Globe Base */}
-      <circle cx="50" cy="50" r="35" stroke="url(#tg-grad-1)" strokeWidth="4" />
+      <circle cx="50" cy="50" r="36" stroke="url(#tg-grad-1)" strokeWidth="4" />
+      <circle cx="50" cy="50" r="32" fill="url(#tg-grad-1)" opacity="0.05" />
       
-      {/* Rotating Latitudes/Longitudes */}
-      <motion.g animate={{ rotateY: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} style={{ originX: '50px', originY: '50px' }}>
-        <ellipse cx="50" cy="50" rx="15" ry="35" stroke="url(#tg-grad-2)" strokeWidth="2" fill="none" opacity="0.8" />
-        <ellipse cx="50" cy="50" rx="35" ry="10" stroke="url(#tg-grad-2)" strokeWidth="2" fill="none" opacity="0.8" />
-        
-        {/* Connection Nodes */}
-        <circle cx="37" cy="40" r="3" fill="#34D399" />
-        <circle cx="63" cy="60" r="3" fill="#34D399" />
-        <circle cx="50" cy="15" r="3" fill="#34D399" />
-        <circle cx="50" cy="85" r="3" fill="#34D399" />
-      </motion.g>
+      {/* Geometric Latitudes/Longitudes */}
+      <g stroke="url(#tg-grad-2)" strokeWidth="2.5" fill="none" opacity="0.85">
+        <ellipse cx="50" cy="50" rx="16" ry="36" />
+        <ellipse cx="50" cy="50" rx="36" ry="12" />
+        <path d="M25 25 L75 75 M25 75 L75 25" opacity="0.4" strokeDasharray="4 4" />
+      </g>
       
-      {/* Connecting lines popping up */}
-      <motion.path 
-        d="M20 50 Q 50 10 80 50" 
-        stroke="#34D399" strokeWidth="1.5" strokeDasharray="5 5" fill="none" opacity="0"
-        animate={{ opacity: [0, 0.4, 0], pathLength: [0, 1] }} transition={{ duration: 3, repeat: Infinity }}
-      />
-      <motion.path 
-        d="M20 50 Q 50 90 80 50" 
-        stroke="#34D399" strokeWidth="1.5" strokeDasharray="5 5" fill="none" opacity="0"
-        animate={{ opacity: [0, 0.4, 0], pathLength: [0, 1] }} transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-      />
+      {/* Connection Nodes */}
+      <circle cx="34" cy="50" r="4" fill="#34D399" filter="url(#glow-tg)" />
+      <circle cx="66" cy="50" r="4" fill="#34D399" filter="url(#glow-tg)" />
+      <circle cx="50" cy="14" r="4" fill="#34D399" filter="url(#glow-tg)" />
+      <circle cx="50" cy="86" r="4" fill="#34D399" filter="url(#glow-tg)" />
+      
+      <circle cx="50" cy="50" r="5" fill="#10B981" />
+      
+      {/* Accents */}
+      <path d="M12 50 A38 38 0 0 1 20 28" stroke="#34D399" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+      <path d="M88 50 A38 38 0 0 0 80 72" stroke="#34D399" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
     </svg>
   );
 }
@@ -119,44 +101,40 @@ export function TrustStarIcon({ className }: { className?: string }) {
           <stop stopColor="#FDE68A" />
           <stop offset="1" stopColor="#B45309" />
         </radialGradient>
-        <filter id="glow-ts" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="5" result="blur" />
+        <filter id="glow-ts" x="-25%" y="-25%" width="150%" height="150%">
+          <feGaussianBlur stdDeviation="6" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <filter id="glow-core" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="2" result="blur2" />
+          <feComposite in="SourceGraphic" in2="blur2" operator="over" />
         </filter>
       </defs>
       
-      <motion.circle 
-        cx="50" cy="50" r="40" fill="url(#ts-grad-1)" opacity="0.15" filter="url(#glow-ts)" 
-        animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      />
+      <circle cx="50" cy="50" r="42" fill="url(#ts-grad-1)" opacity="0.15" filter="url(#glow-ts)" />
       
-      {/* Burst rays */}
-      {[...Array(8)].map((_, i) => (
-        <motion.line 
-          key={i}
-          x1="50" y1="50" x2={50 + 40 * Math.cos((i * 45 * Math.PI) / 180)} y2={50 + 40 * Math.sin((i * 45 * Math.PI) / 180)}
-          stroke="url(#ts-grad-1)" strokeWidth="2" strokeLinecap="round"
-          animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
-        />
-      ))}
+      {/* Static Burst Rays */}
+      <g stroke="url(#ts-grad-1)" strokeWidth="3" strokeLinecap="round" opacity="0.5">
+        <line x1="50" y1="12" x2="50" y2="4" />
+        <line x1="50" y1="88" x2="50" y2="96" />
+        <line x1="12" y1="50" x2="4" y2="50" />
+        <line x1="88" y1="50" x2="96" y2="50" />
+        <line x1="23" y1="23" x2="17" y2="17" />
+        <line x1="77" y1="77" x2="83" y2="83" />
+        <line x1="23" y1="77" x2="17" y2="83" />
+        <line x1="77" y1="23" x2="83" y2="17" />
+      </g>
 
       {/* Main Star */}
-      <motion.path 
-        d="M50 15L60.5 36.5L84 40L67 56.5L71 80L50 69L29 80L33 56.5L16 40L39.5 36.5L50 15Z" 
+      <path 
+        d="M50 14L61.5 37.5L87 40L68 58L72.5 83L50 71L27.5 83L32 58L13 40L38.5 37.5L50 14Z" 
         fill="url(#ts-grad-2)" stroke="#FDE68A" strokeWidth="2" strokeLinejoin="round" filter="url(#glow-ts)"
-        initial={{ rotate: 0 }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        style={{ originX: '50px', originY: '50px' }}
       />
       
-      {/* Inner reflection */}
-      <motion.path 
-        d="M50 25L57 39L72 41L61 52L64 67L50 60L36 67L39 52L28 41L43 39L50 25Z" 
-        fill="#FFFFFF" opacity="0.4"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        style={{ originX: '50px', originY: '50px' }}
+      {/* Inner Highlight for Depth */}
+      <path 
+        d="M50 25L57 40L73 42L61 54L64 70L50 63L36 70L39 54L27 42L43 40L50 25Z" 
+        fill="#FFFFFF" opacity="0.35" filter="url(#glow-core)"
       />
     </svg>
   );
@@ -167,54 +145,52 @@ export function TrustClockIcon({ className }: { className?: string }) {
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <linearGradient id="tc-grad-1" x1="20" y1="20" x2="80" y2="80" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#A78BFA" />
+          <stop stopColor="#A855F7" />
           <stop offset="1" stopColor="#6D28D9" />
         </linearGradient>
         <linearGradient id="tc-grad-2" x1="50" y1="0" x2="50" y2="100" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#C4B5FD" />
+          <stop stopColor="#DDD6FE" />
           <stop offset="1" stopColor="#4C1D95" />
         </linearGradient>
         <filter id="glow-tc" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feGaussianBlur stdDeviation="5" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
       </defs>
       
-      <circle cx="50" cy="50" r="40" fill="url(#tc-grad-1)" opacity="0.15" filter="url(#glow-tc)" />
+      <circle cx="50" cy="50" r="42" fill="url(#tc-grad-1)" opacity="0.15" filter="url(#glow-tc)" />
       
-      {/* Outer rim spinning */}
-      <motion.circle 
-        cx="50" cy="50" r="38" stroke="url(#tc-grad-1)" strokeWidth="3" strokeDasharray="30 10" fill="none"
-        animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        style={{ originX: '50px', originY: '50px' }}
-      />
-      <circle cx="50" cy="50" r="32" stroke="url(#tc-grad-2)" strokeWidth="1" opacity="0.5" fill="none" />
+      {/* Outer rim */}
+      <circle cx="50" cy="50" r="38" stroke="url(#tc-grad-1)" strokeWidth="4" strokeDasharray="14 6" fill="none" opacity="0.9" />
+      <circle cx="50" cy="50" r="31" stroke="url(#tc-grad-2)" strokeWidth="1.5" opacity="0.7" fill="none" />
+      <circle cx="50" cy="50" r="31" fill="url(#tc-grad-1)" opacity="0.1" />
       
       {/* Clock ticks */}
-      {/* 12, 3, 6, 9 ticks */}
-      <line x1="50" y1="20" x2="50" y2="26" stroke="#C4B5FD" strokeWidth="2" strokeLinecap="round" />
-      <line x1="80" y1="50" x2="74" y2="50" stroke="#C4B5FD" strokeWidth="2" strokeLinecap="round" />
-      <line x1="50" y1="80" x2="50" y2="74" stroke="#C4B5FD" strokeWidth="2" strokeLinecap="round" />
-      <line x1="20" y1="50" x2="26" y2="50" stroke="#C4B5FD" strokeWidth="2" strokeLinecap="round" />
-
-      {/* Clock hands */}
-      <motion.line 
-        x1="50" y1="50" x2="50" y2="28" 
-        stroke="url(#tc-grad-2)" strokeWidth="4" strokeLinecap="round"
-        animate={{ rotate: 360 }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-        style={{ originX: '50px', originY: '50px' }}
-      />
-      <line x1="50" y1="50" x2="65" y2="50" stroke="#C4B5FD" strokeWidth="3" strokeLinecap="round" />
+      <g stroke="#C4B5FD" strokeWidth="3" strokeLinecap="round" opacity="0.8">
+        <line x1="50" y1="22" x2="50" y2="28" />
+        <line x1="78" y1="50" x2="72" y2="50" />
+        <line x1="50" y1="78" x2="50" y2="72" />
+        <line x1="22" y1="50" x2="28" y2="50" />
+      </g>
       
-      <circle cx="50" cy="50" r="4" fill="#FFFFFF" filter="url(#glow-tc)" />
+      <g fill="#A855F7" opacity="0.6">
+        <circle cx="70" cy="30" r="2" />
+        <circle cx="70" cy="70" r="2" />
+        <circle cx="30" cy="70" r="2" />
+        <circle cx="30" cy="30" r="2" />
+      </g>
 
-      {/* Ambient scanning line */}
-      <motion.path
-        d="M 50 50 L 50 12 A 38 38 0 0 1 88 50 Z"
-        fill="url(#tc-grad-2)" opacity="0.1"
-        animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-        style={{ originX: '50px', originY: '50px' }}
-      />
+      {/* Clock hands fixed at 10:10 (aesthetic positioning) */}
+      <line x1="50" y1="50" x2="62" y2="38" stroke="url(#tc-grad-2)" strokeWidth="3" strokeLinecap="round" filter="url(#glow-tc)" />
+      <line x1="50" y1="50" x2="35" y2="45" stroke="#C4B5FD" strokeWidth="4" strokeLinecap="round" filter="url(#glow-tc)" />
+      
+      {/* Center pin */}
+      <circle cx="50" cy="50" r="5" fill="#FFFFFF" filter="url(#glow-tc)" />
+      <circle cx="50" cy="50" r="2" fill="#6D28D9" />
+
+      {/* Checkmark accent (to signify 'guaranteed') */}
+      <path d="M60 65 L68 73 L85 54" stroke="#A855F7" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" filter="url(#glow-tc)" />
     </svg>
   );
 }
+
