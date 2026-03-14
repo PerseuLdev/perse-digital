@@ -56,7 +56,7 @@
       "demo": "Ver modelo",
       "select": "Escolher este Modelo",
       "learnMore": "Saber mais sobre este modelo",
-      "delivery": "Entrega em 48h",
+      "delivery": "Entrega em 7 dias úteis",
       "nextjs": "Next.js Inside",
       "fast": "Ultra Fast",
       "objectives": {
@@ -161,7 +161,7 @@
         },
         "time": {
           "q": "Em quanto tempo fica pronto?",
-          "a": "Nossa entrega padrão para modelos é de 48h úteis após o envio de todo o conteúdo."
+          "a": "Nossa entrega padrão para modelos é de 7 dias úteis após o envio de todo o conteúdo."
         },
         "responsive": {
           "q": "O site é responsivo?",
@@ -247,7 +247,7 @@
       },
       "launch": {
         "title": "Lance seu Site",
-        "description": "Em até 48 horas seu site estará no ar, pronto para receber clientes."
+        "description": "Em até 7 dias úteis seu site estará no ar, pronto para receber clientes."
       }
     }
   },
@@ -263,7 +263,7 @@
       },
       "q2": {
         "question": "Quanto tempo leva para o site ficar pronto?",
-        "answer": "Após a confirmação do pagamento e envio das informações, seu site fica pronto em até 48 horas úteis."
+        "answer": "Após a confirmação do pagamento e envio das informações, seu site fica pronto em até 7 dias úteis."
       },
       "q3": {
         "question": "O domínio está incluso no modelo?",
@@ -543,7 +543,7 @@
       "title": "Por que a Perse Digital existe?",
       "stats": {
         "clients": { "value": "500+", "label": "Profissionais atendidos" },
-        "delivery": { "value": "48h", "label": "Entrega do site" },
+        "delivery": { "value": "7 dias", "label": "Entrega do site" },
         "price": { "value": "R$2", "label": "Por dia" },
         "responsive": { "value": "100%", "label": "Responsivo" }
       },
@@ -631,7 +631,7 @@
     },
     "buyButton": "Comprar este Modelo",
     "ctaPremium": "Falar com especialista",
-    "deliveryTime": "Entrega em 48h úteis",
+    "deliveryTime": "Entrega em 7 dias úteis",
     "domainNotice": "O domínio (ex: seusite.com.br) não está incluso. Você pode registrar o seu e nós fazemos toda a configuração.",
     "whatsappFallback": "Olá! Quero o modelo {modelTitle} no plano {tierLabel}. Como procedemos?",
     "whatsappPremium": "Olá! Tenho interesse no plano Premium para o modelo {modelTitle}. Como funciona o projeto personalizado?",

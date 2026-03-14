@@ -56,7 +56,7 @@
       "demo": "View model",
       "select": "Choose this Model",
       "learnMore": "Learn more about this model",
-      "delivery": "48h Delivery",
+      "delivery": "7 Business Days Delivery",
       "nextjs": "Next.js Inside",
       "fast": "Ultra Fast",
       "objectives": {
@@ -247,7 +247,7 @@
       },
       "launch": {
         "title": "Launch Your Website",
-        "description": "Within 48 hours your website will be live, ready to receive clients."
+        "description": "Within 7 business days your website will be live, ready to receive clients."
       }
     }
   },
@@ -543,7 +543,7 @@
       "title": "Why does Perse Digital exist?",
       "stats": {
         "clients": { "value": "500+", "label": "Professionals served" },
-        "delivery": { "value": "48h", "label": "Site delivery" },
+        "delivery": { "value": "7 days", "label": "Site delivery" },
         "price": { "value": "$2", "label": "Per day" },
         "responsive": { "value": "100%", "label": "Responsive" }
       },
@@ -631,7 +631,7 @@
     },
     "buyButton": "Buy this Model",
     "ctaPremium": "Talk to a specialist",
-    "deliveryTime": "48h Business Delivery",
+    "deliveryTime": "7 Business Days Delivery",
     "domainNotice": "Domain (e.g. yoursite.com) is not included. You can register yours and we handle all the setup.",
     "whatsappFallback": "Hello! I want the {modelTitle} model on the {tierLabel} plan. How do we proceed?",
     "whatsappPremium": "Hello! I'm interested in the Premium plan for the {modelTitle} model. How does the custom project work?",
