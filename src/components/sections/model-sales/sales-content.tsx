@@ -68,7 +68,7 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
   const [leadData, setLeadData] = useState<{ name: string; email: string; whatsapp: string } | null>(null);
   const [showContract, setShowContract] = useState(false);
   const [contractAccepted, setContractAccepted] = useState(false);
-  const [paymentMethodChoice, setPaymentMethodChoice] = useState<'card' | 'pix'>('card');
+  const [paymentMethodChoice, setPaymentMethodChoice] = useState<'card' | 'pix'>('pix');
   const tier = TIER_DATA[selectedTier];
 
   const currencySymbol = t('pricing.currencySymbol');
@@ -410,23 +410,6 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
                     <div className="space-y-2 pt-1">
                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Forma de pagamento</p>
 
-                      {/* Card */}
-                      <button
-                        onClick={() => setPaymentMethodChoice('card')}
-                        className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all ${paymentMethodChoice === 'card' ? 'border-royal bg-royal/5' : 'border-slate-100 hover:border-slate-200'}`}
-                      >
-                        <div className={`w-4 h-4 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors ${paymentMethodChoice === 'card' ? 'border-royal' : 'border-slate-300'}`}>
-                          {paymentMethodChoice === 'card' && <div className="w-2 h-2 rounded-full bg-royal" />}
-                        </div>
-                        <CreditCard className="w-4 h-4 text-slate-400 shrink-0" />
-                        <div className="flex-1">
-                          <p className="text-sm font-bold text-slate-900">R$ {formatPrice(price!)} à vista</p>
-                          <p className="text-[11px] text-slate-400">
-                            ou {tier.installmentsCount}x de R${tier.installmentMonthlyBRL?.toFixed(2).replace('.', ',')} (R${tier.installmentTotalBRL?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })})
-                          </p>
-                        </div>
-                      </button>
-
                       {/* PIX */}
                       <button
                         onClick={() => setPaymentMethodChoice('pix')}
@@ -439,6 +422,21 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
                         <div className="flex-1">
                           <p className="text-sm font-bold text-emerald-900">R$ {formatPrice(pixPrice!)} Pix à vista</p>
                           <p className="text-[11px] text-emerald-700/70">Mesmo valor, sem acréscimos</p>
+                        </div>
+                      </button>
+
+                      {/* Card */}
+                      <button
+                        onClick={() => setPaymentMethodChoice('card')}
+                        className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all ${paymentMethodChoice === 'card' ? 'border-royal bg-royal/5' : 'border-slate-100 hover:border-slate-200'}`}
+                      >
+                        <div className={`w-4 h-4 rounded-full border-2 shrink-0 flex items-center justify-center transition-colors ${paymentMethodChoice === 'card' ? 'border-royal' : 'border-slate-300'}`}>
+                          {paymentMethodChoice === 'card' && <div className="w-2 h-2 rounded-full bg-royal" />}
+                        </div>
+                        <CreditCard className="w-4 h-4 text-slate-400 shrink-0" />
+                        <div className="flex-1">
+                          <p className="text-sm font-bold text-slate-900">{tier.installmentsCount}x de R${tier.installmentMonthlyBRL?.toFixed(2).replace('.', ',')}</p>
+                          <p className="text-[11px] text-slate-400">Total R${tier.installmentTotalBRL?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
                         </div>
                       </button>
                     </div>
@@ -563,7 +561,7 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
       {!tier.isCustom && <BrandkitExplainer />}
 
       {/* CTA Button */}
-      <div className="sticky bottom-0 pt-4 pb-2 bg-gradient-to-t from-white via-white/90 to-transparent">
+      <div className={`sticky bottom-0 pt-4 pb-2 bg-gradient-to-t from-white via-white/90 to-transparent ${showLeadForm || showContract ? 'invisible' : ''}`}>
         {tier.isCustom ? (
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Button
@@ -575,11 +573,16 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
             </Button>
           </motion.div>
         ) : (
-          <motion.div whileHover={{ scale: isLoading ? 1 : 1.02 }} whileTap={{ scale: isLoading ? 1 : 0.98 }}>
+          <motion.div
+            whileHover={{ scale: isLoading ? 1 : 1.02 }}
+            whileTap={{ scale: isLoading ? 1 : 0.98 }}
+            animate={isLoading ? {} : { boxShadow: ['0 0 0px 0px rgba(99,102,241,0)', '0 0 18px 4px rgba(99,102,241,0.35)', '0 0 0px 0px rgba(99,102,241,0)'] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+          >
             <Button
               onClick={handleBuyClick}
               disabled={isLoading}
-              className="w-full bg-royal hover:bg-royal-dark text-white h-14 rounded-2xl text-base font-bold shadow-lg shadow-royal/15 hover:shadow-royal/25 transition-colors disabled:opacity-70 disabled:hover:bg-royal"
+              className="w-full bg-gradient-to-r from-royal to-blue-500 hover:from-royal-dark hover:to-blue-600 text-white h-14 rounded-2xl text-base font-bold shadow-xl shadow-royal/30 hover:shadow-royal/50 transition-all disabled:opacity-70 disabled:hover:from-royal disabled:hover:to-blue-500"
             >
               {isLoading ? (
                 <span className="flex items-center gap-2">
