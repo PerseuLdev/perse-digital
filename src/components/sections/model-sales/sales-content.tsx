@@ -13,19 +13,23 @@ const TIER_DATA = {
   essential: {
     priceBRL: 797,
     anchorBRL: 1197,
-    pixBRL: 717,
+    pixBRL: 797,
+    installmentMonthlyBRL: 81.10,
+    installmentTotalBRL: 973.22,
+    installmentsCount: 12,
     priceUSD: 497,
     anchorUSD: 697,
-    pixDiscount: '-10%',
     isCustom: false,
   },
   professional: {
     priceBRL: 1497,
     anchorBRL: 2497,
-    pixBRL: 1347,
+    pixBRL: 1497,
+    installmentMonthlyBRL: 152.33,
+    installmentTotalBRL: 1827.99,
+    installmentsCount: 12,
     priceUSD: 997,
     anchorUSD: 1397,
-    pixDiscount: '-10%',
     isCustom: false,
   },
   premium: {
@@ -33,9 +37,11 @@ const TIER_DATA = {
     priceBRL: null,
     anchorBRL: null,
     pixBRL: null,
+    installmentMonthlyBRL: null,
+    installmentTotalBRL: null,
+    installmentsCount: null,
     priceUSD: null,
     anchorUSD: null,
-    pixDiscount: null,
   },
 } as const;
 
@@ -414,8 +420,10 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
                         </div>
                         <CreditCard className="w-4 h-4 text-slate-400 shrink-0" />
                         <div className="flex-1">
-                          <p className="text-sm font-bold text-slate-900">R$ {formatPrice(price!)}</p>
-                          <p className="text-[11px] text-slate-400">em até 12x no cartão</p>
+                          <p className="text-sm font-bold text-slate-900">R$ {formatPrice(price!)} à vista</p>
+                          <p className="text-[11px] text-slate-400">
+                            ou {tier.installmentsCount}x de R${tier.installmentMonthlyBRL?.toFixed(2).replace('.', ',')} (R${tier.installmentTotalBRL?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })})
+                          </p>
                         </div>
                       </button>
 
@@ -429,12 +437,9 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
                         </div>
                         <QrCode className="w-4 h-4 text-emerald-600 shrink-0" />
                         <div className="flex-1">
-                          <p className="text-sm font-bold text-emerald-900">R$ {formatPrice(pixPrice!)}</p>
-                          <p className="text-[11px] text-emerald-700/70">Pix à vista</p>
+                          <p className="text-sm font-bold text-emerald-900">R$ {formatPrice(pixPrice!)} Pix à vista</p>
+                          <p className="text-[11px] text-emerald-700/70">Mesmo valor, sem acréscimos</p>
                         </div>
-                        <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold tracking-wide shrink-0">
-                          {tier.pixDiscount}
-                        </span>
                       </button>
                     </div>
                   )}
