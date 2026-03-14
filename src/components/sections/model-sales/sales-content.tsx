@@ -11,18 +11,18 @@ import type { Tier } from '@/contexts/tier-context';
 
 const TIER_DATA = {
   essential: {
-    priceBRL: 690,
-    anchorBRL: 999,
-    pixBRL: 620,
+    priceBRL: 797,
+    anchorBRL: 1197,
+    pixBRL: 717,
     priceUSD: 497,
     anchorUSD: 697,
     pixDiscount: '-10%',
     isCustom: false,
   },
   professional: {
-    priceBRL: 1800,
-    anchorBRL: 2499,
-    pixBRL: 1620,
+    priceBRL: 1497,
+    anchorBRL: 2497,
+    pixBRL: 1347,
     priceUSD: 997,
     anchorUSD: 1397,
     pixDiscount: '-10%',
