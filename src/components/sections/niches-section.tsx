@@ -11,39 +11,39 @@ import { Button } from '@/components/ui/button';
 const niches = [
   {
     key: 'health',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=400&fit=crop',
+    image: '/images/categories/health.png',
     themeColor: '160 55% 28%',
     icon: '🏥',
   },
   {
     key: 'beauty',
-    image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&h=400&fit=crop',
+    image: '/images/categories/beauty.png',
     themeColor: '340 65% 38%',
     icon: '✨',
   },
   {
     key: 'fitness',
-    image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop',
+    image: '/images/categories/fitness.png',
     themeColor: '25 75% 38%',
     icon: '💪',
   },
   {
     key: 'law',
-    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop',
+    image: '/images/categories/law.png',
     themeColor: '220 18% 28%',
     icon: '⚖️',
   },
   {
     key: 'education',
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop',
+    image: '/images/categories/education.png',
     themeColor: '225 60% 38%',
     icon: '📚',
   },
   {
-    key: 'psychology',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=400&fit=crop',
-    themeColor: '270 55% 35%',
-    icon: '🧠',
+    key: 'services',
+    image: '/images/categories/services.png',
+    themeColor: '210 50% 35%',
+    icon: '🛠️',
   },
 ];
 

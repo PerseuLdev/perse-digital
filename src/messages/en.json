@@ -376,9 +376,9 @@
         "title": "Education",
         "description": "Teachers, tutors, online courses"
       },
-      "psychology": {
-        "title": "Psychology",
-        "description": "Psychologists, therapists, coaches"
+      "services": {
+        "title": "Services",
+        "description": "Gardeners, builders, electricians, plumbers"
       }
     }
   },
