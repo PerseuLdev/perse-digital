@@ -3,8 +3,14 @@
   "configurations": [
     {
       "name": "Next.js Dev",
-      "runtimeExecutable": "cmd",
-      "runtimeArgs": ["/c", "npm", "run", "dev", "--", "-p", "3002"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js", "run", "dev", "--", "-p", "3002"],
+      "port": 3002
+    },
+    {
+      "name": "Next.js Dev (Clean)",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js", "run", "dev:clean", "--", "-p", "3002"],
       "port": 3002
     }
   ]
