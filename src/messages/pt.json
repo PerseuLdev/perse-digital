@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Perse Digital - Sites Profissionais por menos de R$2/dia",
-    "description": "Transforme sua presença digital com sites modernos, rápidos e otimizados para SEO. Modelos exclusivos para profissionais liberais."
+    "title": "Perse Digital - Sites para Profissionais Liberais e Autônomos",
+    "description": "Sites para médicos, advogados, psicólogos, personal trainers e autônomos. Apareça no Google e conquiste mais clientes — a partir de R$2/dia."
   },
   "nav": {
     "home": "Início",
@@ -14,14 +14,14 @@
     "about": "Sobre Nós"
   },
   "hero": {
-    "badge": "A partir de R$2 por dia",
-    "headline": "Seu primeiro site profissional,",
-    "headlineHighlight": "a partir de R$2 por dia.",
-    "subheadline": "Sem mensalidade cara. Seu site bonito, rápido e com a sua cara — no ar em dias.",
+    "badge": "Para médicos, advogados, psicólogos, coaches e mais",
+    "headline": "Você é o melhor na sua área.",
+    "headlineHighlight": "Só falta o Google saber disso.",
+    "subheadline": "Sites para profissionais liberais e autônomos que querem aparecer no Google, transmitir credibilidade e conquistar clientes — sem depender só do Instagram.",
     "cta": {
-      "primary": "Quero meu site",
-      "secondary": "Saiba Mais",
-      "microcopy": "Sem compromisso · Resposta em até 24h"
+      "primary": "Quero aparecer no Google",
+      "secondary": "Ver modelos",
+      "microcopy": "Sem compromisso · Entrega em 48h"
     },
     "stats": {
       "templates": "Modelos",
@@ -180,8 +180,8 @@
     }
   },
   "whyNextjs": {
-    "title": "Por que escolher a Perse Digital?",
-    "subtitle": "Tecnologia de ponta para resultados excepcionais",
+    "title": "Por que profissionais liberais nos escolhem?",
+    "subtitle": "Tudo que você precisa para crescer sem depender de algoritmos",
     "features": {
       "speed": {
         "title": "Ultra Rápido",
@@ -235,7 +235,7 @@
   },
   "howItWorks": {
     "title": "Como Funciona",
-    "subtitle": "Em 3 passos simples você terá seu site no ar",
+    "subtitle": "Em 3 passos simples, seu negócio deixa de ser invisível online",
     "steps": {
       "choose": {
         "title": "Escolha seu Modelo",
@@ -258,37 +258,41 @@
     "contactUs": "Entre em contato conosco",
     "items": {
       "q1": {
-        "question": "Preciso saber programar?",
-        "answer": "Não! Nossos modelos vêm prontos para uso. Você só precisa adicionar seu conteúdo através de um painel simples e intuitivo."
+        "question": "Como funciona o processo de compra?",
+        "answer": "É simples: escolha o modelo ideal para o seu nicho, envie as informações do seu negócio e em até 7 dias úteis seu site estará no ar, pronto para atrair clientes."
       },
       "q2": {
+        "question": "O site já vem com conteúdo ou preciso criar tudo?",
+        "answer": "Cada modelo vem com estrutura, design e textos de exemplo adaptados ao seu nicho. Você só precisa enviar suas informações, fotos e dados de contato — nossa equipe personaliza tudo para você."
+      },
+      "q3": {
         "question": "Quanto tempo leva para o site ficar pronto?",
         "answer": "Após a confirmação do pagamento e envio das informações, seu site fica pronto em até 7 dias úteis."
       },
-      "q3": {
+      "q4": {
         "question": "O domínio está incluso no modelo?",
         "answer": "Não. O registro de domínio (.com.br, .com, etc.) não está incluso na compra do modelo. Você pode registrar seu domínio em serviços como Registro.br ou Namecheap, e nós cuidamos de toda a configuração técnica para você."
       },
-      "q4": {
-        "question": "Posso cancelar a qualquer momento?",
-        "answer": "Sim, você pode cancelar quando quiser. Oferecemos garantia de 30 dias com reembolso total."
-      },
       "q5": {
+        "question": "Tem garantia?",
+        "answer": "Sim. Oferecemos garantia de 7 dias conforme o Código de Defesa do Consumidor. Se não ficar satisfeito, devolvemos 100% do valor."
+      },
+      "q6": {
         "question": "O site é responsivo?",
         "answer": "Todos os nossos modelos são 100% responsivos e funcionam perfeitamente em celulares, tablets e computadores."
       },
-      "q6": {
-        "question": "Preciso de conhecimento técnico para atualizar o conteúdo?",
-        "answer": "Não. Oferecemos um painel de administração simples onde você atualiza textos, fotos e informações sem precisar tocar em código. Se precisar de ajuda, nosso suporte está disponível."
-      },
       "q7": {
+        "question": "Preciso de conhecimento técnico?",
+        "answer": "Não. Nosso suporte está disponível para ajudar com qualquer dúvida ou ajuste necessário."
+      },
+      "q8": {
         "question": "Como funciona o suporte após a entrega?",
-        "answer": "Todos os planos incluem suporte via WhatsApp para dúvidas e ajustes. Os planos Professional e Elite incluem suporte prioritário com tempo de resposta reduzido e manutenção mensal inclusa."
+        "answer": "Todos os planos incluem 30 dias de suporte via WhatsApp após a entrega. Manutenção mensal é um serviço adicional que pode ser contratado à parte."
       }
     }
   },
   "footer": {
-    "description": "Transformando profissionais liberais em referências digitais.",
+    "description": "Presença digital para profissionais liberais e autônomos.",
     "links": {
       "company": {
         "title": "Empresa",
@@ -326,9 +330,9 @@
     "whatsappMessage": "Olá! Gostaria de saber mais sobre os serviços da Perse Digital."
   },
   "about": {
-    "title": "Feito por quem entende de",
-    "titleHighlight": "profissionais autônomos",
-    "description": "Sabemos que você não tem tempo para se preocupar com tecnologia. Por isso, criamos uma solução completa para que você foque no que realmente importa: atender seus clientes.",
+    "title": "Criado para quem trabalha por conta própria",
+    "titleHighlight": "e não tem tempo a perder",
+    "description": "Você atende, você vende, você entrega. Mas quem cuida da sua presença digital? A Perse Digital foi feita para que profissionais liberais tenham um site que trabalha por eles — sem precisar entender de tecnologia.",
     "cta": "Conhecer os modelos",
     "benefits": {
       "seo": "Sites otimizados para aparecer no Google",
@@ -339,7 +343,7 @@
     }
   },
   "trustBar": {
-    "label": "Confiado por profissionais em todo o mundo",
+    "label": "Escolhido por profissionais liberais em todo o Brasil",
     "stats": {
       "clients": { "value": "500+", "label": "Clientes ativos" },
       "niches": { "value": "6", "label": "Nichos atendidos" },
@@ -350,7 +354,7 @@
   "niches": {
     "title": "Modelos para",
     "titleHighlight": "cada nicho",
-    "subtitle": "Desenvolvidos especialmente para profissionais autônomos que querem se destacar no mercado",
+    "subtitle": "Cada modelo foi pensado para o dia a dia de quem trabalha por conta própria e quer ser encontrado",
     "viewTemplates": "Ver modelos",
     "items": {
       "health": {
@@ -373,26 +377,26 @@
         "title": "Educação",
         "description": "Professores, tutores, cursos online"
       },
-      "psychology": {
-        "title": "Psicologia",
-        "description": "Psicólogos, terapeutas, coaches"
+      "services": {
+        "title": "Serviços",
+        "description": "Jardineiros, pedreiros, eletricistas, encanadores"
       }
     }
   },
   "parallax": {
     "imageAlt": "Profissionais trabalhando",
     "banner1": {
-      "title": "Mais de 500 profissionais já transformaram seus negócios",
-      "subtitle": "Junte-se a médicos, advogados, personal trainers e muitos outros que confiaram na Perse Digital"
+      "title": "Mais de 500 profissionais liberais já saíram do Instagram e foram para o Google",
+      "subtitle": "Médicos, advogados, psicólogos, personal trainers — todos encontrando novos clientes todo dia"
     },
     "banner2": {
-      "title": "Seu próximo cliente está procurando você no Google",
-      "subtitle": "Esteja pronto para ser encontrado com um site profissional e otimizado"
+      "title": "Enquanto você dorme, seu site trabalha",
+      "subtitle": "Um site profissional capta leads, exibe seu portfólio e recebe agendamentos — 24 horas por dia, 7 dias por semana"
     }
   },
   "testimonials": {
     "title": "O que nossos clientes dizem",
-    "subtitle": "Histórias reais de profissionais que transformaram seus negócios",
+    "subtitle": "Como profissionais liberais transformaram sua captação de clientes",
     "items": {
       "t1": {
         "quote": "Meu consultório nunca teve tanta visibilidade. Os pacientes me encontram facilmente no Google agora!",
@@ -412,10 +416,10 @@
     }
   },
   "cta": {
-    "title": "Pronto para transformar",
-    "titleLine2": "sua presença digital?",
-    "subtitle": "Junte-se a mais de 500 profissionais que já estão se destacando online.",
-    "button": "Começar Agora",
+    "title": "Chega de perder clientes",
+    "titleLine2": "para quem aparece no Google antes de você.",
+    "subtitle": "Junte-se a mais de 500 profissionais liberais que já conquistaram sua presença digital.",
+    "button": "Quero meu site agora",
     "imageAlt": "Equipe comemorando sucesso"
   },
   "professionals": {
