@@ -56,7 +56,7 @@
       "demo": "View model",
       "select": "Choose this Model",
       "learnMore": "Learn more about this model",
-      "delivery": "48h Delivery",
+      "delivery": "7 Business Days Delivery",
       "nextjs": "Next.js Inside",
       "fast": "Ultra Fast",
       "objectives": {
@@ -211,22 +211,23 @@
     "plans": {
       "essential": {
         "name": "Essential",
-        "description": "Professional digital presence",
-        "price": "690",
-        "anchorPrice": "999"
+        "description": "For those just getting started",
+        "price": "797",
+        "anchorPrice": "1.197"
       },
       "professional": {
         "name": "Professional",
-        "description": "Full website with more features",
-        "price": "1.800",
-        "anchorPrice": "2.499",
-        "badge": "Recommended"
+        "description": "For those who want real results",
+        "price": "1.497",
+        "anchorPrice": "2.497",
+        "badge": "Most popular",
+        "savingsLabel": "Save R$2,000 vs Agency"
       },
       "premium": {
-        "name": "Premium",
-        "description": "Fully custom project",
-        "price": "5k+",
-        "priceLabel": "/ Project"
+        "name": "Agency",
+        "description": "For agencies and teams",
+        "price": "3.497",
+        "priceLabel": "/ starting at"
       }
     },
     "cta": "View Model",
@@ -246,7 +247,7 @@
       },
       "launch": {
         "title": "Launch Your Website",
-        "description": "Within 48 hours your website will be live, ready to receive clients."
+        "description": "Within 7 business days your website will be live, ready to receive clients."
       }
     }
   },
@@ -546,7 +547,7 @@
       "title": "Why does Perse Digital exist?",
       "stats": {
         "clients": { "value": "500+", "label": "Professionals served" },
-        "delivery": { "value": "48h", "label": "Site delivery" },
+        "delivery": { "value": "7 days", "label": "Site delivery" },
         "price": { "value": "$2", "label": "Per day" },
         "responsive": { "value": "100%", "label": "Responsive" }
       },
@@ -634,7 +635,7 @@
     },
     "buyButton": "Buy this Model",
     "ctaPremium": "Talk to a specialist",
-    "deliveryTime": "48h Business Delivery",
+    "deliveryTime": "7 Business Days Delivery",
     "domainNotice": "Domain (e.g. yoursite.com) is not included. You can register yours and we handle all the setup.",
     "whatsappFallback": "Hello! I want the {modelTitle} model on the {tierLabel} plan. How do we proceed?",
     "whatsappPremium": "Hello! I'm interested in the Premium plan for the {modelTitle} model. How does the custom project work?",
