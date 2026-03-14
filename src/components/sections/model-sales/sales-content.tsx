@@ -1,8 +1,7 @@
 'use client';
-
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Loader2, ShieldCheck, Zap, Globe, Crown, MessageCircle, FileText, ArrowLeft, CreditCard, QrCode, User, Mail, Phone } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, Zap, Globe, Crown, MessageCircle, FileText, ArrowLeft, CreditCard, QrCode, User, Mail, Phone } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { BrandkitExplainer } from './brandkit-explainer';
@@ -63,7 +62,6 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
   const tm = useTranslations(`models.items.${model.id}`);
   const locale = useLocale();
 
-  const [isLoading, setIsLoading] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadData, setLeadData] = useState<{ name: string; email: string; whatsapp: string } | null>(null);
   const [showContract, setShowContract] = useState(false);
@@ -112,33 +110,16 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
     }).catch((err) => console.error('[leads] POST failed:', err));
   };
 
-  const handleConfirmCheckout = async () => {
-    setIsLoading(true);
+  const handleConfirmCheckout = () => {
     setShowContract(false);
-    try {
-      const res = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          modelId: model.id,
-          tier: selectedTier,
-          paymentMethod: isPT ? paymentMethodChoice : 'card',
-          locale,
-          email: leadData?.email,
-          name: leadData?.name,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? 'Checkout failed');
-      if (!data.url) throw new Error('No checkout URL returned');
-      window.location.href = data.url;
-    } catch (err) {
-      console.error('[checkout] Error:', err);
-      const message = t('whatsappFallback', { modelTitle: tm('title'), tierLabel: t(`tiers.${selectedTier}`) });
-      window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
-    } finally {
-      setIsLoading(false);
-    }
+    const name = leadData?.name ?? '';
+    const modelTitle = tm('title');
+    const tierLabel = t(`tiers.${selectedTier}`);
+    const paymentMethod = isPT ? (paymentMethodChoice === 'pix' ? 'PIX' : 'Cartão') : 'Card';
+    const message = isPT
+      ? `🛒 *Novo Pedido — Perse Digital*\n\n*Nome:* ${name}\n*Modelo:* ${modelTitle}\n*Plano:* ${tierLabel}\n*Valor:* R$ ${effectivePrice} (${paymentMethod})\n\n---\n\nPara darmos início ao seu site, por favor nos envie:\n• Logo (PNG ou SVG de preferência)\n• Fotos ou imagens que deseja usar\n• Textos, slogan ou informações sobre você/seu negócio\n• Cores e referências visuais (opcional)\n\nApós recebermos os materiais, enviaremos o link de pagamento. 😊\n\nQualquer dúvida pode enviar uma mensagem aqui, teremos o prazer em responder!`
+      : `🛒 *New Order — Perse Digital*\n\n*Name:* ${name}\n*Model:* ${modelTitle}\n*Plan:* ${tierLabel}\n*Price:* $${effectivePrice} (${paymentMethod})\n\n---\n\nTo get your website started, please send us:\n• Logo (PNG or SVG preferred)\n• Photos or images you'd like to use\n• Texts, tagline, or info about you/your business\n• Colors and visual references (optional)\n\nOnce we receive your materials, we'll send the payment link. 😊\n\nFeel free to message us anytime — we'll be happy to help!`;
+    window.open(`https://wa.me/5514991071072?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const handlePremiumCTA = () => {
@@ -286,17 +267,10 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
             <div className="sticky bottom-0 pt-4 pb-2 bg-gradient-to-t from-white via-white/90 to-transparent mt-auto">
               <Button
                 onClick={handleConfirmCheckout}
-                disabled={!contractAccepted || isLoading}
+                disabled={!contractAccepted}
                 className="w-full bg-royal hover:bg-royal-dark text-white h-14 rounded-2xl text-base font-bold shadow-lg shadow-royal/15 hover:shadow-royal/25 transition-colors disabled:opacity-40"
               >
-                {isLoading ? (
-                  <span className="flex items-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    {t('contract.redirecting')}
-                  </span>
-                ) : (
-                  t('contract.cta')
-                )}
+                {t('contract.cta')}
               </Button>
             </div>
           </motion.div>
@@ -574,24 +548,16 @@ export function SalesContent({ model, selectedTier = 'essential', onTierChange }
           </motion.div>
         ) : (
           <motion.div
-            whileHover={{ scale: isLoading ? 1 : 1.02 }}
-            whileTap={{ scale: isLoading ? 1 : 0.98 }}
-            animate={isLoading ? {} : { boxShadow: ['0 0 0px 0px rgba(99,102,241,0)', '0 0 18px 4px rgba(99,102,241,0.35)', '0 0 0px 0px rgba(99,102,241,0)'] }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            animate={{ boxShadow: ['0 0 0px 0px rgba(99,102,241,0)', '0 0 18px 4px rgba(99,102,241,0.35)', '0 0 0px 0px rgba(99,102,241,0)'] }}
             transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
           >
             <Button
               onClick={handleBuyClick}
-              disabled={isLoading}
-              className="w-full bg-gradient-to-r from-royal to-blue-500 hover:from-royal-dark hover:to-blue-600 text-white h-14 rounded-2xl text-base font-bold shadow-xl shadow-royal/30 hover:shadow-royal/50 transition-all disabled:opacity-70 disabled:hover:from-royal disabled:hover:to-blue-500"
+              className="w-full bg-gradient-to-r from-royal to-blue-500 hover:from-royal-dark hover:to-blue-600 text-white h-14 rounded-2xl text-base font-bold shadow-xl shadow-royal/30 hover:shadow-royal/50 transition-all"
             >
-              {isLoading ? (
-                <span className="flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  {t('contract.redirecting')}
-                </span>
-              ) : (
-                t('buyButton')
-              )}
+              {t('buyButton')}
             </Button>
           </motion.div>
         )}
