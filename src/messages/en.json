@@ -171,6 +171,22 @@
           "6": "Frequently asked questions",
           "7": "Contact banner"
         }
+      },
+      "lumina-estetica": {
+        "title": "Aesthetics Clinic",
+        "description": "Sophisticated landing page for advanced aesthetic clinics. Facial harmonization, biostimulators, skin protocols and laser.",
+        "features": {
+          "0": "Facial harmonization & biostimulators",
+          "1": "Interactive results gallery",
+          "2": "Integrated WhatsApp scheduling",
+          "3": "Real client testimonials"
+        },
+        "lockedSections": {
+          "0": "Results gallery",
+          "1": "Client testimonials",
+          "2": "Frequently asked questions",
+          "3": "Smart scheduling modal"
+        }
       }
     },
     "faq": {
@@ -662,6 +678,7 @@
     "whatsappFallback": "Hello! I want the {modelTitle} model on the {tierLabel} plan. How do we proceed?",
     "whatsappPremium": "Hello! I'm interested in the Premium plan for the {modelTitle} model. How does the custom project work?",
     "viewPlan": "View plan:",
+    "availableIn": "Available in plan",
     "tiers": {
       "essential": "Essential",
       "professional": "Professional",

@@ -1,0 +1,39 @@
+{
+  "modelId": "lumina-estetica",
+  "_originals": {
+    "phone": "5511999999999",
+    "email": "contato@luminaestetica.com.br",
+    "instagram": "@luminaestetica",
+    "facebook": "",
+    "linkedin": ""
+  },
+  "colors": {
+    "primary": "#C89B6B",
+    "secondary": "#7C5C3E",
+    "accent": "#F5EDE3"
+  },
+  "contact": {
+    "phone": "(11) 99999-9999",
+    "whatsapp": "5511999999999",
+    "email": "contato@luminaestetica.com.br",
+    "address": "Av. Paulista, 1000 - Bela Vista, São Paulo - SP"
+  },
+  "social": {
+    "instagram": "@luminaestetica",
+    "facebook": null,
+    "linkedin": null
+  },
+  "branding": {
+    "businessName": "Lumina Estética",
+    "tagline": "Revele Sua Melhor Versão"
+  },
+  "hours": {
+    "weekdays": "Seg - Sex: 09:00 - 19:00",
+    "saturday": "Sáb: 09:00 - 14:00"
+  },
+  "seo": {
+    "title": "Lumina Estética | Clínica de Estética Avançada",
+    "description": "Tratamentos personalizados focados em naturalidade e rejuvenescimento. Harmonização facial, bioestimuladores e tecnologia a laser.",
+    "keywords": ["estética", "harmonização facial", "bioestimuladores", "laser", "beleza", "rejuvenescimento"]
+  }
+}
