@@ -25,7 +25,7 @@ const MapSection: React.FC = () => {
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
               className="w-full h-full transition-all duration-500 group-hover:scale-105 group-hover:filter-none"
-              title="Localização Odonto Perse"
+              title="Odonto Perse Location"
             ></iframe>
 
             {/* Glass Overlay Card */}
@@ -36,9 +36,9 @@ const MapSection: React.FC = () => {
                   <div>
                     <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2">
                       <MapPin className="text-teal-500" size={20} />
-                      Nossa Localização
+                      Our Location
                     </h3>
-                    <p className="text-slate-500 text-sm mt-1">Fácil acesso pelo metrô Trianon-Masp</p>
+                    <p className="text-slate-500 text-sm mt-1">Easy access via Trianon-Masp subway</p>
                   </div>
                 </div>
 
@@ -52,7 +52,7 @@ const MapSection: React.FC = () => {
                   <div className="pt-2">
                     <a href={googleMapsLink} target="_blank" rel="noopener noreferrer" className="block w-full">
                       <Button variant="primary" className="w-full !justify-between group-hover:shadow-teal-500/40">
-                        Traçar Rota
+                        Get Directions
                         <Navigation size={18} className="group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </a>
@@ -65,7 +65,7 @@ const MapSection: React.FC = () => {
             {/* Top Right Floating Badge */}
             <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-white/50 text-xs font-bold text-teal-700 hidden md:flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              Estacionamento Conveniado
+              Affiliated Parking
             </div>
 
           </div>

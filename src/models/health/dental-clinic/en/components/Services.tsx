@@ -54,10 +54,10 @@ const Services: React.FC = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <span className="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Nossas Especialidades</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">Tratamentos de Alta Performance</h2>
+          <span className="text-teal-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Our Specialties</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">High-Performance Treatments</h2>
           <p className="text-slate-600 text-lg">
-            Oferecemos uma gama completa de tratamentos odontológicos, realizados por especialistas dedicados à sua saúde e bem-estar.
+            We offer a complete range of dental treatments, performed by specialists dedicated to your health and well-being.
           </p>
         </div>
 
@@ -80,7 +80,7 @@ const Services: React.FC = () => {
               </p>
 
               <div className="relative flex items-center text-teal-600 font-semibold text-sm group-hover:translate-x-2 transition-transform cursor-pointer">
-                Saiba mais <ArrowRight size={16} className="ml-2" />
+                Learn More <ArrowRight size={16} className="ml-2" />
               </div>
             </div>
           ))}

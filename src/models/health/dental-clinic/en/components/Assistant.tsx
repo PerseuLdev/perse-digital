@@ -9,7 +9,7 @@ const Assistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: 'Olá! Sou a assistente virtual da Odonto Perse. Como posso ajudar com seu sorriso hoje?' }
+    { role: 'model', text: 'Hi! I\'m the virtual assistant of Odonto Perse. How can I help with your smile today?' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -43,7 +43,7 @@ const Assistant: React.FC = () => {
       <button
         onClick={() => setIsOpen(true)}
         className={`fixed bottom-6 right-6 z-40 bg-gradient-to-r from-teal-500 to-emerald-600 p-4 rounded-full shadow-xl shadow-teal-500/30 text-white transition-all hover:scale-110 active:scale-95 hover:shadow-2xl ${isOpen ? 'hidden' : 'flex'}`}
-        aria-label="Abrir assistente"
+        aria-label="Open assistant"
       >
         <MessageSquare size={28} />
       </button>
@@ -61,7 +61,7 @@ const Assistant: React.FC = () => {
                 <h3 className="font-bold text-sm">Odonto Perse AI</h3>
                 <p className="text-xs text-teal-100 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 bg-green-300 rounded-full animate-pulse"></span>
-                  Online agora
+                  Online now
                 </p>
               </div>
             </div>
@@ -109,7 +109,7 @@ const Assistant: React.FC = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Digite sua dúvida..."
+              placeholder="Type your question..."
               className="flex-1 bg-slate-100 border-none rounded-full px-5 py-3 text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:bg-white transition-all"
             />
             <button 

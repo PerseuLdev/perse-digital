@@ -110,12 +110,12 @@ const Hero: React.FC<HeroProps> = ({ onOpenSchedule }) => {
                         <MessageCircle size={24} />
                     </div>
                     <div>
-                        <p className="font-bold text-white">Atendimento Online</p>
-                        <p className="text-xs text-teal-100">Resposta imediata</p>
+                        <p className="font-bold text-white">Online Service</p>
+                        <p className="text-xs text-teal-100">Immediate response</p>
                     </div>
                 </div>
                 <p className="text-sm text-slate-100 font-medium leading-relaxed">
-                    "Estamos prontos para transformar seu sorriso. Fale com a gente agora!"
+                    "We're ready to transform your smile. Talk to us now!"
                 </p>
             </div>
           </FadeIn>

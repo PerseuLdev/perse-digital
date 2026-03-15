@@ -26,7 +26,7 @@ const SchedulingModal: React.FC<SchedulingModalProps> = ({ isOpen, onClose }) =>
   const prevStep = () => setStep(step - 1);
 
   const finishScheduling = () => {
-    const message = `Olá! Gostaria de agendar uma consulta.%0A%0AMotivo: ${data.reason}%0APreferência: ${data.time}`;
+    const message = `Hi! I'd like to schedule an appointment.%0A%0AReason: ${data.reason}%0APreference: ${data.time}`;
     window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
     onClose();
     setTimeout(() => {
@@ -38,19 +38,19 @@ const SchedulingModal: React.FC<SchedulingModalProps> = ({ isOpen, onClose }) =>
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
       {/* Backdrop */}
-      <div 
+      <div
         className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Content */}
       <div className="relative w-full max-w-lg bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/50 animate-slide-up">
-        
+
         {/* Header */}
         <div className="bg-gradient-to-r from-teal-500 to-emerald-600 p-6 flex justify-between items-center text-white">
           <div>
-            <h3 className="text-xl font-bold">Agendamento Inteligente</h3>
-            <p className="text-teal-100 text-sm">Passo {step} de 3</p>
+            <h3 className="text-xl font-bold">Smart Scheduling</h3>
+            <p className="text-teal-100 text-sm">Step {step} of 3</p>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">
             <X size={24} />
@@ -59,24 +59,24 @@ const SchedulingModal: React.FC<SchedulingModalProps> = ({ isOpen, onClose }) =>
 
         {/* Body */}
         <div className="p-8">
-          
+
           {/* Step 1: Reason */}
           {step === 1 && (
             <div className="space-y-6">
-              <h4 className="text-lg font-semibold text-slate-800 text-center">O que podemos fazer por você hoje?</h4>
+              <h4 className="text-lg font-semibold text-slate-800 text-center">What can we do for you today?</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { id: 'Dor/Emergência', icon: <Activity />, label: 'Dor ou Emergência' },
-                  { id: 'Estética', icon: <Smile />, label: 'Estética / Lentes' },
-                  { id: 'Limpeza', icon: <Zap />, label: 'Limpeza / Check-up' },
-                  { id: 'Avaliação', icon: <Calendar />, label: 'Avaliação Geral' },
+                  { id: 'Pain/Emergency', icon: <Activity />, label: 'Pain or Emergency' },
+                  { id: 'Aesthetics', icon: <Smile />, label: 'Aesthetics / Veneers' },
+                  { id: 'Cleaning', icon: <Zap />, label: 'Cleaning / Check-up' },
+                  { id: 'Evaluation', icon: <Calendar />, label: 'General Evaluation' },
                 ].map((opt) => (
                   <button
                     key={opt.id}
                     onClick={() => handleOptionSelect('reason', opt.id)}
                     className={`p-4 rounded-xl border flex flex-col items-center gap-3 transition-all ${
-                      data.reason === opt.id 
-                        ? 'bg-teal-50 border-teal-500 text-teal-700 shadow-md ring-1 ring-teal-500' 
+                      data.reason === opt.id
+                        ? 'bg-teal-50 border-teal-500 text-teal-700 shadow-md ring-1 ring-teal-500'
                         : 'bg-white border-slate-200 text-slate-600 hover:border-teal-300 hover:bg-slate-50'
                     }`}
                   >
@@ -88,12 +88,12 @@ const SchedulingModal: React.FC<SchedulingModalProps> = ({ isOpen, onClose }) =>
                 ))}
               </div>
               <div className="flex justify-end pt-4">
-                <Button 
-                    onClick={nextStep} 
+                <Button
+                    onClick={nextStep}
                     disabled={!data.reason}
                     className="w-full sm:w-auto"
                 >
-                  Continuar <ArrowRight size={18} />
+                  Continue <ArrowRight size={18} />
                 </Button>
               </div>
             </div>
@@ -102,15 +102,15 @@ const SchedulingModal: React.FC<SchedulingModalProps> = ({ isOpen, onClose }) =>
           {/* Step 2: Time */}
           {step === 2 && (
             <div className="space-y-6">
-              <h4 className="text-lg font-semibold text-slate-800 text-center">Qual o melhor período para você?</h4>
+              <h4 className="text-lg font-semibold text-slate-800 text-center">What's the best time for you?</h4>
               <div className="space-y-3">
-                {['Manhã (08h - 12h)', 'Tarde (13h - 18h)', 'Sábado (08h - 14h)'].map((opt) => (
+                {['Morning (08h - 12h)', 'Afternoon (13h - 18h)', 'Saturday (08h - 14h)'].map((opt) => (
                   <button
                     key={opt}
                     onClick={() => handleOptionSelect('time', opt)}
                     className={`w-full p-4 rounded-xl border text-left flex justify-between items-center transition-all ${
-                      data.time === opt 
-                        ? 'bg-teal-50 border-teal-500 text-teal-700 shadow-md' 
+                      data.time === opt
+                        ? 'bg-teal-50 border-teal-500 text-teal-700 shadow-md'
                         : 'bg-white border-slate-200 text-slate-600 hover:border-teal-300'
                     }`}
                   >
@@ -120,9 +120,9 @@ const SchedulingModal: React.FC<SchedulingModalProps> = ({ isOpen, onClose }) =>
                 ))}
               </div>
               <div className="flex justify-between pt-4">
-                <button onClick={prevStep} className="text-slate-500 font-medium px-4 hover:text-slate-800">Voltar</button>
+                <button onClick={prevStep} className="text-slate-500 font-medium px-4 hover:text-slate-800">Back</button>
                 <Button onClick={nextStep} disabled={!data.time}>
-                  Continuar <ArrowRight size={18} />
+                  Continue <ArrowRight size={18} />
                 </Button>
               </div>
             </div>
@@ -135,19 +135,19 @@ const SchedulingModal: React.FC<SchedulingModalProps> = ({ isOpen, onClose }) =>
                 <Calendar size={32} />
               </div>
               <div>
-                <h4 className="text-2xl font-bold text-slate-800 mb-2">Tudo pronto!</h4>
+                <h4 className="text-2xl font-bold text-slate-800 mb-2">All set!</h4>
                 <p className="text-slate-600">
-                    Vamos redirecionar você para nosso WhatsApp com os detalhes pré-preenchidos para agilizar seu atendimento.
+                    We'll redirect you to our WhatsApp with pre-filled details to speed up your service.
                 </p>
               </div>
               <div className="bg-slate-50 p-4 rounded-xl text-left text-sm text-slate-700 border border-slate-200">
-                <p><strong>Motivo:</strong> {data.reason}</p>
-                <p><strong>Período:</strong> {data.time}</p>
+                <p><strong>Reason:</strong> {data.reason}</p>
+                <p><strong>Period:</strong> {data.time}</p>
               </div>
               <div className="flex justify-between items-center pt-2">
-                <button onClick={prevStep} className="text-slate-500 font-medium px-4 hover:text-slate-800">Voltar</button>
+                <button onClick={prevStep} className="text-slate-500 font-medium px-4 hover:text-slate-800">Back</button>
                 <Button onClick={finishScheduling} className="!w-auto flex-1 ml-4">
-                  Finalizar no WhatsApp
+                  Finish on WhatsApp
                 </Button>
               </div>
             </div>

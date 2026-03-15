@@ -13,12 +13,12 @@ const About: React.FC = () => {
           <div className="grid grid-cols-2 gap-4">
             <img 
               src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop" 
-              alt="Clínica Odontológica Moderna" 
+              alt="Modern Dental Clinic"
               className="rounded-3xl shadow-lg w-full h-64 object-cover mt-8"
             />
             <img 
               src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=800&auto=format&fit=crop" 
-              alt="Dentista atendendo paciente" 
+              alt="Dentist attending patient" 
               className="rounded-3xl shadow-lg w-full h-64 object-cover"
             />
           </div>
@@ -26,16 +26,16 @@ const About: React.FC = () => {
           {/* Content */}
           <div className="space-y-6">
             <div className="inline-block text-teal-600 font-semibold tracking-wider uppercase text-sm">
-              Sobre a Odonto Perse
+              About Odonto Perse
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
-              Tecnologia e humanização para cuidar de você.
+              Technology and humanization to care for you.
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed">
-              Fundada com a missão de transformar a experiência odontológica, a Odonto Perse combina um ambiente acolhedor, tipo spa, com a mais avançada tecnologia digital.
+              Founded with the mission to transform the dental experience, Odonto Perse combines a welcoming, spa-like environment with the most advanced digital technology.
             </p>
             <p className="text-slate-600 text-lg leading-relaxed">
-              Acreditamos que cada sorriso é único. Por isso, desenvolvemos protocolos personalizados que garantem não apenas a estética, mas a saúde e a função mastigatória a longo prazo.
+              We believe each smile is unique. That's why we develop personalized protocols that ensure not only aesthetics but also health and long-term chewing function.
             </p>
 
             <ul className="space-y-4 pt-4">

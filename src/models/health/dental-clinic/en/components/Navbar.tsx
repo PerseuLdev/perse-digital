@@ -21,12 +21,12 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSchedule }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Início', href: '#home' },
-    { name: 'Sobre', href: '#about' },
-    { name: 'Tratamentos', href: '#services' },
-    { name: 'Equipe', href: '#team' },
-    { name: 'Depoimentos', href: '#testimonials' },
-    { name: 'Contato', href: '#contact' },
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Treatments', href: '#services' },
+    { name: 'Team', href: '#team' },
+    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -50,20 +50,20 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSchedule }) => {
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className={`
           rounded-full px-6 py-3 flex justify-between items-center transition-all duration-500 border
-          ${scrolled 
-            ? 'bg-white/70 backdrop-blur-xl backdrop-saturate-150 border-white/40 shadow-lg shadow-black/5' 
+          ${scrolled
+            ? 'bg-white/70 backdrop-blur-xl backdrop-saturate-150 border-white/40 shadow-lg shadow-black/5'
             : 'bg-white/10 backdrop-blur-sm border-white/10 shadow-sm'
           }
         `}>
           {/* Logo */}
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
             className={`flex items-center gap-2 transition-colors duration-300 ${scrolled ? 'text-slate-800' : 'text-white'}`}
           >
             <div className={`p-2 rounded-full transition-all duration-300 ${
-              scrolled 
-                ? 'bg-gradient-to-tr from-teal-500 to-emerald-500 text-white shadow-md' 
+              scrolled
+                ? 'bg-gradient-to-tr from-teal-500 to-emerald-500 text-white shadow-md'
                 : 'bg-white/20 text-white backdrop-blur-md border border-white/20'
             }`}>
               <SmilePlus size={24} />
@@ -74,45 +74,45 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSchedule }) => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
+              <a
+                key={link.name}
+                href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
-                  scrolled 
-                    ? 'text-slate-600 hover:text-teal-600' 
+                  scrolled
+                    ? 'text-slate-600 hover:text-teal-600'
                     : 'text-white/90 hover:text-white'
                 }`}
               >
                 {link.name}
               </a>
             ))}
-            
+
             {/* Quick Link - Emergency */}
-            <a 
-                href="tel:+5511999999999" 
+            <a
+                href="tel:+5511999999999"
                 className={`flex items-center gap-1.5 text-sm font-bold transition-colors ${
                     scrolled ? 'text-red-500 hover:text-red-600' : 'text-red-300 hover:text-red-200'
                 }`}
             >
                 <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                Emergência
+                Emergency
             </a>
 
             <div onClick={onOpenSchedule}>
-              <Button 
-                variant={scrolled ? 'primary' : 'secondary'} 
+              <Button
+                variant={scrolled ? 'primary' : 'secondary'}
                 className={`!px-6 !py-2 text-sm shadow-sm transition-all duration-300 ${
                   !scrolled ? '!bg-white/10 !text-white !border-white/20 hover:!bg-white hover:!text-teal-600' : ''
                 }`}
               >
-                Agendar
+                Schedule
               </Button>
             </div>
           </div>
 
           {/* Mobile Toggle */}
-          <button 
+          <button
             className={`lg:hidden p-2 rounded-full transition-colors ${
               scrolled ? 'text-slate-700 hover:bg-slate-100' : 'text-white hover:bg-white/10'
             }`}
@@ -130,8 +130,8 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSchedule }) => {
       `}>
         <div className="flex flex-col gap-4">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
+            <a
+              key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
               className="text-slate-700 hover:text-teal-600 text-lg font-medium text-center py-3 border-b border-slate-100/50 last:border-0"
@@ -139,14 +139,14 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenSchedule }) => {
               {link.name}
             </a>
           ))}
-          
+
           <a href="tel:+5511999999999" className="flex items-center justify-center gap-2 text-red-500 font-bold py-2">
-            <Phone size={18} /> Emergência 24h
+            <Phone size={18} /> 24/7 Emergency
           </a>
 
           <div onClick={() => { setIsOpen(false); onOpenSchedule(); }} className="w-full mt-2">
             <Button variant="primary" className="w-full">
-              Agendar Agora
+              Schedule Now
             </Button>
           </div>
         </div>

@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
     <footer className="pt-20 pb-8 px-6 bg-slate-50 border-t border-slate-200 text-slate-600">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Brand */}
           <div className="space-y-6">
             <div className="flex items-center gap-2 text-slate-800">
@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
               <span className="text-2xl font-bold tracking-wide">Odonto Perse</span>
             </div>
             <p className="text-sm leading-relaxed">
-              Transformando vidas através de sorrisos saudáveis e confiantes com tecnologia de ponta e atendimento humanizado.
+              Transforming lives through healthy and confident smiles with cutting-edge technology and humanized care.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-teal-500 hover:text-white hover:border-teal-500 transition-all duration-300">
@@ -33,31 +33,31 @@ const Footer: React.FC = () => {
 
           {/* Links */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-6">Links Rápidos</h4>
+            <h4 className="font-bold text-slate-900 mb-6">Quick Links</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#home" className="hover:text-teal-600 transition-colors">Início</a></li>
-              <li><a href="#about" className="hover:text-teal-600 transition-colors">Sobre Nós</a></li>
-              <li><a href="#services" className="hover:text-teal-600 transition-colors">Tratamentos</a></li>
-              <li><a href="#team" className="hover:text-teal-600 transition-colors">Equipe</a></li>
-              <li><a href="#contact" className="hover:text-teal-600 transition-colors">Agendar</a></li>
+              <li><a href="#home" className="hover:text-teal-600 transition-colors">Home</a></li>
+              <li><a href="#about" className="hover:text-teal-600 transition-colors">About Us</a></li>
+              <li><a href="#services" className="hover:text-teal-600 transition-colors">Treatments</a></li>
+              <li><a href="#team" className="hover:text-teal-600 transition-colors">Team</a></li>
+              <li><a href="#contact" className="hover:text-teal-600 transition-colors">Schedule</a></li>
             </ul>
           </div>
 
           {/* Treatments */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-6">Tratamentos</h4>
+            <h4 className="font-bold text-slate-900 mb-6">Treatments</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="hover:text-teal-600 transition-colors">Implantes</a></li>
+              <li><a href="#" className="hover:text-teal-600 transition-colors">Implants</a></li>
               <li><a href="#" className="hover:text-teal-600 transition-colors">Invisalign</a></li>
-              <li><a href="#" className="hover:text-teal-600 transition-colors">Clareamento</a></li>
-              <li><a href="#" className="hover:text-teal-600 transition-colors">Harmonização</a></li>
-              <li><a href="#" className="hover:text-teal-600 transition-colors">Lentes de Contato</a></li>
+              <li><a href="#" className="hover:text-teal-600 transition-colors">Whitening</a></li>
+              <li><a href="#" className="hover:text-teal-600 transition-colors">Harmonization</a></li>
+              <li><a href="#" className="hover:text-teal-600 transition-colors">Contact Lenses</a></li>
             </ul>
           </div>
 
           {/* Contact Mini */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-6">Contato</h4>
+            <h4 className="font-bold text-slate-900 mb-6">Contact</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-teal-500 mt-0.5 shrink-0" />
@@ -76,10 +76,10 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs gap-4">
-          <p>&copy; {new Date().getFullYear()} Odonto Perse. Todos os direitos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Odonto Perse. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-teal-600 transition-colors">Política de Privacidade</a>
-            <a href="#" className="hover:text-teal-600 transition-colors">Termos de Uso</a>
+            <a href="#" className="hover:text-teal-600 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-teal-600 transition-colors">Terms of Use</a>
           </div>
         </div>
       </div>
