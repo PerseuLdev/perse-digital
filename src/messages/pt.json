@@ -75,6 +75,13 @@
           "0": "Projetos 3D",
           "1": "Execução completa",
           "2": "Manutenção técnica"
+        },
+        "lockedSections": {
+          "0": "Portfólio de obras",
+          "1": "Sobre a empresa",
+          "2": "Serviços detalhados",
+          "3": "Perguntas frequentes",
+          "4": "Formulário de contato"
         }
       },
       "personal-trainer-masc": {
@@ -84,6 +91,13 @@
           "0": "Treino personalizado",
           "1": "Nutrição inclusa",
           "2": "App de treinos"
+        },
+        "lockedSections": {
+          "0": "Sobre o profissional",
+          "1": "Serviços e metodologia",
+          "2": "Depoimentos de alunos",
+          "3": "Planos e preços",
+          "4": "Formulário de contato"
         }
       },
       "muscle-perse": {
@@ -110,6 +124,14 @@
           "1": "Profissionais qualificados e experientes",
           "2": "Planos personalizados de cuidados",
           "3": "Acompanhamento médico integrado"
+        },
+        "lockedSections": {
+          "0": "Sobre a equipe",
+          "1": "Serviços de enfermagem",
+          "2": "Assistente virtual de saúde",
+          "3": "Depoimentos de pacientes",
+          "4": "Planos de atendimento",
+          "5": "Formulário de contato"
         }
       },
       "dental-clinic": {

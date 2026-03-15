@@ -13,10 +13,14 @@ interface Particle {
 }
 
 export function HeroParticles() {
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false
-  );
+  const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    setMounted(true);
+    setIsMobile(window.matchMedia('(max-width: 767px)').matches);
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)');
@@ -42,7 +46,7 @@ export function HeroParticles() {
     return newParticles;
   }, [isMobile, shouldReduceMotion]);
 
-  if (shouldReduceMotion) return null;
+  if (!mounted || shouldReduceMotion) return null;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">

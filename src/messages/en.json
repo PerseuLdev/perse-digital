@@ -75,6 +75,13 @@
           "0": "3D Projects",
           "1": "Complete execution",
           "2": "Technical maintenance"
+        },
+        "lockedSections": {
+          "0": "Works portfolio",
+          "1": "About the company",
+          "2": "Detailed services",
+          "3": "Frequently asked questions",
+          "4": "Contact form"
         }
       },
       "personal-trainer-masc": {
@@ -84,11 +91,18 @@
           "0": "Custom training",
           "1": "Nutrition included",
           "2": "Training app"
+        },
+        "lockedSections": {
+          "0": "About the professional",
+          "1": "Services & methodology",
+          "2": "Student testimonials",
+          "3": "Plans & pricing",
+          "4": "Contact form"
         }
       },
       "muscle-perse": {
         "title": "MUSCLE PERSE",
-        "description": "Método exclusivo focado em hipertrofia, definição e performance atlética. Consultoria personalizada com Carlos Iron Mendes.",
+        "description": "Exclusive method focused on hypertrophy, definition, and athletic performance. Personalized consulting with Carlos Iron Mendes.",
         "features": {
           "0": "Personalized consultation",
           "1": "24/7 support",
@@ -110,6 +124,14 @@
           "1": "Qualified and experienced professionals",
           "2": "Personalized care plans",
           "3": "Integrated medical follow-up"
+        },
+        "lockedSections": {
+          "0": "About the team",
+          "1": "Nursing services",
+          "2": "AI health assistant",
+          "3": "Patient testimonials",
+          "4": "Care plans & pricing",
+          "5": "Contact form"
         }
       },
       "dental-clinic": {
