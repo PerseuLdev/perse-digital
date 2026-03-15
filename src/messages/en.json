@@ -661,6 +661,7 @@
     "domainNotice": "Domain (e.g. yoursite.com) is not included. You can register yours and we handle all the setup.",
     "whatsappFallback": "Hello! I want the {modelTitle} model on the {tierLabel} plan. How do we proceed?",
     "whatsappPremium": "Hello! I'm interested in the Premium plan for the {modelTitle} model. How does the custom project work?",
+    "viewPlan": "View plan:",
     "tiers": {
       "essential": "Essential",
       "professional": "Professional",

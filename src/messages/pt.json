@@ -661,6 +661,7 @@
     "domainNotice": "O domínio (ex: seusite.com.br) não está incluso. Você pode registrar o seu e nós fazemos toda a configuração.",
     "whatsappFallback": "Olá! Quero o modelo {modelTitle} no plano {tierLabel}. Como procedemos?",
     "whatsappPremium": "Olá! Tenho interesse no plano Premium para o modelo {modelTitle}. Como funciona o projeto personalizado?",
+    "viewPlan": "Ver plano:",
     "tiers": {
       "essential": "Essencial",
       "professional": "Profissional",
