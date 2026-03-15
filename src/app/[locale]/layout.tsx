@@ -6,6 +6,8 @@ import { notFound } from 'next/navigation';
 import { Providers } from '@/components/providers';
 import { routing } from '@/i18n/routing';
 import { type Locale } from '@/i18n/config';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://persedigital.com.br';
 
@@ -131,6 +133,8 @@ export default async function LocaleLayout({ children, params }: Props) {
             {children}
           </NextIntlClientProvider>
         </Providers>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
