@@ -119,31 +119,37 @@ export function HeroMockups() {
             }}
           >
             {ready &&
-              CAROUSEL_MODELS.map((model, i) => (
-                <div
-                  key={model.id}
-                  className="absolute inset-0 transition-opacity duration-700 ease-out"
-                  style={{ opacity: i === activeIndex ? 1 : 0 }}
-                >
+              CAROUSEL_MODELS.map((model, i) => {
+                const prev = (activeIndex - 1 + CAROUSEL_MODELS.length) % CAROUSEL_MODELS.length;
+                const next = (activeIndex + 1) % CAROUSEL_MODELS.length;
+                const shouldMount = i === activeIndex || i === prev || i === next;
+                if (!shouldMount) return null;
+                return (
                   <div
-                    style={{
-                      width: '1440px',
-                      height: '900px',
-                      transform: `scale(${macScale})`,
-                      transformOrigin: 'top left',
-                    }}
+                    key={model.id}
+                    className="absolute inset-0 transition-opacity duration-700 ease-out"
+                    style={{ opacity: i === activeIndex ? 1 : 0 }}
                   >
-                    <iframe
-                      src={getIframeUrl(model)}
-                      className="w-full h-full border-0"
-                      title={model.id}
-                      loading={i === 0 ? 'eager' : 'lazy'}
-                      tabIndex={-1}
-                      style={{ pointerEvents: 'none' }}
-                    />
+                    <div
+                      style={{
+                        width: '1440px',
+                        height: '900px',
+                        transform: `scale(${macScale})`,
+                        transformOrigin: 'top left',
+                      }}
+                    >
+                      <iframe
+                        src={getIframeUrl(model)}
+                        className="w-full h-full border-0"
+                        title={model.id}
+                        loading="lazy"
+                        tabIndex={-1}
+                        style={{ pointerEvents: 'none' }}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
           </div>
 
           {/* Hover overlay with CTA only */}

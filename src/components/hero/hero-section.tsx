@@ -256,15 +256,22 @@ export function HeroSection() {
 
             {/* CTA */}
             <div className="relative z-50 flex flex-col items-center lg:items-start gap-3 mb-12">
-              <Link href={`/${locale}/templates`}>
-                <CTAButton
-                  variant="primary"
-                  icon={<ArrowRight className="w-4 h-4" />}
-                  delay={0.7}
-                >
-                  {t('hero.cta.primary')}
-                </CTAButton>
-              </Link>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                <Link href={`/${locale}/templates`}>
+                  <CTAButton
+                    variant="primary"
+                    icon={<ArrowRight className="w-4 h-4" />}
+                    delay={0.7}
+                  >
+                    {t('hero.cta.primary')}
+                  </CTAButton>
+                </Link>
+                <Link href={`/${locale}/templates`}>
+                  <CTAButton variant="secondary" delay={0.8}>
+                    {t('hero.cta.secondary')}
+                  </CTAButton>
+                </Link>
+              </div>
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
