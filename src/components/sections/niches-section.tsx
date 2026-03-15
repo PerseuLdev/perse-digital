@@ -11,37 +11,37 @@ import { Button } from '@/components/ui/button';
 const niches = [
   {
     key: 'health',
-    image: '/images/categories/health.png',
+    image: '/images/categories/health.webp',
     themeColor: '160 55% 28%',
     icon: '🏥',
   },
   {
     key: 'beauty',
-    image: '/images/categories/beauty.png',
+    image: '/images/categories/beauty.webp',
     themeColor: '340 65% 38%',
     icon: '✨',
   },
   {
     key: 'fitness',
-    image: '/images/categories/fitness.png',
+    image: '/images/categories/fitness.webp',
     themeColor: '25 75% 38%',
     icon: '💪',
   },
   {
     key: 'law',
-    image: '/images/categories/law.png',
+    image: '/images/categories/law.webp',
     themeColor: '220 18% 28%',
     icon: '⚖️',
   },
   {
     key: 'education',
-    image: '/images/categories/education.png',
+    image: '/images/categories/education.webp',
     themeColor: '225 60% 38%',
     icon: '📚',
   },
   {
     key: 'services',
-    image: '/images/categories/services.png',
+    image: '/images/categories/services.webp',
     themeColor: '210 50% 35%',
     icon: '🛠️',
   },

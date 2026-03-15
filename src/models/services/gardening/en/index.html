@@ -8,7 +8,7 @@
     <meta name="description" content="We transform spaces into natural refuges. Landscaping projects, execution and maintenance.">
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Icons (Lucide) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 
     <!-- Tailwind Configuration -->
     <script>
@@ -193,7 +193,7 @@
                         <span>Technical Support</span>
                     </li>
                 </ul>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Signature_sample.svg" alt="Signature" class="h-12 opacity-60">
+                <svg class="h-12 opacity-60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 40 Q30 10 50 35 Q70 55 90 20 Q110 5 130 30 Q150 50 170 25 Q185 15 195 35" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
         </div>
     </section>
@@ -540,8 +540,8 @@
 
     <!-- Scripts -->
     <script>
-        // Initialize icons
-        lucide.createIcons();
+        // Initialize icons after deferred scripts load
+        window.addEventListener('load', function() { if (typeof lucide !== 'undefined') lucide.createIcons(); });
 
         // Navbar Change on Scroll
         const navbar = document.getElementById('navbar');

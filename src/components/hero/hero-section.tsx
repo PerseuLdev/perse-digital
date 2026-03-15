@@ -82,8 +82,8 @@ function AnimatedText({ text, className, delay = 0 }: { text: string; className?
       {words.map((word, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.7,
             delay: delay + i * 0.08,
